@@ -18,6 +18,14 @@ class AdminUser extends Database
         return $users;
     }
 
+    public function countUser(){
+        $sql = "SELECT COUNT(*) FROM users";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count;
+    }
+
     public function getSingleUser($id)
     {
         $sql = "SELECT * FROM users WHERE id = :id";
@@ -31,7 +39,7 @@ class AdminUser extends Database
 
     //update user que par id 1
     //update admin que par id 10
-    
+
     public function updateUser()
     {
 

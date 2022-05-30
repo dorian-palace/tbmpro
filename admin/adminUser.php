@@ -72,6 +72,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
             <a class="a_admin" href="adminUser.php?delete=<?= $singleUser['id']; ?>">Delete User</a>
         </form>
     <?php } ?>
+
 </body>
 
 </html>
