@@ -29,16 +29,18 @@ class AdminUser extends Database
         return $user;
     }
 
-    public function updateUser($id)
+    //update user que par id 1
+    //update admin que par id 10
+    
+    public function updateUser()
     {
 
-        // $id = $_GET['id'];
-
         if (isset($_POST['submitUser'])) {
-            $name = secuData($_POST['name']);
-            $surname = secuData($_POST['surname']);
-            $login = secuData($_POST['login']);
-            $mail = secuData($_POST['mail']);
+
+            $name = secuData($_POST['nameUser']);
+            $surname = secuData($_POST['surnameUser']);
+            $login = secuData($_POST['loginUser']);
+            $mail = secuData($_POST['mailUser']);
             $id_role = secuData($_POST['id_role']);
             $id_quotes = secuData($_POST['id_quotes']);
             $idUser = secuData($_POST['submitUser']);
@@ -46,25 +48,17 @@ class AdminUser extends Database
             $sql = "UPDATE users SET name = ?, surname = ?,  mail = ?, login = ?, id_role = ?, id_quotes = ? WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
-                'name' => $name,
-                'surname' => $surname,
-                'mail' => $mail,
-                'login' => $login,
-                'id_role' => $id_role,
-                'id_quotes' => $id_quotes,
-                'id' => $id
+                $name, $surname, $mail, $login, $id_role, $id_quotes, $idUser
             ]);
-            //UPDATE users SET name = 'aaze', surname = 'azea', mail = 'aze@a',login = 'aaze', id_role = 1, id_quotes = 0 WHERE id = 1;
-            header('Location: adminUser.php');
         }
     }
 
-    public function deleteUser()
+    public function deleteUser($id)
     {
-        $sql = "DELETE FROM users WHERE id = :id";
+        $sql = "DELETE FROM users WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            'id' => $_GET['id'] //id dans button delete
+            $id
         ]);
     }
 }

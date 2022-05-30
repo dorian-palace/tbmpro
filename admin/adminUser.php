@@ -2,6 +2,17 @@
 require_once('../app/AdminUser.php');
 $userAdmin = new AdminUser();
 $users = $userAdmin->getAllUsers();
+
+// si la session id role est égale à 100 on affiche toute les fonctionnaitlité du super admin
+// si la session id role est égale à 10 on affiche toute les fonctionnalité du admin
+
+//sinon vous n'êtes pas admin headerlocation index.php
+
+if (isset($_GET['delete']) && !empty($_GET['delete'])) {
+
+    $delete = (int)$_GET['delete'];
+    $userAdmin->deleteUser($delete);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,44 +36,42 @@ $users = $userAdmin->getAllUsers();
             <th>id_quotes</th>
         </tr>
 
-        <?php foreach ($users as $user) : ?>
+        <?php foreach ($users as $user) :
+            echo "<pre>";
+            var_dump($user['id_role']);
+            echo "</pre>";
+
+        ?>
             <tr>
-                <a href="adminUser.php?id=<?= $user['id'] ?>"><?= $user['id'] ?>">super lien fils de pute</a>
                 <td><?= $user['name']; ?></td>
                 <td><?= $user['surname']; ?></td>
                 <td><?= $user['mail']; ?></td>
                 <td><?= $user['login']; ?></td>
                 <td><?= $user['id_role']; ?></td>
                 <td><?= $user['id_quotes']; ?></td>
+                <td><a href="adminUser.php?id=<?= $user['id'] ?>">User management</a></td>
             </tr>
-        <?php endforeach; ?>
+        <?php
+        endforeach; ?>
     </table>
+
     <?php
     if (isset($_GET['id'])) {
+
         $singleUser = $userAdmin->getSingleUser($_GET['id']);
-        // $id = $_GET['id'];
-        $userAdmin->updateUser($_GET['id']);
-        // echo "<pre>";
-        // var_dump($singleUser);
-        // echo "</pre>";
-        // echo "ok";
-    ?>
+        $userAdmin->updateUser($_GET['id']); ?>
+
         <form action="" method="post">
-            <input type="text" name="nameUser" value="<?= $singleUser['name']; ?>">
+            <input type="text" name="nameUser" value="<?= $singleUser['name']; ?>" placeholder="">
             <input type="text" name="surnameUser" value="<?= $singleUser['surname']; ?>">
-            <input type="text" name="mailUser" value="<?= $singleUser['mail']; ?>">
+            <input type="email" name="mailUser" value="<?= $singleUser['mail']; ?>">
+            <input type="text" name="loginUser" value="<?= $singleUser['login']; ?>">
             <input type="text" name="id_role" value="<?= $singleUser['id_role']; ?>">
             <input type="text" name="id_quotes" value="<?= $singleUser['id_quotes']; ?>">
-            <button type="submit" value="<?= $singleUser['id']; ?>" name="submitUser">
-                <!--Submit update user-->super bouton
-            </button>
-            <a href="">
-                <!---DELETE-->
-            </a>
+            <button type="submit" value="<?= $singleUser['id']; ?>" name="submitUser">Update User</button>
+            <a class="a_admin" href="adminUser.php?delete=<?= $singleUser['id']; ?>">Delete User</a>
         </form>
-    <?php
-    }
-    ?>
+    <?php } ?>
 </body>
 
 </html>
