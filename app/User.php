@@ -1,5 +1,10 @@
 <?php
-require_once('../setting/db.php');
+var_dump(__DIR__);
+require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
+// require_once('../setting/db.php');
+
+// /Applications/MAMP/htdocs/tbmpro/setting/db.php
+require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
 class User extends Database
 {
 
@@ -8,20 +13,45 @@ class User extends Database
         parent::__construct();
     }
 
-    public function signUp($name, $surname, $mail, $login, $password, $id_role, $id_quotes)
+    public function signUp()
     {
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO user (name, surname, mail, login, password, id_role, id_quotes) VALUES (:name, :surname, :mail, :login, :password, :id_role, :id_quotes)";
-        $stmt = $this->db->prepare($sql);
+
+        if (isset($_POST['submit_signUp'])) {
+
+            $name = secuData($_POST['name_signUp']);
+            $surname = secuData($_POST['surname_signUp']);
+            $mail = secuData($_POST['mail_singUp']);
+            $login = secuData($_POST['login_singUp']);
+            $password = secuData($_POST['password_singUp']);
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $sql = "INSERT INTO users (name, surname, mail, login, password, id_role) VALUES (:name, :surname, :mail, :login, :password, 1)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ':name' => $name,
+                ':surname' => $surname,
+                ':mail' => $mail,
+                ':login' => $login,
+                ':password' => $hashed_password
+            ]);
+        }
+    }
+
+    public function userExist()
+    {
+        $login = secuData($_POST['login_singUp']);
+        $sql = "SELECT * FROM users WHERE login = :login";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            ':name' => $name,
-            ':surname' => $surname,
-            ':mail' => $mail,
-            ':login' => $login,
-            ':password' => $password,
-            ':id_role' => $id_role,
-            ':id_quotes' => $id_quotes
+            ':login' => $login
         ]);
+        $user = $stmt->fetch();
+        if (!$user) {
+            $this->signUp();
+        } else {
+            return true;
+            // return false;
+
+        }
     }
 
     public function signIn($login, $password)
@@ -47,20 +77,7 @@ class User extends Database
         }
     }
 
-    public function userExist($login)
-    {
-        $sql = "SELECT * FROM user WHERE login = :login";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            ':login' => $login
-        ]);
-        $user = $stmt->fetch();
-        if ($user) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     public function getUserInfo()
     {
