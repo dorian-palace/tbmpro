@@ -1,5 +1,5 @@
 <?php
-
+require_once('../setting/db.php');
 class AdminArticle extends Database{
 
 function __construct(){
@@ -14,13 +14,18 @@ function getArticleById(int $id){
     $request->execute();
     $article = $request->fetch();
 
+    echo $article;
     return $article;
 
 }
 
 function createArticle(){
 
-    $sql = "INSERT INTO articles (`text`)";
+    // $sql = "INSERT INTO articles (`text`)";
+    
+
+
+
 }
 
 }
