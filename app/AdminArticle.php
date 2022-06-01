@@ -6,15 +6,28 @@ function __construct(){
     parent::__construct();
 }
 
+function getAllArticles(){
+
+    $sql = "SELECT * FROM articles INNER JOIN images WHERE articles.id_image = images.id";
+
+    $request = $this->pdo->prepare($sql);
+    $request->execute();
+    $articles = $request->fetchAll();
+
+    return $articles;
+
+
+}
+
 function getArticleById(int $id){
 
-    $sql = "SELECT * FROM articles INNER JOIN images WHERE articles.id_images = images.id";
+    $sql = "SELECT * FROM articles INNER JOIN images WHERE articles.id_image = images.id";
 
     $request = $this->pdo->prepare($sql);
     $request->execute();
     $article = $request->fetch();
 
-    echo $article;
+    // echo $article;
     return $article;
 
 }
@@ -30,5 +43,4 @@ function createArticle(){
 
 }
 
-$artnew = new AdminArticle();
-$artnew->getArticleById(7);
+
