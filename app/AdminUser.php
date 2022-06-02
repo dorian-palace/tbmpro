@@ -8,14 +8,13 @@ class AdminUser extends Database
     {
         parent::__construct();
 
-        if ($_SESSION['id_role'] != 1) {
+        if ($_SESSION['id_role'] == 1) {
             header('Location: index.php');
         }
     }
 
     public function getAllUsers()
     {
-        //affiche toute les information de tout les utilisateurs
         $sql = "SELECT * FROM users WHERE id_role = 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -62,13 +61,12 @@ class AdminUser extends Database
             $login = secuData($_POST['loginUser']);
             $mail = secuData($_POST['mailUser']);
             $id_role = secuData($_POST['id_role']);
-            $id_quotes = secuData($_POST['id_quotes']);
             $idUser = secuData($_POST['submitUser']);
 
-            $sql = "UPDATE users SET name = ?, surname = ?,  mail = ?, login = ?, id_role = ?, id_quotes = ? WHERE id = ?";
+            $sql = "UPDATE users SET name = ?, surname = ?,  mail = ?, login = ?, id_role = ? WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
-                $name, $surname, $mail, $login, $id_role, $id_quotes, $idUser
+                $name, $surname, $mail, $login, $id_role, $idUser
             ]);
         }
     }

@@ -4,9 +4,6 @@ $userAdmin = new AdminUser();
 $users = $userAdmin->getAllUsers();
 $getAdmin = $userAdmin->getAdmin();
 
-// echo "<pre>";
-// var_dump($getAdmin);
-// echo "</pre>";
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     $delete = (int)$_GET['delete'];
@@ -27,6 +24,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     <table>
         <tr>
+            <legend>Gestion des users</legend>
             <th>name</th>
             <th>surname</th>
             <th>mail</th>
@@ -53,6 +51,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     <table>
 
         <tr>
+            <legend>Gestion des admin</legend>
             <th>name</th>
             <th>surname</th>
             <th>mail</th>
