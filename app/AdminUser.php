@@ -1,6 +1,6 @@
 <?php
 require_once('../setting/db.php');
-require('../setting/data.php');
+require_once('../setting/data.php');
 class AdminUser extends Database
 {
 
@@ -21,6 +21,15 @@ class AdminUser extends Database
         $stmt->execute();
         $users = $stmt->fetchAll();
         return $users;
+    }
+
+    public function countUser()
+    {
+        $sql = "SELECT COUNT(*) FROM users";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count;
     }
 
     public function getSingleUser($id)
