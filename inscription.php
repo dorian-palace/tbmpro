@@ -1,22 +1,23 @@
 <?php
 require_once('app/User.php');
+require_once('setting/data.php');
 
 if (isset($_POST['submit_signUp'])) {
 
     if (isset($_POST['login_singUp'], $_POST['password_singUp'], $_POST['confirm_password_singUp'], $_POST['name_signUp'], $_POST['surname_signUp'], $_POST['mail_singUp'])) {
 
-        $login = $_POST['login_singUp'];
-        $password = $_POST['password_singUp'];
-        $confPassword = $_POST['confirm_password_singUp'];
-        $name = $_POST['name_signUp'];
-        $surname = $_POST['surname_signUp'];
-        $mail = $_POST['mail_singUp'];
-        $user = new User($login, $password, $confPassword, $name, $surname, $mail);
-        $user->confirmSignUp();
+        $login = secuData($_POST['login_singUp']);
+        $password = secuData($_POST['password_singUp']);
+        $confPassword = secuData($_POST['confirm_password_singUp']);
+        $name = secuData($_POST['name_signUp']);
+        $surname = secuData($_POST['surname_signUp']);
+        $mail = secuData($_POST['mail_singUp']);
+        $user = new User();
+        $user->confirmSignUp($login, $password, $name, $surname, $mail);
     }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

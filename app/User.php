@@ -14,50 +14,47 @@ class User extends Database
     private $mail;
     private $id;
 
-    public function __construct($login, $password, $confPassword, $name, $surname, $mail)
+    private $loginSignIn;
+    private $passwordSignIn;
+
+    public function __construct()
     {
         parent::__construct();
-
-        $this->login = secuData($login);
-        $this->password = secuData($password);
-        $this->confPassword = secuData($confPassword);
-        $this->name = secuData($name);
-        $this->surname = secuData($surname);
-        $this->mail = secuData($mail);
     }
 
-    public function signUp()
+    public function signUp($login, $password, $name, $surname, $mail)
     {
 
         if (isset($_POST['submit_signUp'])) {
 
-            // if ($this->password == $this->confPassword) {
+            $login = secuData($_POST['login_singUp']);
+            $password = secuData($_POST['password_singUp']);
+            $name = secuData($_POST['name_signUp']);
+            $surname = secuData($_POST['surname_signUp']);
+            $mail = secuData($_POST['mail_singUp']);
 
-            $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
-
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
             $sql = "INSERT INTO users (name, surname, mail, login, password, id_role) VALUES (?, ?, ?, ?, ?, 1)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
-                $this->name,
-                $this->surname,
-                $this->mail,
-                $this->login,
+                $name,
+                $surname,
+                $mail,
+                $login,
                 $hashed_password
             ]);
-
-            // }
         }
     }
 
 
     public function userExist()
     {
-
+        $login = secuData($_POST['login_singUp']);
         $sql = "SELECT * FROM users WHERE login = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            $this->login
+            $login
         ]);
         $user = $stmt->rowCount();
         if ($user == 0) {
@@ -69,7 +66,9 @@ class User extends Database
 
     public function confPassword()
     {
-        if ($this->password == $this->confPassword) {
+        $password = secuData($_POST['password_singUp']);
+        $confPassword = secuData($_POST['confirm_password_singUp']);
+        if ($password == $confPassword) {
 
             return true;
         } else {
@@ -78,8 +77,8 @@ class User extends Database
     }
     public function valideEmail()
     {
-
-        if (filter_var($this->mail, FILTER_VALIDATE_EMAIL)) {
+        $mail = secuData($_POST['mail_singUp']);
+        if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             return true;
         } else {
             return false;
@@ -96,7 +95,7 @@ class User extends Database
     }
 
 
-    public function confirmSignUp()
+    public function confirmSignUp($login, $password, $name, $surname, $mail)
     {
         if ($this->confPassword()) {
 
@@ -104,8 +103,8 @@ class User extends Database
 
                 if ($this->userExist()) {
 
-                    $this->signUp();
-                    $this->displayMessage('Votre compte a bien été créé');
+                    $this->signUp($login, $password, $name, $surname, $mail);
+                    header('Location: connexion.php');
                 }
             } else {
                 $this->displayMessage('Votre adresse mail n\'est pas valide');
@@ -118,7 +117,7 @@ class User extends Database
     public function getUserInfo()
     {
         $sql = "SELECT * FROM users WHERE id = :id";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':id' => $_SESSION['id']
         ]);
@@ -126,13 +125,13 @@ class User extends Database
         return $user;
     }
 
-    public function signIn()
+    public function signIn($login, $password)
     {
         $sql = "SELECT * FROM users WHERE login = ? AND password = ?";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            $this->login,
-            $this->password
+            $login,
+            $password
         ]);
         $user = $stmt->fetch();
         if ($user) {
@@ -146,6 +145,33 @@ class User extends Database
             header('Location: index.php');
         } else {
             $msg = "error";
+        }
+    }
+
+    public function connect($login, $password)
+    {
+        $sql = "SELECT * FROM users WHERE login = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $login
+        ]);
+        $user = $stmt->rowCount();
+
+        if ($user == 1) {
+
+            $info = $stmt->fetch();
+
+            if (password_verify($password, $info['password'])) {
+                $_SESSION['id'] = $info['id'];
+                $_SESSION['name'] = $info['name'];
+                $_SESSION['surname'] = $info['surname'];
+                $_SESSION['mail'] = $info['mail'];
+                $_SESSION['login'] = $info['login'];
+                $_SESSION['id_role'] = $info['id_role'];
+                // header('Location: index.php');
+            } else {
+                $msg = "error";
+            }
         }
     }
 }
