@@ -7,11 +7,16 @@ class AdminUser extends Database
     public function __construct()
     {
         parent::__construct();
+
+        if ($_SESSION['id_role'] != 1) {
+            header('Location: index.php');
+        }
     }
 
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM users";
+        //affiche toute les information de tout les utilisateurs
+        $sql = "SELECT * FROM users WHERE id_role = 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
@@ -29,9 +34,15 @@ class AdminUser extends Database
         return $user;
     }
 
-    //update user que par id 1
-    //update admin que par id 10
-    
+    public function getAdmin()
+    {
+        $sql = "SELECT * FROM users WHERE id_role = 10";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll();
+        return $users;
+    }
+
     public function updateUser()
     {
 
