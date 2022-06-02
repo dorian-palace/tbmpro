@@ -6,10 +6,11 @@ require_once('../app/AdminUser.php');
 $artnew = new AdminArticle();
 $articleSolo = $artnew->getArticleById(1);
 $articles = $artnew->getAllArticles();
+$articlePic = $artnew->createArticle();
 
-var_dump($articles);
+// var_dump($articles);
 
-var_dump($articleSolo);
+// var_dump($articleSolo);
 
 ?>
 
@@ -26,27 +27,40 @@ var_dump($articleSolo);
         <article>
             <table>
                 <tr>
-                    <th>id</th>
-                    <th>image</th>
+                    <th>image id</th>
                     <th>text</th>
                 </tr>
 
-            <?php foreach ($articles as $article) :
-                echo "<pre>";
-                var_dump($article['text']);
-                echo "</pre>";
+                    <?php foreach ($articles as $article) :
+                    // echo "<pre>";
+                    // var_dump($article['text']);
+                    // echo "</pre>";
 
-            ?>
+                    ?>
                 <tr>
-                    <td><?= $article['id']; ?></td>
                     <td><?= $article['id_image']; ?></td>
                     <td><?= $article['text']; ?></td>
                     <td><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
                 </tr>
-            <?php
-            endforeach; ?>
-        </table>
+                    <?php
+                    endforeach; ?>
+            </table>
 
+        </article>
+
+        <article>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class= "form-group">
+                            <label class= "text-article" for="add-pic">Add a pic:</label><br>
+                            <input type= "file" name= "add-pic" >
+                           
+                        </div>
+                        <div class= "form-group">
+                            <label class= "text-article" for="text">Text:</label><br>
+                            <input type= "text" name= "text" placeholder= "write your article" autocomplete= "off"><br>
+                            <button type="submit" name= "submit-text" class="btn ">create an article</button>
+                        </div>
+                    </form>
         </article>
     </main>
 </body>
