@@ -4,8 +4,17 @@ require_once('../setting/data.php');
 class AdminUser extends Database
 {
 
+    public $limite;
+
     public function __construct()
     {
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+        } else {
+            $this->page = 1;
+        }
+        $this->limite = 5;
+        $this->debut = ($this->page - 1) * $this->limite;
         parent::__construct();
 
         if ($_SESSION['id_role'] == 1) {
@@ -15,7 +24,7 @@ class AdminUser extends Database
 
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM users WHERE id_role = 1";
+        $sql = "SELECT * FROM users WHERE id_role = 1 LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
@@ -27,8 +36,8 @@ class AdminUser extends Database
         $sql = "SELECT COUNT(*) FROM users";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
-        $count = $stmt->fetchColumn();
-        return $count;
+        // $count = $stmt->fetchColumn();
+        return $stmt;
     }
 
     public function getSingleUser($id)

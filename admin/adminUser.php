@@ -4,11 +4,26 @@ $userAdmin = new AdminUser();
 $users = $userAdmin->getAllUsers();
 $getAdmin = $userAdmin->getAdmin();
 
+echo "<pre>";
+var_dump($_SESSION);
+echo "</pre>";
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     $delete = (int)$_GET['delete'];
     $userAdmin->deleteUser($delete);
 }
+
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+} else {
+    $page = 1;
+}
+
+$start = $userAdmin->countUser();
+$nbUsers = $start->fetchColumn();
+$limit = 5;
+$total = ceil($nbUsers / $limit);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +32,8 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Admin-user</title>
 </head>
 
@@ -47,6 +64,8 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         <?php
         endforeach; ?>
     </table>
+
+
 
     <table>
 
@@ -98,6 +117,19 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
         </form>
     <?php }
     ?>
+
+
+
+
+    <ul class="pagination" style="align-items:center;">
+        <li class="disabled"><?php if ($page > 1) { ?><a href="?page=<?= $page - 1  ?>"><i class="material-icons">
+                        < </i></a><?php } ?></li>
+
+        <li class="waves-effect"> <?php for ($i = 1; $i <= $total; $i++) {
+                                    ?><a href="?page=<?= $i; ?>"><?= $i; ?></a> <?php } ?></li>
+
+        <li class="disabled"><?php if ($page < $total) { ?><a href="?page=<?= $page + 1; ?>"><i class="material-icons"> > </i></a><?php } ?></li>
+    </ul>
 </body>
 
 </html>

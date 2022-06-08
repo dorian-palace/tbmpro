@@ -1,9 +1,10 @@
 <?php
-var_dump(__DIR__);
-require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
-// require_once('../setting/db.php');
+// var_dump(__DIR__);
+// require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
 // /Applications/MAMP/htdocs/tbmpro/setting/db.php
-require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
+// require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
+require_once('../setting/db.php');
+require_once('../setting/data.php');
 class User extends Database
 {
     private $login;
@@ -168,7 +169,6 @@ class User extends Database
                 $_SESSION['mail'] = $info['mail'];
                 $_SESSION['login'] = $info['login'];
                 $_SESSION['id_role'] = $info['id_role'];
-                // header('Location: index.php');
             } else {
                 $msg = "error";
             }
