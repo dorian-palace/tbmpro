@@ -4,13 +4,9 @@ require_once('../app/AdminUser.php');
 
 
 $artnew = new AdminArticle();
-$articleSolo = $artnew->getArticleById(1);
+// $articleSolo = $artnew->getArticleById(1);
 $articles = $artnew->getAllArticles();
 $articlePic = $artnew->createArticle();
-
-// var_dump($articles);
-
-// var_dump($articleSolo);
 
 ?>
 
@@ -32,13 +28,12 @@ $articlePic = $artnew->createArticle();
                 </tr>
 
                     <?php foreach ($articles as $article) :
-                    // echo "<pre>";
-                    // var_dump($article['text']);
-                    // echo "</pre>";
+              
 
                     ?>
                 <tr>
                     <td><?= $article['id_image']; ?></td>
+                    <td><?= $article['name']; ?></td>
                     <td><?= $article['text']; ?></td>
                     <td><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
                 </tr>
@@ -49,8 +44,10 @@ $articlePic = $artnew->createArticle();
         </article>
 
         <article>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="" method="post" enctype="multipart/form-data"> 
                         <div class= "form-group">
+                            <label class= "text-article" for="text">Pic title:</label><br>
+                            <input type= "text" name= "title-pic" placeholder= "give the pic a name" autocomplete= "off"><br>
                             <label class= "text-article" for="add-pic">Add a pic:</label><br>
                             <input type= "file" name= "add-pic" >
                            
