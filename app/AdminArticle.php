@@ -1,5 +1,6 @@
 <?php
 require_once('../setting/db.php');
+require_once('../setting/data.php');
 class AdminArticle extends Database{
 
 function __construct(){
@@ -8,7 +9,7 @@ function __construct(){
 
 function getAllArticles(){
 
-    $sql = "SELECT * FROM articles INNER JOIN images WHERE articles.id_image = images.id";
+    $sql = "SELECT *, articles.id FROM articles INNER JOIN images WHERE articles.id_image = images.id";
 
     $request = $this->pdo->prepare($sql);
     $request->execute();
@@ -21,7 +22,7 @@ function getAllArticles(){
 
 function getArticleById(int $id){
 
-    $sql = "SELECT * FROM articles INNER JOIN images WHERE articles.id_image = images.id";
+    $sql = "SELECT * FROM  articles INNER JOIN images WHERE articles.id_image = images.id";
 
     $request = $this->pdo->prepare($sql);
     $request->execute();
@@ -46,8 +47,9 @@ function createArticle(){
             $size = $_FILES['add-pic']['size'];
             $type = $_FILES['add-pic']['type'];
             $error = $_FILES['add-pic']['error'];
-            $namePic = $_POST['title-pic'];
-            $textArticle = $_POST['text'];
+            $namePic = secuData($_POST['title-pic']);
+            $titleArticle = secuData($_POST['title-article']);
+            $textArticle = secuData($_POST['text']);
             
             
             
@@ -64,7 +66,7 @@ function createArticle(){
                 
                 echo 'ok2';
                 
-                if (isset($_POST['title-pic']) && isset($_POST['text'])){
+                if (isset($namePic) && isset($textArticle)){
                     echo 'ok3';
                    
                     $namePicToRegister = $namePic.'.'.$extension;
@@ -73,7 +75,8 @@ function createArticle(){
                     $request = $this->pdo->prepare($sql);
                     $request->execute([$namePic]);
                     $requestImg = $request->fetchAll();
-                    var_dump($requestImg);
+
+                    // var_dump($requestImg);
                     
                     $titlePic = $request->rowCount();
                     // var_dump($titlePic);
@@ -88,10 +91,12 @@ function createArticle(){
                         $sql= "INSERT INTO  `images`(`name`) VALUES (?)";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
+                        //select pr recup l'id a 
+                        //table de liaisons obligatoire
 
-                        $sqlTxt = "INSERT INTO  `articles`(`id_image`,`text`) VALUES (?,?)";
+                        $sqlTxt = "INSERT INTO  `articles`(`id_image`,`title`,`text`) VALUES (?,?,?)";
                         $requestText = $this->pdo->prepare($sqlTxt);
-                        $requestText->execute([4,$textArticle ]);
+                        $requestText->execute([$titleArticle,$textArticle ]);
                         
                         move_uploaded_file($way, $namePicToRegister);
                         
@@ -121,7 +126,7 @@ function createArticle(){
 
 echo "<pre>";
 // var_dump($_FILES);
-var_dump($_POST);
+// var_dump($_POST);
 echo "</pre>";
 
 

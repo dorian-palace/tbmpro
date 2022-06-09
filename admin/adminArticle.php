@@ -24,17 +24,26 @@ $articlePic = $artnew->createArticle();
         <article>
             <table>
                 <tr>
-                    <th>article</th>
+                    <th>image id</th>
+                    <th>image name</th>
+                    <th>article id</th>
+                    <th>article title</th>
                     <th>text</th>
                 </tr>
 
-                    <?php foreach ($articles as $article) :
+                    <?php 
+                    echo "<pre>";
+                    var_dump($articles);
+                    echo "</pre>";
+                    foreach ($articles as $article) :
               
 
                     ?>
                 <tr>
-                    <td><?= $article['id']; ?></td>
+                    <td><?= $article['id_image']; ?></td>
                     <td><?= $article['name']; ?></td>
+                    <td><?= $article['id']; ?></td>
+                    <td><?= $article['title']; ?></td>
                     <td><?= $article['text']; ?></td>
                     <td><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
                 </tr>
@@ -54,6 +63,8 @@ $articlePic = $artnew->createArticle();
                            
                         </div>
                         <div class= "form-group">
+                            <label class= "text-article" for="text">Article title:</label><br>
+                            <input type= "text" name= "title-article" placeholder= "give the pic a name" autocomplete= "off"><br>
                             <label class= "text-article" for="text">Text:</label><br>
 
                             <input type= "text" name= "text" placeholder= "write your article" autocomplete= "off"><br>
