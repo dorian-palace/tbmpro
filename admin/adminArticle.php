@@ -8,6 +8,7 @@ $artnew = new AdminArticle();
 $articles = $artnew->getAllArticles();
 $articlePic = $artnew->createArticle();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ $articlePic = $artnew->createArticle();
         <article>
             <table>
                 <tr>
-                    <th>image id</th>
+                    <th>article</th>
                     <th>text</th>
                 </tr>
 
@@ -32,7 +33,7 @@ $articlePic = $artnew->createArticle();
 
                     ?>
                 <tr>
-                    <td><?= $article['id_image']; ?></td>
+                    <td><?= $article['id']; ?></td>
                     <td><?= $article['name']; ?></td>
                     <td><?= $article['text']; ?></td>
                     <td><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
@@ -54,7 +55,9 @@ $articlePic = $artnew->createArticle();
                         </div>
                         <div class= "form-group">
                             <label class= "text-article" for="text">Text:</label><br>
+
                             <input type= "text" name= "text" placeholder= "write your article" autocomplete= "off"><br>
+                            <input type="hidden" id="postId" name="postId" >
                             <button type="submit" name= "submit-text" class="btn ">create an article</button>
                         </div>
                     </form>

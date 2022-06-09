@@ -37,51 +37,82 @@ function createArticle(){
 
     if(isset($_POST['submit-text'])){
 
-        if(isset($_FILES['file'])){
-    
-            $tmpName = $_FILES['file']['tmp_name'];
-            $name = $_FILES['file']['name'];
-            $size = $_FILES['file']['size'];
-            $error = $_FILES['file']['error'];
-    
-    
-            $picExtension = explode('.', $name);
+        echo 'ok';
+        if(isset($_FILES['add-pic'])){
+            echo 'ok';
+            
+            $tmpName = $_FILES['add-pic']['tmp_name'];
+            $name = $_FILES['add-pic']['name'];
+            $size = $_FILES['add-pic']['size'];
+            $type = $_FILES['add-pic']['type'];
+            $error = $_FILES['add-pic']['error'];
+            $namePic = $_POST['title-pic'];
+            $textArticle = $_POST['text'];
+            
+            
+            
+            $picExtension = explode('.', @$name);
             $extension = strtolower(end($picExtension));
             $extensionsAllowed = ['jpg','png','jpeg','gif'];
-        
+            
+            $way = "/Applications/MAMP/htdocs/tbmpro/assets".$name.'.'.$extension;
             //Taille max en bytes acceptée, correspond à 4 mo  
             $maxSize = 4194304;
+            //table intermediaire
             
             if(in_array($extension, $extensionsAllowed)<= $maxSize && $error == 0){
                 
-            
-                if (isset($_POST['title-pic'])){
-                    $namePic = $_POST['title-pic'];
-        
+                echo 'ok2';
+                
+                if (isset($_POST['title-pic']) && isset($_POST['text'])){
+                    echo 'ok3';
+                   
+                    $namePicToRegister = $namePic.'.'.$extension;
+                    
                     $sql = "SELECT * FROM images WHERE name = ?";
                     $request = $this->pdo->prepare($sql);
                     $request->execute([$namePic]);
-        
-                    $titlePic = $request->fetch();
-                    var_dump($titlePic);
-        
-                    if(isset($titlePic)){
-                        echo ("the name already exist");
+                    $requestImg = $request->fetchAll();
+                    var_dump($requestImg);
+                    
+                    $titlePic = $request->rowCount();
+                    // var_dump($titlePic);
+
+                    //input hidden qui recupère l'id de l'article
+
+                    if($titlePic == 0){
+                        
+                        echo 'ok4';
+
+                        
+                        $sql= "INSERT INTO  `images`(`name`) VALUES (?)";
+                        $request = $this->pdo->prepare($sql);
+                        $request->execute([$namePicToRegister]);
+
+                        $sqlTxt = "INSERT INTO  `articles`(`id_image`,`text`) VALUES (?,?)";
+                        $requestText = $this->pdo->prepare($sqlTxt);
+                        $requestText->execute([4,$textArticle ]);
+                        
+                        move_uploaded_file($way, $namePicToRegister);
+                        
+                        echo ("Picture successfully uploaded");
                     }else{
-                        move_uploaded_file($tmpName, './assets/'.$name);
+                        echo ("the name already exist");
                     }
-    
-    
+                    
+                    
                 }else{
-                    echo ("the name field is empty");
+                    echo ("<p class = error>file should less than 4mo</p>");
                 }
                 //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
-
+                
             }else{
                 echo ("<p class = error>file should less than 4mo</p>");
             }
+            // }
         }
-    }else{
+            
+        }else{
         echo ("<p class = error>a problem has occured</p>");
     
     }
@@ -89,7 +120,7 @@ function createArticle(){
 
 
 echo "<pre>";
-var_dump($_FILES);
+// var_dump($_FILES);
 var_dump($_POST);
 echo "</pre>";
 
