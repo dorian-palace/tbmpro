@@ -18,30 +18,31 @@ class AdminCommandes extends Database
         return $allOrders;
     }
 
-    public function getSingleUser($id)
+    public function getOneOrder($id)
     {
-        $sql = "SELECT * FROM users WHERE id = :id";
+        $sql = "SELECT * FROM commandes WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array(
             'id' => $id
         ));
-        $user = $stmt->fetch();
-        return $user;
+        $order = $stmt->fetch();
+        return $order;
     }
+// structure de constrôle à l'issu des isset POST
 
-    public function updateUser($id)
+    public function modifyOrder($id)
     {
 
         // $id = $_GET['id'];
 
-        if (isset($_POST['submitUser'])) {
+        if (isset($_POST['submitOrder'])) {
             $name = secuData($_POST['name']);
             $surname = secuData($_POST['surname']);
             $login = secuData($_POST['login']);
             $mail = secuData($_POST['mail']);
             $id_role = secuData($_POST['id_role']);
             $id_quotes = secuData($_POST['id_quotes']);
-            $idUser = secuData($_POST['submitUser']);
+            $idUser = secuData($_POST['submitOrder']);
 
             $sql = "UPDATE users SET name = ?, surname = ?,  mail = ?, login = ?, id_role = ?, id_quotes = ? WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
@@ -55,7 +56,7 @@ class AdminCommandes extends Database
                 'id' => $id
             ]);
             //UPDATE users SET name = 'aaze', surname = 'azea', mail = 'aze@a',login = 'aaze', id_role = 1, id_quotes = 0 WHERE id = 1;
-            header('Location: adminUser.php');
+            header('Location: adminCommandes.php');
         }
     }
 

@@ -55,7 +55,7 @@ $users = $userAdmin->getAllUsers();
             <input type="text" name="id_role" value="<?= $singleUser['id_role']; ?>">
             <input type="text" name="id_quotes" value="<?= $singleUser['id_quotes']; ?>">
             <button type="submit" value="<?= $singleUser['id']; ?>" name="submitUser">
-                <!--Submit update user-->super bouton
+                <!--Submit update order-->super bouton
             </button>
             <a href="">
                 <!---DELETE-->
