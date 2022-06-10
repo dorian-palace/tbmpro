@@ -32,9 +32,9 @@ $articlePic = $artnew->createArticle();
                 </tr>
 
                     <?php 
-                    echo "<pre>";
-                    var_dump($articles);
-                    echo "</pre>";
+                    // echo "<pre>";
+                    // var_dump($articles);
+                    // echo "</pre>";
                     foreach ($articles as $article) :
               
 
@@ -57,7 +57,7 @@ $articlePic = $artnew->createArticle();
                     <form action="" method="post" enctype="multipart/form-data"> 
                         <div class= "form-group">
                             <label class= "text-article" for="text">Pic title:</label><br>
-                            <input type= "text" name= "title-pic" placeholder= "give the pic a name" autocomplete= "off"><br>
+                            <input type= "text" onfocus="this.placeholder=''" name= "title-pic" placeholder= "give the pic a name" autocomplete= "off"><br>
                             <label class= "text-article" for="add-pic">Add a pic:</label><br>
                             <input type= "file" name= "add-pic" >
                            

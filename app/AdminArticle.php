@@ -47,6 +47,7 @@ function createArticle(){
             $size = $_FILES['add-pic']['size'];
             $type = $_FILES['add-pic']['type'];
             $error = $_FILES['add-pic']['error'];
+
             $namePic = secuData($_POST['title-pic']);
             $titleArticle = secuData($_POST['title-article']);
             $textArticle = secuData($_POST['text']);
@@ -57,10 +58,9 @@ function createArticle(){
             $extension = strtolower(end($picExtension));
             $extensionsAllowed = ['jpg','png','jpeg','gif'];
             
-            $way = "/Applications/MAMP/htdocs/tbmpro/assets".$name.'.'.$extension;
+            $way = "/Applications/MAMP/htdocs/tbmpro/assets/".$namePic.'.'.$extension;
             //Taille max en bytes acceptée, correspond à 4 mo  
             $maxSize = 4194304;
-            //table intermediaire
             
             if(in_array($extension, $extensionsAllowed)<= $maxSize && $error == 0){
                 
@@ -75,30 +75,35 @@ function createArticle(){
                     $request = $this->pdo->prepare($sql);
                     $request->execute([$namePic]);
                     $requestImg = $request->fetchAll();
-
-                    // var_dump($requestImg);
-                    
                     $titlePic = $request->rowCount();
-                    // var_dump($titlePic);
-
-                    //input hidden qui recupère l'id de l'article
+                  
 
                     if($titlePic == 0){
                         
-                        echo 'ok4';
+                        
 
                         
-                        $sql= "INSERT INTO  `images`(`name`) VALUES (?)";
+                        $sql = "INSERT INTO  `images`(`name`) VALUES (?)";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
+                        
+                        $sql = "SELECT images.id FROM `images` WHERE name = ? ORDER BY id DESC LIMIT 1";
+                        $requestPic = $this->pdo->prepare($sql);
+                        $requestPic->execute([$namePicToRegister]);
+                        $idPic = $requestPic->fetch();
+
+                        $idPicToRegister = intval($idPic['id']);
+                       
+
                         //select pr recup l'id a 
                         //table de liaisons obligatoire
 
                         $sqlTxt = "INSERT INTO  `articles`(`id_image`,`title`,`text`) VALUES (?,?,?)";
                         $requestText = $this->pdo->prepare($sqlTxt);
-                        $requestText->execute([$titleArticle,$textArticle ]);
+                        $requestText->execute([$idPicToRegister,$titleArticle,$textArticle]);
                         
-                        move_uploaded_file($way, $namePicToRegister);
+                         //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
+                        move_uploaded_file($tmpName, $way);
                         
                         echo ("Picture successfully uploaded");
                     }else{
@@ -109,7 +114,7 @@ function createArticle(){
                 }else{
                     echo ("<p class = error>file should less than 4mo</p>");
                 }
-                //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
+               
                 
             }else{
                 echo ("<p class = error>file should less than 4mo</p>");
