@@ -38,9 +38,8 @@ function createArticle(){
 
     if(isset($_POST['submit-text'])){
 
-        echo 'ok';
         if(isset($_FILES['add-pic'])){
-            echo 'ok';
+         
             
             $tmpName = $_FILES['add-pic']['tmp_name'];
             $name = $_FILES['add-pic']['name'];
@@ -54,35 +53,31 @@ function createArticle(){
             
             
             
+            
             $picExtension = explode('.', @$name);
             $extension = strtolower(end($picExtension));
             $extensionsAllowed = ['jpg','png','jpeg','gif'];
             
             $way = "/Applications/MAMP/htdocs/tbmpro/assets/".$namePic.'.'.$extension;
             //Taille max en bytes acceptée, correspond à 4 mo  
-            $maxSize = 4194304;
+            $maxSize = 40000;
             
             if(in_array($extension, $extensionsAllowed)<= $maxSize && $error == 0){
                 
-                echo 'ok2';
-                
                 if (isset($namePic) && isset($textArticle)){
-                    echo 'ok3';
                    
                     $namePicToRegister = $namePic.'.'.$extension;
                     
                     $sql = "SELECT * FROM images WHERE name = ?";
                     $request = $this->pdo->prepare($sql);
-                    $request->execute([$namePic]);
+                    $request->execute([$namePicToRegister]);
                     $requestImg = $request->fetchAll();
                     $titlePic = $request->rowCount();
+                    var_dump($titlePic);
                   
 
                     if($titlePic == 0){
-                        
-                        
-
-                        
+                       
                         $sql = "INSERT INTO  `images`(`name`) VALUES (?)";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
@@ -95,9 +90,7 @@ function createArticle(){
                         $idPicToRegister = intval($idPic['id']);
                        
 
-                        //select pr recup l'id a 
-                        //table de liaisons obligatoire
-
+                        //select pr recup l'id a inserer ds id_img de la table articles
                         $sqlTxt = "INSERT INTO  `articles`(`id_image`,`title`,`text`) VALUES (?,?,?)";
                         $requestText = $this->pdo->prepare($sqlTxt);
                         $requestText->execute([$idPicToRegister,$titleArticle,$textArticle]);
@@ -106,6 +99,8 @@ function createArticle(){
                         move_uploaded_file($tmpName, $way);
                         
                         echo ("Picture successfully uploaded");
+
+                        header("Location: adminArticle.php");
                     }else{
                         echo ("the name already exist");
                     }
@@ -122,22 +117,32 @@ function createArticle(){
             // }
         }
             
-        }else{
-        echo ("<p class = error>a problem has occured</p>");
+        }
+
+}
+
+}
+
+//relation cascade à revoir
+
+function deleteArticle(int $id){
+
+    $idToDelete = $_POST['nbr'];
+
+    if(isset($idToDelete)){
+        echo 'ok';
+        if(isset($_POST['submit-delete'])){
+            echo 'ok2';
+            $sql = "DELETE FROM articles WHERE `id` = ?";
+        
+            $request = $this->pdo->prepare($sql);
+            $request->execute([$idToDelete]);
     
+            echo ("<p class = error>sucessfully deleted");
+            header("Location: adminArticle.php");
+        }
+    }else{
+        echo ("<p class = error>the article was not deleted");
     }
-    
-
-
-echo "<pre>";
-// var_dump($_FILES);
-// var_dump($_POST);
-echo "</pre>";
-
-
 
 }
-
-}
-
-

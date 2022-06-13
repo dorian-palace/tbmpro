@@ -2,6 +2,7 @@
 require_once('../app/AdminArticle.php');
 require_once('../app/AdminUser.php');
 
+//meta no follow pr panel admin 
 
 $artnew = new AdminArticle();
 // $articleSolo = $artnew->getArticleById(1);
@@ -32,9 +33,7 @@ $articlePic = $artnew->createArticle();
                 </tr>
 
                     <?php 
-                    // echo "<pre>";
-                    // var_dump($articles);
-                    // echo "</pre>";
+                   
                     foreach ($articles as $article) :
               
 
@@ -68,8 +67,12 @@ $articlePic = $artnew->createArticle();
                             <label class= "text-article" for="text">Text:</label><br>
 
                             <input type= "text" name= "text" placeholder= "write your article" autocomplete= "off"><br>
-                            <input type="hidden" id="postId" name="postId" >
                             <button type="submit" name= "submit-text" class="btn ">create an article</button>
+                        </div>
+                        <div class= "form-group">
+                            <label class= "text-article" for="nbr">Delete an article by his ID:</label><br>
+                            <input type= "number" name= "nbr" placeholder= "put an ID" autocomplete= "off"><br>
+                            <button type="submit" name= "submit-delete" class="btn ">Delete</button>
                         </div>
                     </form>
         </article>
