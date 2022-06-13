@@ -16,24 +16,6 @@ class AdminRobot extends Database
         return $results;
     }
 
-    public function newRobot()
-    {
-
-        if (isset($_POST['submit_robot'])) {
-            $description = $_POST['description'];
-            $name = $_POST['name'];
-            $image = $_POST['image'];
-            $color = $_POST['color'];
-            $material = $_POST['material'];
-            $sql = "INSERT INTO products (description, name, image) VALUES (?, ?, ?)";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(array(
-                $description, $name, $image
-            ));
-            $sql = "INSERT INTO products_colors (id_product, id_color) VALUES (?,?)";
-        }
-    }
-
     public function getProductById()
     {
 
@@ -71,22 +53,80 @@ class AdminRobot extends Database
         return $results;
     }
 
-    public function deleteMaterials()
+    public function newMaterials()
     {
-        $sql = 'DELETE FROM materials WHERE id = :id';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(array(
-            'id' => $_GET['id']
-        ));
+        if (isset($_POST['submit_material'])) {
+
+            if (isset($_FILES['material'])) {
+
+                $tmpName = $_FILES['material']['tmp_name'];
+                $name = $_FILES['material']['name'];
+                $size = $_FILES['material']['size'];
+                $type = $_FILES['material']['type'];
+                $error = $_FILES['material']['error'];
+
+                $picExtension = explode('.', @$name);
+                $extension = strtolower(end($picExtension));
+                $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
+
+                $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
+                //Taille max en bytes acceptée, correspond à 4 mo  
+                $maxSize = 40000;
+
+                if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
+
+                    if (isset($name)) {
+
+                        $namePicToRegister = $name . '.' . $extension;
+
+                        $sql = "SELECT * FROM materials WHERE type = ?";
+                        $request = $this->pdo->prepare($sql);
+                        $request->execute([$namePicToRegister]);
+                        $requestImg = $request->fetchAll();
+                        $titlePic = $request->rowCount();
+                        var_dump($titlePic);
+
+
+                        if ($titlePic == 0) {
+
+                            $sql = "INSERT INTO  `materials`(`type`) VALUES (?)";
+                            $request = $this->pdo->prepare($sql);
+                            $request->execute([$namePicToRegister]);
+                            //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
+                            move_uploaded_file($tmpName, $way);
+
+                            echo ("Materials successfully uploaded");
+                        } else {
+                            echo ("the materials already exist");
+                        }
+                    } else {
+                        echo ("<p class = error>file should less than 4mo</p>");
+                    }
+                } else {
+                    echo ("<p class = error>file should less than 4mo</p>");
+                }
+            }
+        }
     }
 
-    public function deleteProduct()
+    public function deleteMaterials($delete)
     {
-        $sql = 'DELETE FROM products WHERE id = :id';
+        $sql = 'DELETE FROM materials WHERE id = ?';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array(
-            'id' => $_GET['id']
+            $delete
         ));
+        return $stmt;
+    }
+
+    public function deleteProduct($delete)
+    {
+        $sql = 'DELETE FROM products WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array(
+            $delete
+        ));
+        return $stmt;
     }
 
     public function newColor()
@@ -131,11 +171,11 @@ class AdminRobot extends Database
                             //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
                             move_uploaded_file($tmpName, $way);
 
-                            echo ("Picture successfully uploaded");
+                            echo ("Color successfully uploaded");
 
                             // header("Location: adminArticle.php");
                         } else {
-                            echo ("the name already exist");
+                            echo ("the color already exist");
                         }
                     } else {
                         echo ("<p class = error>file should less than 4mo</p>");

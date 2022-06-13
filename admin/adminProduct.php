@@ -4,6 +4,9 @@ $robot = new AdminRobot();
 $robot->newColor();
 $robot->getColor();
 $color = $robot->getColor();
+$robot->newMaterials();
+$material = $robot->getMaterials();
+
 
 ?>
 <!DOCTYPE html>
@@ -17,11 +20,30 @@ $color = $robot->getColor();
 </head>
 
 <body>
+
+    <!---MATERIALS-->
+    <label for="">New Materials</label>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="material" placeholder="New Materials">
+        <input type="submit" name="submit_material" value="Add">
+    </form>
+
+    <form action="" method="post">
+        <label for="">Materials to delete</label>
+        <select name="material">
+            <?php foreach ($material as $materials) { ?>
+                <option value="<?= $materials['id']; ?>"><?= $materials['type']; ?></option>
+            <?php } ?>
+        </select>
+        <button type="submit" name="mat_delete" value="<?= $materials['id']; ?>">Delete</button>
+        <?php $robot->deleteMaterials(@$_POST['mat_delete']); ?>
+    </form>
+
     <!--COLOR-->
     <label for="">New Color</label>
     <form action="" method="post" enctype="multipart/form-data">
         <input type="file" name="color" placeholder="color">
-        <input type="submit" name="submit_color" value="submit">
+        <input type="submit" name="submit_color" value="Add">
     </form>
 
     <form action="" method="post">
@@ -32,21 +54,11 @@ $color = $robot->getColor();
             <?php } ?>
         </select>
 
-        <button type="submit" name="button_delete" value="<?= $colors['id']; ?>">DELETE</button>
+        <button type="submit" name="button_delete" value="<?= $colors['id']; ?>">Delete</button>
         <?php $robot->deleteColor(@$_POST['select_delete']); ?>
     </form>
 
 
-
-
-    <form action="" method="post" name="form_robot">
-        <input type="text" name="description">
-        <input type="text" name="name">
-        <input type="text" name="image">
-        <input type="text" name="color">
-        <input type="text" name="material">
-        <input type="submit" name="submit_robot">
-    </form>
 </body>
 
 </html>
