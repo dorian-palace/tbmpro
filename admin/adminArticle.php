@@ -4,10 +4,11 @@ require_once('../app/AdminUser.php');
 
 //meta no follow pr panel admin 
 
-$artnew = new AdminArticle();
-// $articleSolo = $artnew->getArticleById(1);
-$articles = $artnew->getAllArticles();
-$articlePic = $artnew->createArticle();
+$artNew = new AdminArticle();
+// $articleSolo = $artNew->getArticleById(1);
+$articles = $artNew->getAllArticles();
+$articlePic = $artNew->createArticle();
+$articleDelete = $artNew->deleteArticle();
 
 
 ?>
@@ -35,7 +36,7 @@ $articlePic = $artnew->createArticle();
                     <?php 
                    
                     foreach ($articles as $article) :
-              
+              //btn delete avc value 
 
                     ?>
                 <tr>
@@ -45,6 +46,8 @@ $articlePic = $artnew->createArticle();
                     <td><?= $article['title']; ?></td>
                     <td><?= $article['text']; ?></td>
                     <td><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
+                    
+                    
                 </tr>
                     <?php
                     endforeach; ?>
@@ -72,7 +75,7 @@ $articlePic = $artnew->createArticle();
                         <div class= "form-group">
                             <label class= "text-article" for="nbr">Delete an article by his ID:</label><br>
                             <input type= "number" name= "nbr" placeholder= "put an ID" autocomplete= "off"><br>
-                            <button type="submit" name= "submit-delete" class="btn ">Delete</button>
+                            <button type="submit" name= "submit-delete" class="btn " value = >Delete</button>
                         </div>
                     </form>
         </article>
