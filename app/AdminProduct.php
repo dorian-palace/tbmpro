@@ -53,6 +53,75 @@ class AdminRobot extends Database
         return $results;
     }
 
+    public function getCategories()
+    {
+        $sql = 'SELECT * FROM categories';
+        $result = $this->pdo->query($sql);
+        $results = $result->fetchAll();
+        return $results;
+    }
+
+    public function getCategorieById($id)
+    {
+        $sql = 'SELECT * FROM categories WHERE id = ?';
+        $result = $this->pdo->prepare($sql);
+        $result->execute([$id]);
+        $results = $result->fetchAll();
+        return $results;
+    }
+
+    public function updateCategorie($id)
+    {
+        if (!empty($_POST['update-name-categorie'])) {
+            $name = secuData($_POST['update-name-categorie']);
+            $sql = 'UPDATE categories SET name = ? WHERE id = ?';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                $name,
+                $id
+            ]);
+        }
+    }
+
+    public function deleteCategorie($delete)
+    {
+        if (isset($_POST['delete-categorie'])) {
+
+            $sql = 'DELETE FROM categories WHERE id = ?';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(array(
+                $delete
+            ));
+        }
+
+        // return $stmt;
+    }
+
+    public function newCategories()
+    {
+
+        if (isset($_POST['submit-categorie'])) {
+
+            if (!empty($_POST['name-categorie'])) {
+
+
+                $nameCategories = secuData($_POST['name-categorie']);
+                $sql = "SELECT * FROM categories WHERE name = ?";
+                $request = $this->pdo->prepare($sql);
+                $request->execute([$nameCategories]);
+                $row = $request->rowCount();
+
+                if ($row == 0) {
+                    $sql = "INSERT INTO categories (name) VALUES (?)";
+                    $request = $this->pdo->prepare($sql);
+                    $request->execute([$nameCategories]);
+                    $request->fetchAll();
+                    // header('Location: adminProduct.php');
+                } // else la categorie existe déjà
+            } // else message d'érreur ici rempli le champ
+        }
+    }
+
     public function newMaterials()
     {
         if (isset($_POST['submit_material'])) {
