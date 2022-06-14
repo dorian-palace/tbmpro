@@ -5,11 +5,11 @@ require_once('../app/AdminUser.php');
 //meta no follow pr panel admin 
 
 $artNew = new AdminArticle();
-// $articleSolo = $artNew->getArticleById(1);
 $articles = $artNew->getAllArticles();
 $articlePic = $artNew->createArticle();
 $articleDelete = $artNew->deleteArticle();
 
+var_dump($_GET);
 
 ?>
 
@@ -59,7 +59,7 @@ $articleDelete = $artNew->deleteArticle();
                     <form action="" method="post" enctype="multipart/form-data"> 
                         <div class= "form-group">
                             <label class= "text-article" for="text">Pic title:</label><br>
-                            <input type= "text" onfocus="this.placeholder=''" name= "title-pic" placeholder= "give the pic a name" autocomplete= "off"><br>
+                            <input type= "text"  name= "title-pic" placeholder= "give the pic a name" autocomplete= "off"><br>
                             <label class= "text-article" for="add-pic">Add a pic:</label><br>
                             <input type= "file" name= "add-pic" >
                            
@@ -77,6 +77,27 @@ $articleDelete = $artNew->deleteArticle();
                             <input type= "number" name= "nbr" placeholder= "put an ID" autocomplete= "off"><br>
                             <button type="submit" name= "submit-delete" class="btn " value = >Delete</button>
                         </div>
+                        <?php 
+
+                        if(isset($_GET['id'])){
+
+                            $idArticle = intval($_GET['id']);
+                            $articleSolo = $artNew->getArticleById($idArticle);
+                            echo 'kjejhsjkkqjsndkjqs';
+                            echo '<pre>';
+                            var_dump($articleSolo);
+                            echo '</pre>';
+                            
+
+                            ?>
+                                <label class= "text-article" for="id-img">Image Id</label>
+                                <input type="text" name="id-img" value="<?= intval($articleSolo['id_image']); ?>">
+                                <label class= "text-article" for="id-img">Image name</label>
+                                <input type="text" name="id-img" value="<?= $articleSolo['name']; ?>">
+                                <button type="submit" value="<?= intval($articleSolo['article_id']) ; ?>" name="submit-update-article">Update Article</button>
+                            <?php }
+                            ?>
+                       
                     </form>
         </article>
     </main>

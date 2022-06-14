@@ -22,13 +22,14 @@ class AdminArticle extends Database{
 
     function getArticleById(int $id){
 
-        $sql = "SELECT * FROM  articles INNER JOIN images WHERE articles.id_image = images.id";
+        $sql = "SELECT images.name,articles.text,articles.title,articles.id_image, articles.id AS `article_id` FROM articles INNER JOIN images ON articles.id_image = images.id WHERE articles.id = ?";
+        // $sql = "SELECT CONCAT_WS(' ', id) AS `Article info` FROM articles INNER JOIN images WHERE articles.id_image = images.id ";
 
         $request = $this->pdo->prepare($sql);
-        $request->execute();
+        $request->execute([$id]);
         $article = $request->fetch();
 
-        // echo $article;
+        // print_r($article) ;
         return $article;
 
 }
@@ -73,7 +74,7 @@ class AdminArticle extends Database{
                         $request->execute([$namePicToRegister]);
                         $requestImg = $request->fetchAll();
                         $titlePic = $request->rowCount();
-                        var_dump($titlePic);
+                        // var_dump($titlePic);
                     
 
                         if($titlePic == 0){
@@ -141,6 +142,11 @@ class AdminArticle extends Database{
     
     }
 
+    function updateArticle($id){
+
+
+
+    }
+
 }
 
-//il ya un pb!
