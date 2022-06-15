@@ -16,6 +16,91 @@ class AdminRobot extends Database
         return $results;
     }
 
+    public function newRobot()
+    {
+        if (isset($_POST['submit-robot'])) {
+
+            $description = secuData($_POST['description']);
+            $name = secuData($_POST['name']);
+            $layer = secuData($_POST['layer-robot']);
+            $color = secuData($_POST['color-robot']);
+            $materials = secuData($_POST['materials-robot']);
+        }
+    }
+
+    //upload d'abord en db les layers des robots puis select option les layers le robot head et body ce divise en 2 produits ensuite color materials 
+    //insert une tete
+    //insert un body
+    public function newRobotBody() //id categorie en parametre 
+    {
+
+        if (isset($_POST['submit-layer'])) {
+
+            if (isset($_FILES['image-layer'])) {
+
+                $tmpName = $_FILES['image-layer']['tmp_name'];
+                $name = $_FILES['image-layer']['name'];
+                $size = $_FILES['image-layer']['size'];
+                $type = $_FILES['image-layer']['type'];
+                $error = $_FILES['image-layer']['error'];
+
+                $picExtension = explode('.', @$name);
+                $extension = strtolower(end($picExtension));
+                $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
+
+                $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
+                //Taille max en bytes acceptée, correspond à 4 mo  
+                $maxSize = 40000;
+
+                if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
+
+                    if (isset($name)) {
+
+                        $namePicToRegister = $name . '.' . $extension;
+
+                        $sql = "SELECT * FROM images WHERE name = ?";
+                        $request = $this->pdo->prepare($sql);
+                        $request->execute([$namePicToRegister]);
+                        $requestImg = $request->fetchAll();
+                        $titlePic = $request->rowCount();
+
+                        if ($titlePic == 0) {
+
+                            $sql = "INSERT INTO  `images`(`name`) VALUES (?)";
+                            $request = $this->pdo->prepare($sql);
+                            $request->execute([$namePicToRegister]);
+                            //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
+                            move_uploaded_file($tmpName, $way);
+
+                            $sql = "SELECT images.id FROM `images` WHERE name = ? ORDER BY id DESC LIMIT 1";
+                            $requestPic = $this->pdo->prepare($sql);
+                            $requestPic->execute([$namePicToRegister]);
+                            $idPic = $requestPic->fetch();
+
+                            $idPicToRegister = intval($idPic['id']);
+
+                            $nameLayer = secuData($_POST['name-layer']);
+                            $descriptionLayer = secuData($_POST['description-layer']);
+
+                            $sql = "INSERT INTO products (description, name, id_image, id_categorie) VALUES (?,?,?,?)";
+                            $request = $this->pdo->prepare($sql);
+                            $request->execute([$descriptionLayer, $nameLayer, $idPicToRegister, 9]);
+                            echo ("Layer successfully uploaded");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public function getImages()
+    {
+        $sql = "SELECT * FROM images";
+        $result = $this->pdo->query($sql);
+        $results = $result->fetchAll();
+        return $results;
+    }
+
     public function getProductById()
     {
 
