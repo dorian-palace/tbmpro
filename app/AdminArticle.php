@@ -132,9 +132,9 @@ class AdminArticle extends Database{
             
                 $request = $this->pdo->prepare($sql);
                 $request->execute([$idToDelete]);
-        
-                echo ("<p class = error>sucessfully deleted");
+
                 header("Location: adminArticle.php");
+                echo ("<p class = error>sucessfully deleted");
             }else{
             echo ("<p class = error>the article was not deleted");
         }
@@ -142,9 +142,51 @@ class AdminArticle extends Database{
     
     }
 
-    function updateArticle($id){
+    function updateArticle(int $id ){
+
+        if(isset($_GET['id']));
+        $idArticle = intval($_GET['id']);
+        echo $idArticle;
+
+        $articleSolo = $this->getArticleById($idArticle);
+        // $newPicName = secuData($_POST['img-name']);
+           var_dump(is_bool($_POST));
+
+        if(isset($_POST["submit-update-article"])){
+
+           match;
+           
+            $newPicName = secuData($_POST['img-name']);
+            $newTitleArticle = secuData($_POST['article-title']);
+            $newText = secuData($_POST['article-text']);
+            $tmpName = $_FILES['update-pic']['tmp_name'];
+            $name = $_FILES['update-pic']['name'];
+
+            $sql = "SELECT * FROM images WHERE name = ?";
+            $request = $this->pdo->prepare($sql);
+            $request->execute([$newPicName]);
+            $titlePic = $request->rowCount();
+
+            if($titlePic == 0){
 
 
+                $sql = "UPDATE articles INNER JOIN images ON images.id = articles.id_image SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName WHERE articles.id = :id";
+
+                $update = $this->pdo->prepare($sql);
+
+                // switch case (){
+
+                // }
+
+                $update->execute([
+                    ":newTitleArticle" => $newTitleArticle,
+                    ":newText" => $newText,
+                    ":newPicName" => $newPicName,
+                    ":id" => $idArticle,
+                ]);
+
+            }
+        }
 
     }
 

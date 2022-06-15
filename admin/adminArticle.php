@@ -9,7 +9,7 @@ $articles = $artNew->getAllArticles();
 $articlePic = $artNew->createArticle();
 $articleDelete = $artNew->deleteArticle();
 
-var_dump($_GET);
+
 
 ?>
 
@@ -69,7 +69,7 @@ var_dump($_GET);
                             <input type= "text" name= "title-article" placeholder= "give the pic a name" autocomplete= "off"><br>
                             <label class= "text-article" for="text">Text:</label><br>
 
-                            <input type= "text" name= "text" placeholder= "write your article" autocomplete= "off"><br>
+                            <textarea type= "text" name= "text" placeholder= "write your article" autocomplete= "off"> </textarea><br>
                             <button type="submit" name= "submit-text" class="btn ">create an article</button>
                         </div>
                         <div class= "form-group">
@@ -83,17 +83,27 @@ var_dump($_GET);
 
                             $idArticle = intval($_GET['id']);
                             $articleSolo = $artNew->getArticleById($idArticle);
-                            echo 'kjejhsjkkqjsndkjqs';
+                            $articleUpdate = $artNew->updateArticle($idArticle);
+                            // echo 'kjejhsjkkqjsndkjqs';
                             echo '<pre>';
-                            var_dump($articleSolo);
+                            // var_dump($articleSolo);
                             echo '</pre>';
                             
 
                             ?>
-                                <label class= "text-article" for="id-img">Image Id</label>
-                                <input type="text" name="id-img" value="<?= intval($articleSolo['id_image']); ?>">
-                                <label class= "text-article" for="id-img">Image name</label>
-                                <input type="text" name="id-img" value="<?= $articleSolo['name']; ?>">
+                              
+                                <label class= "text-article" for="update-img-name">Image name</label>
+                                <input type="text" name="update-img-name" value="<?= $articleSolo['name']; ?>">
+                                <label class= "text-article" for="update-pic">Add a pic:</label><br>
+                                <input type= "file" name= "update-pic" >
+
+                                <label class= "text-article" for="article-title">Article title</label>
+                                <input type="text" name="article-title" value="<?= ($articleSolo['title']); ?>">
+
+                                <label class= "text-article" for="article-text"> Article content</label>
+                                <textarea type= "text" name= "article-text" 
+                                autocomplete= "off"><?= ($articleSolo['text']); ?></textarea>
+
                                 <button type="submit" value="<?= intval($articleSolo['article_id']) ; ?>" name="submit-update-article">Update Article</button>
                             <?php }
                             ?>
