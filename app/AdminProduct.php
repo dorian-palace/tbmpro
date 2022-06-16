@@ -8,6 +8,8 @@ class AdminRobot extends Database
         parent::__construct();
     }
 
+    //  <?= '<img src="assets/' . $productImages['name'] . '" height=250 width=400 />'; 
+
     public function getAllRobot()
     {
         $sql = "SELECT * FROM products INNER JOIN products_colors INNER JOIN colors ON id_color = colors.id INNER JOIN products_materials  INNER JOIN materials ON id_material = materials.id";
@@ -25,13 +27,13 @@ class AdminRobot extends Database
             $layer = secuData($_POST['layer-robot']);
             $color = secuData($_POST['color-robot']);
             $materials = secuData($_POST['materials-robot']);
+
+
+          
         }
     }
 
-    //upload d'abord en db les layers des robots puis select option les layers le robot head et body ce divise en 2 produits ensuite color materials 
-    //insert une tete
-    //insert un body
-    public function newRobotBody() //id categorie en parametre 
+    public function newRobotBody()
     {
 
         if (isset($_POST['submit-layer'])) {

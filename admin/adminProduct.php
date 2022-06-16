@@ -47,14 +47,17 @@ $productImage = $robot->getImages();
         </div>
         <div class="mb-3">
             <label for="">Choose head or body</label>
-            <select name="layer-robot" id="">
-                <?php foreach ($productImage as $productImages) : ?>
-                    <option value="<?= $productImages['id']; ?>">
-                        <?= $productImages['name']; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+
+            <?php foreach ($productImage as $productImages) : ?>
+                <ul>
+                    <li>
+                        <input type="checkbox" id="myCheckbox1" value="<?= $productImages['id']; ?>">
+                        <label for="myCheckbox1"><?= '<img src="../assets/' . $productImages['name'] . '" height=250 width=400 />'; ?></label>
+                    </li>
+                </ul>
+            <?php endforeach; ?>
         </div>
+
         <div class="mb-3">
             <label for="">Choose Color</label>
             <select name="color-robot" id="">
