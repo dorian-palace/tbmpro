@@ -52,23 +52,20 @@ class AdminArticle extends Database{
                 $titleArticle = secuData($_POST['title-article']);
                 $textArticle = secuData($_POST['text']);
                 
-                
-                
-                
                 $picExtension = explode('.', @$name);
                 $extension = strtolower(end($picExtension));
                 $extensionsAllowed = ['jpg','png','jpeg','gif'];
                 
-                $way = "/Applications/MAMP/htdocs/tbmpro/assets/".$namePic.'.'.$extension;
+                $way = "/Applications/MAMP/htdocs/tbmpro/assets/img/".$namePic.'.'.$extension;
                 //Taille max en bytes acceptée, correspond à 4 mo  
-                $maxSize = 40000;
+                $maxSize = 400000;
                 
-                if(in_array($extension, $extensionsAllowed)<= $maxSize && $error == 0){
+                if(in_array($extension, $extensionsAllowed)&& $size <= $maxSize && $error == 0){
                     
                     if (isset($namePic) && isset($textArticle)){
                     
                         $namePicToRegister = $namePic.'.'.$extension;
-                        
+
                         $sql = "SELECT * FROM images WHERE name = ?";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
@@ -135,9 +132,8 @@ class AdminArticle extends Database{
 
                 header("Location: adminArticle.php");
                 echo ("<p class = error>sucessfully deleted");
-            }else{
-            echo ("<p class = error>the article was not deleted");
-        }
+            
+            }
         }
     
     }
@@ -146,47 +142,101 @@ class AdminArticle extends Database{
 
         if(isset($_GET['id']));
         $idArticle = intval($_GET['id']);
-        echo $idArticle;
-
+         // inner join les deux requetes 
         $articleSolo = $this->getArticleById($idArticle);
-        // $newPicName = secuData($_POST['img-name']);
-           var_dump(is_bool($_POST));
-
+        echo 'update';
         if(isset($_POST["submit-update-article"])){
-
-           match;
-           
-            $newPicName = secuData($_POST['img-name']);
-            $newTitleArticle = secuData($_POST['article-title']);
-            $newText = secuData($_POST['article-text']);
-            $tmpName = $_FILES['update-pic']['tmp_name'];
-            $name = $_FILES['update-pic']['name'];
-
             $sql = "SELECT * FROM images WHERE name = ?";
             $request = $this->pdo->prepare($sql);
             $request->execute([$newPicName]);
             $titlePic = $request->rowCount();
+         
+            if("" == trim($_POST['update-img-name'])){
+                $newPicName = $articleSolo['name'];
+            }elseif(isset($_POST['update-img-name'])){
+                $newPicName = secuData($_POST['update-img-name']);
+            }
+            if("" == trim($_POST['article-title'])){
+                $newTitleArticle  = $articleSolo['title'];
+            }elseif(isset($_POST['article-title'])){
+                $newTitleArticle = secuData($_POST['article-title']);
+            }
+            if("" == trim($_POST['article-text'])){
+                $newText = $articleSolo['text'];
+            }elseif(isset($_POST['article-text'])){
+                $newText = secuData($_POST['article-text']);
+            }
 
-            if($titlePic == 0){
+            echo 'updatevfr';
+           
+            $tmpName = $_FILES['update-pic']['tmp_name'];
+            $name = $_FILES['update-pic']['name'];
+
+            $picExtension = explode('.', $name);
+            $extension = strtolower(end($picExtension));
+            $extensionsAllowed = ['jpg','png','jpeg','gif'];
+
+            $way = "/Applications/MAMP/htdocs/tbmpro/assets/img/".$newPicName.'.'.  $extension;
+            $maxSize = 400000;
+
+            //pour reparer mettre la condition si dessus dans une condition si file n'existe pas 
+            if(in_array($extension, $extensionsAllowed)&& $size <= $maxSize && $error == 0){
+                echo 'update  s  a';
+                if($titlePic == 0){
+                    echo 'update fooool';
+                    $namePicToRegister = $newPicName.'.'.$extension;
+
+                    // $folderPic = "/Applications/MAMP/htdocs/tbmpro/assets/img/";
+                    // $scanned_directory = array_diff(scandir($folderPic), array('..', '.'));
+                    // var_dump($scanned_directory);
+                    // var_dump(file_exists('img.jpg'));
+
+                    // if(file_exists($filename)) 
+                    //faire une alerte si c'est possible d'utiliser la meme img sinon cas l'écrase si elle ne se nomme pas pareil 
 
 
-                $sql = "UPDATE articles INNER JOIN images ON images.id = articles.id_image SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName WHERE articles.id = :id";
+                    move_uploaded_file($tmpName, $way);
 
-                $update = $this->pdo->prepare($sql);
+                    $sql = "UPDATE articles INNER JOIN images ON images.id = articles.id_image SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName WHERE articles.id = :id";
 
-                // switch case (){
+                    $update = $this->pdo->prepare($sql);
+                    $update->execute([
+                        ":newTitleArticle" => $newTitleArticle,
+                        ":newText" => $newText,
+                        ":newPicName" => $newPicName,
+                        ":id" => $idArticle,
+                    ]);
 
+                    header("Refresh:0");
+                }
+                // elseif($titlePic != 0){
+
+                
+                //     $newPicName = $articleSolo['name'];
+                //     $namePicToRegister = $newPicName;
+
+                //     $sql = "UPDATE articles INNER JOIN images ON images.id = articles.id_image SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName WHERE articles.id = :id";
+
+                //     $update = $this->pdo->prepare($sql);
+                //     $update->execute([
+                //         ":newTitleArticle" => $newTitleArticle,
+                //         ":newText" => $newText,
+                //         ":newPicName" => $newPicName,
+                //         ":id" => $idArticle,
+                //     ]);
+
+                //     header("Refresh:0");
                 // }
-
-                $update->execute([
-                    ":newTitleArticle" => $newTitleArticle,
-                    ":newText" => $newText,
-                    ":newPicName" => $newPicName,
-                    ":id" => $idArticle,
-                ]);
-
             }
         }
+       
+        // $picExtension = explode('.', $newPicName);
+        // $extension = strtolower(end(  $picExtension ));
+        // $extensionsAllowed = ['jpg','png','jpeg','gif'];
+
+
+        // echo($newPicName.'.'. $extension);
+
 
     }
 
