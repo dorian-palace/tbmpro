@@ -1,4 +1,9 @@
 <?php
+
+error_reporting(0);
+ini_set('display_errors', 0);
+
+
 // var_dump(__DIR__);
 // require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
 // /Applications/MAMP/htdocs/tbmpro/setting/db.php

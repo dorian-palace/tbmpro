@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(0);
+ini_set('display_errors', 0);
+
 require_once('../app/AdminUser.php');
 $userAdmin = new AdminUser();
 $users = $userAdmin->getAllUsers();
