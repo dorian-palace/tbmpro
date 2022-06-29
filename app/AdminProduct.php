@@ -1,21 +1,18 @@
 <?php
 require_once('../setting/db.php');
 require_once('../setting/data.php');
+
 class AdminRobot extends Database
 {
     public function __construct()
     {
         parent::__construct();
+        echo "je suis dans le construct d'AdminRobot";
     }
 
-    //  <?= '<img src="assets/' . $productImages['name'] . '" height=250 width=400 />'; 
-
-    public function getAllRobot()
+    public function bidon()
     {
-        $sql = "SELECT * FROM products INNER JOIN products_colors INNER JOIN colors ON id_color = colors.id INNER JOIN products_materials  INNER JOIN materials ON id_material = materials.id";
-        $result = $this->pdo->query($sql);
-        $results = $result->fetchAll();
-        return $results;
+        echo "c bidon";
     }
 
     public function newRobot()
@@ -27,66 +24,137 @@ class AdminRobot extends Database
             $layer = secuData($_POST['layer-robot']);
             $color = secuData($_POST['color-robot']);
             $materials = secuData($_POST['materials-robot']);
-
-
-          
         }
     }
 
-    public function newRobotBody()
+    public function getHeadRobots()
+    {
+        $sql = "SELECT * FROM head_robots";
+        $result = $this->pdo->query($sql);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
+
+    
+
+    public function getHeadRobotsByColor($id_color, $id_material)
     {
 
-        if (isset($_POST['submit-layer'])) {
+        $sql = "SELECT * FROM head_robots WHERE id_color = ? AND id_material = ?";
+        $result = $this->pdo->prepare($sql);
+        $result->execute([
+            $id_color, $id_material
+        ]);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
 
-            if (isset($_FILES['image-layer'])) {
+    public function getBodyRobots()
+    {
+        $sql = "SELECT * FROM body_robots";
+        $result = $this->pdo->query($sql);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
 
-                $tmpName = $_FILES['image-layer']['tmp_name'];
-                $name = $_FILES['image-layer']['name'];
-                $size = $_FILES['image-layer']['size'];
-                $type = $_FILES['image-layer']['type'];
-                $error = $_FILES['image-layer']['error'];
+    public function newRobotHead()
+    {
+
+        if (isset($_POST['submit-head-robot'])) {
+            echo "ok1";
+            if (isset($_FILES['image-head-robot'])) {
+                echo "ok2";
+                $tmpName = $_FILES['image-head-robot']['tmp_name'];
+                $name = $_FILES['image-head-robot']['name'];
+                $size = $_FILES['image-head-robot']['size'];
+                $type = $_FILES['image-head-robot']['type'];
+                $error = $_FILES['image-head-robot']['error'];
 
                 $picExtension = explode('.', @$name);
                 $extension = strtolower(end($picExtension));
                 $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
 
                 $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
-                //Taille max en bytes acceptée, correspond à 4 mo  
                 $maxSize = 40000;
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-
+                    echo "ok3";
                     if (isset($name)) {
-
+                        echo "ok4",
                         $namePicToRegister = $name . '.' . $extension;
 
-                        $sql = "SELECT * FROM images WHERE name = ?";
+                        $sql = "SELECT * FROM head_robots WHERE name = ?";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
                         $requestImg = $request->fetchAll();
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
+                            echo "ok5";
+                            $color = secuData($_POST['head-color']);
+                            $materials = secuData($_POST['head-material']);
 
-                            $sql = "INSERT INTO  `images`(`name`) VALUES (?)";
+                            $sql = "INSERT INTO  `head_robots`(name, id_color, id_material) VALUES (?,?,?)";
                             $request = $this->pdo->prepare($sql);
-                            $request->execute([$namePicToRegister]);
-                            //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
+                            $request->execute([
+                                $namePicToRegister, $color, $materials
+                            ]);
+
                             move_uploaded_file($tmpName, $way);
 
-                            $sql = "SELECT images.id FROM `images` WHERE name = ? ORDER BY id DESC LIMIT 1";
-                            $requestPic = $this->pdo->prepare($sql);
-                            $requestPic->execute([$namePicToRegister]);
-                            $idPic = $requestPic->fetch();
+                            echo ("Layer successfully uploaded");
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-                            $idPicToRegister = intval($idPic['id']);
+    public function newRobotBody()
+    {
 
-                            $nameLayer = secuData($_POST['name-layer']);
-                            $descriptionLayer = secuData($_POST['description-layer']);
+        if (isset($_POST['submit-body-robot'])) {
+            echo "ok1";
+            if (isset($_FILES['image-body-robot'])) {
+                echo "ok2";
+                $tmpName = $_FILES['image-body-robot']['tmp_name'];
+                $name = $_FILES['image-body-robot']['name'];
+                $size = $_FILES['image-body-robot']['size'];
+                $type = $_FILES['image-body-robot']['type'];
+                $error = $_FILES['image-body-robot']['error'];
 
-                            $sql = "INSERT INTO products (description, name, id_image, id_categorie) VALUES (?,?,?,?)";
+                $picExtension = explode('.', @$name);
+                $extension = strtolower(end($picExtension));
+                $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
+
+                $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
+                $maxSize = 40000;
+
+                if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
+                    echo "ok3";
+                    if (isset($name)) {
+                        echo "ok4",
+                        $namePicToRegister = $name . '.' . $extension;
+
+                        $sql = "SELECT * FROM body_robots WHERE name = ?";
+                        $request = $this->pdo->prepare($sql);
+                        $request->execute([$namePicToRegister]);
+                        $requestImg = $request->fetchAll();
+                        $titlePic = $request->rowCount();
+
+                        if ($titlePic == 0) {
+                            echo "ok5";
+                            $color = secuData($_POST['body-color']);
+                            $materials = secuData($_POST['body-material']);
+
+                            $sql = "INSERT INTO  `body_robots`(name, id_color, id_material) VALUES (?,?,?)";
                             $request = $this->pdo->prepare($sql);
-                            $request->execute([$descriptionLayer, $nameLayer, $idPicToRegister, 9]);
+                            $request->execute([
+                                $namePicToRegister, $color, $materials
+                            ]);
+
+                            move_uploaded_file($tmpName, $way);
+
                             echo ("Layer successfully uploaded");
                         }
                     }
@@ -213,53 +281,22 @@ class AdminRobot extends Database
     {
         if (isset($_POST['submit_material'])) {
 
-            if (isset($_FILES['material'])) {
-
-                $tmpName = $_FILES['material']['tmp_name'];
-                $name = $_FILES['material']['name'];
-                $size = $_FILES['material']['size'];
-                $type = $_FILES['material']['type'];
-                $error = $_FILES['material']['error'];
-
-                $picExtension = explode('.', @$name);
-                $extension = strtolower(end($picExtension));
-                $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
-
-                $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
-                //Taille max en bytes acceptée, correspond à 4 mo  
-                $maxSize = 40000;
-
-                if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-
-                    if (isset($name)) {
-
-                        $namePicToRegister = $name . '.' . $extension;
-
-                        $sql = "SELECT * FROM materials WHERE type = ?";
-                        $request = $this->pdo->prepare($sql);
-                        $request->execute([$namePicToRegister]);
-                        $requestImg = $request->fetchAll();
-                        $titlePic = $request->rowCount();
-                        var_dump($titlePic);
+            if (!empty($_POST['new-material'])) {
 
 
-                        if ($titlePic == 0) {
+                $materials = secuData($_POST['new-material']);
 
-                            $sql = "INSERT INTO  `materials`(`type`) VALUES (?)";
-                            $request = $this->pdo->prepare($sql);
-                            $request->execute([$namePicToRegister]);
-                            //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
-                            move_uploaded_file($tmpName, $way);
+                $sql = "SELECT * FROM materials WHERE type = ?";
+                $request = $this->pdo->prepare($sql);
+                $request->execute([$materials]);
+                $row = $request->rowCount();
 
-                            echo ("Materials successfully uploaded");
-                        } else {
-                            echo ("the materials already exist");
-                        }
-                    } else {
-                        echo ("<p class = error>file should less than 4mo</p>");
-                    }
-                } else {
-                    echo ("<p class = error>file should less than 4mo</p>");
+                if ($row == 0) {
+
+                    $sql = "INSERT INTO materials (type) VALUES (?)";
+                    $request = $this->pdo->prepare($sql);
+                    $request->execute([$materials]);
+                    $request->fetchAll();
                 }
             }
         }
@@ -289,56 +326,19 @@ class AdminRobot extends Database
     {
         if (isset($_POST['submit_color'])) {
 
-            if (isset($_FILES['color'])) {
+            $color = secuData($_POST['new-color']);
 
-                $tmpName = $_FILES['color']['tmp_name'];
-                $name = $_FILES['color']['name'];
-                $size = $_FILES['color']['size'];
-                $type = $_FILES['color']['type'];
-                $error = $_FILES['color']['error'];
+            $sql = "SELECT * FROM colors WHERE name = ?";
+            $request = $this->pdo->prepare($sql);
+            $request->execute([$color]);
+            $row = $request->rowCount();
 
-                $picExtension = explode('.', @$name);
-                $extension = strtolower(end($picExtension));
-                $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
+            if ($row == 0) {
 
-                $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
-                //Taille max en bytes acceptée, correspond à 4 mo  
-                $maxSize = 40000;
-
-                if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-
-                    if (isset($name)) {
-
-                        $namePicToRegister = $name . '.' . $extension;
-
-                        $sql = "SELECT * FROM colors WHERE name = ?";
-                        $request = $this->pdo->prepare($sql);
-                        $request->execute([$namePicToRegister]);
-                        $requestImg = $request->fetchAll();
-                        $titlePic = $request->rowCount();
-                        var_dump($titlePic);
-
-
-                        if ($titlePic == 0) {
-
-                            $sql = "INSERT INTO  `colors`(`name`) VALUES (?)";
-                            $request = $this->pdo->prepare($sql);
-                            $request->execute([$namePicToRegister]);
-                            //2 paramètres : le chemin du fichier que l’on veut uploader et le chemin vers lequel on souhaite l’uploader.
-                            move_uploaded_file($tmpName, $way);
-
-                            echo ("Color successfully uploaded");
-
-                            // header("Location: adminArticle.php");
-                        } else {
-                            echo ("the color already exist");
-                        }
-                    } else {
-                        echo ("<p class = error>file should less than 4mo</p>");
-                    }
-                } else {
-                    echo ("<p class = error>file should less than 4mo</p>");
-                }
+                $sql = "INSERT INTO colors (name) VALUES (?)";
+                $request = $this->pdo->prepare($sql);
+                $request->execute([$color]);
+                $request->fetchAll();
             }
         }
     }
