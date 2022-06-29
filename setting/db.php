@@ -26,7 +26,7 @@ class Database
                 ]
             );
 
-            echo 'je suis dans le construct';
+
         } catch (PDOException $e) {
 
             echo "error : " . $e->getMessage();

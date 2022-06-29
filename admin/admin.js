@@ -37,38 +37,46 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // var buttonMaterialClass = document.getElementsByClassName("mats_robots")
+    var buttonMaterialClass = document.getElementsByClassName("mat_robots")
 
-    // for (let x = 0; x < buttonMaterialClass.length; x++) {
+    console.log(buttonMaterialClass)
 
-    //     buttonMaterialClass[x].addEventListener("click", function () {
+    for (let x = 0; x < buttonMaterialClass.length; x++) {
 
-    //         var idButtonMat = buttonMaterialClass[x].id
-    //         console.log(idButtonMat.substring(13))
+        buttonMaterialClass[x].addEventListener("click", function () {
 
-    //         const paramsMat =
+            var idButtonMat = buttonMaterialClass[x].id
+            console.log(idButtonMat.substring(13))
 
-    //             idButtonMat.substring(13);
+            const paramsMat =
 
-    //         var myHeadersMat = new Headers();
-    //         myHeadersMat.append(
-    //             'Accept', 'application/json',
-    //             'Content-Type', 'application/json',
-    //             'Access-Control-Allow-Origin', '*');
+                idButtonMat.substring(11);
+
+            // console.log(paramsMat)
+            var myHeadersMat = new Headers();
+            myHeadersMat.append(
+                'Accept', 'application/json',
+                'Content-Type', 'application/json',
+                'Access-Control-Allow-Origin', '*');
 
 
-    //         var dataMat = new FormData();
-    //         dataMat.append("select_mat", paramsMat);
+            var dataMat = new FormData();
+            dataMat.append("select_mat", paramsMat);
 
-    //         fetch('adminRouteurJs.php', {
-    //                 method: 'POST',
-    //                 body: dataMat
-    //             })
-    //             .then(response => response.json())
-    //             .then(body => console.log(body));
+            fetch('adminRouteurJs.php', {
+                    method: 'POST',
+                    body: dataMat
+                })
+                .then(response => response.json())
 
-    //     });
-    // }
+                .then(body => {
+                    console.log(body)
+                    var divParent = document.getElementById("divParent")
+                    divParent.innerHTML = body
+                });
+
+        });
+    }
 
 
 })

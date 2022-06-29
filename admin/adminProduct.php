@@ -18,9 +18,9 @@ $productImage = $robot->getImages();
 
 
 
-$headRobot = $robot->getHeadRobots();
+$headRobot = $robot->getAllHeadRobots();
 
-$bodyRobot = $robot->getBodyRobots();
+$bodyRobot = $robot->getAllBodyRobots();
 // $headColor = $headRobot['id_color'];
 echo "<pre>";
 // var_dump($robot->getHeadRobots());
@@ -206,7 +206,6 @@ foreach ($bodyRobot as $body) {
     </div>
 
     <div class="mb-3">
-        <label for="">Choose Material</label>
 
         <?php foreach ($material as $mat) : ?>
             <button class="mat_robots" id="select_mat_<?= $mat['id']; ?>"><?= $mat['type']; ?></button>

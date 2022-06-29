@@ -7,12 +7,6 @@ class AdminRobot extends Database
     public function __construct()
     {
         parent::__construct();
-        echo "je suis dans le construct d'AdminRobot";
-    }
-
-    public function bidon()
-    {
-        echo "c bidon";
     }
 
     public function newRobot()
@@ -27,7 +21,7 @@ class AdminRobot extends Database
         }
     }
 
-    public function getHeadRobots()
+    public function getAllHeadRobots()
     {
         $sql = "SELECT * FROM head_robots";
         $result = $this->pdo->query($sql);
@@ -35,9 +29,29 @@ class AdminRobot extends Database
         return $robot;
     }
 
-    
+    public function getHeadRobotsByMaterial($id)
+    {
+        $sql = "SELECT * FROM head_robots WHERE id_material = ?";
+        $result = $this->pdo->prepare($sql);
+        $result->execute([
+            $id
+        ]);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
 
-    public function getHeadRobotsByColor($id_color, $id_material)
+    public function getHeadRobotsByColor($id)
+    {
+        $sql = "SELECT * FROM head_robots WHERE id_color = ?";
+        $result = $this->pdo->prepare($sql);
+        $result->execute([
+            $id
+        ]);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
+
+    public function getHeadRobotsByColorAndMaterial($id_color, $id_material)
     {
 
         $sql = "SELECT * FROM head_robots WHERE id_color = ? AND id_material = ?";
@@ -49,10 +63,43 @@ class AdminRobot extends Database
         return $robot;
     }
 
-    public function getBodyRobots()
+    public function getAllBodyRobots()
     {
         $sql = "SELECT * FROM body_robots";
         $result = $this->pdo->query($sql);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
+
+    public function getBodyRobotsByColor($id)
+    {
+        $sql = "SELECT * FROM body_robots WHERE id_color = ?";
+        $result = $this->pdo->prepare($sql);
+        $result->execute([
+            $id
+        ]);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
+
+    public function getBodyRobotsByMaterial($id)
+    {
+        $sql = "SELECT * FROM body_robots WHERE id_material = ?";
+        $result = $this->pdo->prepare($sql);
+        $result->execute([
+            $id
+        ]);
+        $robot = $result->fetchAll();
+        return $robot;
+    }
+
+    public function getBodyRobotsByColorAndMaterial($idColor, $idMaterial)
+    {
+        $sql = "SELECT * FROM body_robots WHERE id_color = ? AND id_material = ?";
+        $result = $this->pdo->prepare($sql);
+        $result->execute([
+            $idColor, $idMaterial
+        ]);
         $robot = $result->fetchAll();
         return $robot;
     }

@@ -11,18 +11,16 @@ $robot = new AdminRobot();
 // var_dump($_POST);
 // var_dump($request_body);
 
-// if (isset($_POST['select_color'])) {
+if (isset($_POST['select_mat'])) {
+    //récupère les robots selons le matériel choisi avec le button
 
-//     $idColor = $_POST["select_color"];
-//     var_dump($idColor);
-//     $headByColor = $robot->getHeadRobotsByColor($idColor, $idMaterial);
-
-//     echo "<pre>";
-//     var_dump($headByColor);
-//     echo "</pre>";
-//     // echo json_encode($headByColor);
-
-// }
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
+    $idMaterial = $_POST["select_mat"];
+    $bodyRobots = $robot->getHeadRobotsByMaterial($idMaterial);
+    echo "<pre>";
+    var_dump($bodyRobots);
+    echo "</pre>";
+    echo json_encode($bodyRobots);
+}
+// echo "<pre>";
+// var_dump($_POST);
+// echo "</pre>";
