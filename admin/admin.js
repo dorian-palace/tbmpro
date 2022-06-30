@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     const dataColor = JSON.parse(body);
                     const resultColor = dataColor.co
                     console.log(resultColor)
+
+                    let images = '';
+
+                    for (y = 0; y < resultColor.length; ++y) {
+
+                        images = resultColor[y].innerHTML + '<img src="../assets/' + resultColor[y].name + '">';
+                    }
+                    document.getElementById('container').innerHTML = images;
                 });
 
         });
@@ -33,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const idButtonMat = buttonMaterialClass[x].id
             const paramsMat = idButtonMat.substring(11);
 
-
             const dataMat = new FormData();
             dataMat.append("select_mat", paramsMat);
 
@@ -43,21 +50,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 .then(response => response.text())
                 .then(data => {
+
                     const mydata = JSON.parse(data);
-                    console.log(mydata)
+                    // console.log(mydata)
                     const resDAta = mydata.mat;
                     console.log(resDAta)
-
                     let images = '';
 
                     for (y = 0; y < resDAta.length; ++y) {
 
-                        images = resDAta[y].innerHTML +'<img src="../assets/' + resDAta[y].name + '">';
-
-                        ///fghjk
-
-                        console.log(resDAta[y])
-                        // images += '<img src="./assets/ ' + resDAta[y]['name'] + '" alt="' + resDAta[y]['name'] + '" >';
+                        images = resDAta[y].innerHTML + '<img src="../assets/' + resDAta[y].name + '">';
                     }
                     document.getElementById('container').innerHTML = images;
                 });
