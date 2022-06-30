@@ -28,20 +28,20 @@ echo "<pre>";
 // var_dump($robot->getBodyRobots());
 // $headColor;
 echo "</pre>";
-foreach ($headRobot as $head) {
+// foreach ($headRobot as $head) {
 
 
-    $headMaterial = $head['id_material'];
-    $layer = $head['name'];
-    echo " <img src='../assets/" . $head['name'] . "' height=250 width=400 />";
-    echo "<pre>";
+//     $headMaterial = $head['id_material'];
+//     $layer = $head['name'];
+//     echo " <img src='../assets/" . $head['name'] . "' height=250 width=400 />";
+//     echo "<pre>";
 
-    // var_dump($head);
-    // var_dump($headColor);
-    // var_dump($headMaterial);
-    // var_dump($layer);
-    echo "</pre>";
-}
+//     // var_dump($head);
+//     // var_dump($headColor);
+//     // var_dump($headMaterial);
+//     // var_dump($layer);
+//     echo "</pre>";
+// }
 
 foreach ($bodyRobot as $body) {
 

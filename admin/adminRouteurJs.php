@@ -21,4 +21,3 @@ if (isset($_POST['select_mat'])) {
 }
 // $data = ['result' => $bodyRobots];
 // echo (json_encode($data));
-

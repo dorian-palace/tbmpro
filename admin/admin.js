@@ -6,10 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonColorClass[i].addEventListener("click", function () {
 
             const idButton = buttonColorClass[i].id;
-            // console.log(idButton.substring(13))
-
             const params = idButton.substring(13);
-
             const data = new FormData();
             data.append("select_color", params);
 
@@ -53,10 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let images = '';
 
-                    for ( y = 0; y < resDAta.length; ++y) {
+                    for (y = 0; y < resDAta.length; ++y) {
+
+                        images = resDAta[y].innerHTML +'<img src="../assets/' + resDAta[y].name + '">';
+
+                        ///fghjk
 
                         console.log(resDAta[y])
-                        images += '<img src="./assets/ ' + resDAta[y]['name'] + '" alt="' + resDAta[y]['name'] + '" >';
+                        // images += '<img src="./assets/ ' + resDAta[y]['name'] + '" alt="' + resDAta[y]['name'] + '" >';
                     }
                     document.getElementById('container').innerHTML = images;
                 });
