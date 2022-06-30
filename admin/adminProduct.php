@@ -1,6 +1,7 @@
 <?php
 require_once('../app/AdminProduct.php');
 var_dump($_POST);
+echo "blalazelkalzekae";
 $robot = new AdminRobot();
 $robot->newColor();
 $robot->getColor();
@@ -73,6 +74,9 @@ foreach ($bodyRobot as $body) {
 </head>
 
 <body>
+
+    <div class="container" id="container"></div>
+
     <ul>
         <li><a href="">Manage Robot</a></li>
         <li><a href="">Add head & body to robot</a></li>
