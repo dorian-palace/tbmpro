@@ -1,7 +1,7 @@
 <?php
 require_once('../app/AdminProduct.php');
-var_dump($_POST);
-echo "blalazelkalzekae";
+// var_dump($_POST);
+// echo "blalazelkalzekae";
 $robot = new AdminRobot();
 $robot->newColor();
 $robot->getColor();
@@ -68,14 +68,15 @@ foreach ($bodyRobot as $body) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="admin.js"></script>
+    <script src="../js/adminRobots.js"></script>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <title>Admin-product</title>
 </head>
 
 <body>
 
-    <div class="container" id="container"></div>
 
     <ul>
         <li><a href="">Manage Robot</a></li>
@@ -84,6 +85,109 @@ foreach ($bodyRobot as $body) {
         <li><a href="#form-new-materials">Manage materials</a></li>
         <li><a href="#form-new-color">Manage colors</a></li>
     </ul>
+
+
+
+    <!---ROBOT-->
+    <!-- <form action="" method="post" enctype="multipart/form-data"> -->
+    <label for="">New robot</label>
+
+    <div class="container-filter-robot" id="container-filter-robot">
+
+        <div class="here" id="here"></div>
+
+        <div class="box-robots-filter" id="box-robots-filter">
+
+            <input type="checkbox" name="checkbox-filter-robots" class="checkbox-filter-robots" id="checkbox-filter-robots">
+            <label for="checkbox-filter-robots" id="label"></label>
+
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <input type="text" name="name-robot" placeholder="name-robot">
+    </div>
+
+
+
+
+    <div id="divParent">
+        <?php
+        foreach ($color as $allColor) :
+        ?>
+            <button class="filter-color" id="select_color_<?= $allColor['id']; ?>"><?= $allColor['name']; ?></button>
+
+
+        <?php endforeach; ?>
+    </div>
+
+    <div class="mb-3">
+
+        <?php foreach ($material as $mat) : ?>
+            <button class="filter-mat" id="select_mat_<?= $mat['id']; ?>"><?= $mat['type']; ?></button>
+        <?php endforeach; ?>
+
+
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" name="submit-robot">
+    <!-- </form> -->
+
+    <!---LAYER ROBOT--->
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="">Add new Head</label>
+        <input type="file" name="image-head-robot">
+
+        <select name="head-color" id="">
+            <?php foreach ($color as $colors) : ?>
+                <option value="<?= $colors['id']; ?>">
+                    <?= $colors['name']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <select name="head-material" id="">
+            <?php foreach ($material as $mat) : ?>
+                <option value="<?= $mat['id']; ?>">
+                    <?= $mat['type']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <input type="submit" name="submit-head-robot" value="Add">
+    </form>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="">Add new body</label>
+        <input type="file" name="image-body-robot">
+
+        <select name="body-color" id="">
+            <?php foreach ($color as $colors) : ?>
+                <option value="<?= $colors['id']; ?>">
+                    <?= $colors['name']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <select name="body-material" id="">
+            <?php foreach ($material as $mat) : ?>
+                <option value="<?= $mat['id']; ?>">
+                    <?= $mat['type']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <input type="submit" name="submit-body-robot" value="Add">
+    </form>
+    <?php
+    // echo "<pre>";
+    // var_dump($_POST['head-color']);
+    // echo "</pre>";
+
+    ?>
+
 
     <!---CATEGORIES-->
     <form action="" method="post" id="form-new-cat">
@@ -181,124 +285,6 @@ foreach ($bodyRobot as $body) {
         </div>
     </form>
 
-
-    <!---ROBOT-->
-    <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-    <label for="">New robot</label>
-    <div class="mb-3">
-        <input type="text" name="name-robot" placeholder="name-robot">
-    </div>
-
-    <div class="mb-3">
-        <label for="">Choose Color</label>
-        <select name="select-co" id="">
-            <?php foreach ($color as $co) : ?>
-                <option value="<?= $co['id']; ?>"><?= $co['name']; ?></option>
-            <?php endforeach; ?>
-        </select>
-
-    </div>
-
-    <div id="divParent">
-        <?php
-        foreach ($color as $allColor) :
-        ?>
-            <button class="test" id="select_color_<?= $allColor['id']; ?>"><?= $allColor['name']; ?></button>
-
-
-        <?php endforeach; ?>
-    </div>
-
-    <div class="mb-3">
-
-        <?php foreach ($material as $mat) : ?>
-            <button class="mat_robots" id="select_mat_<?= $mat['id']; ?>"><?= $mat['type']; ?></button>
-        <?php endforeach; ?>
-
-
-    </div>
-
-    <div class="mb-3">
-        <label for="">Choose head</label>
-
-        <?php foreach ($productImage as $productImages) : ?>
-            <ul>
-                <li>
-                    <input type="checkbox" id="myCheckbox1" value="<?= $productImages['id']; ?>">
-                    <label for="myCheckbox1"><?= '<img src="../assets/' . $productImages['name'] . '" height=250 width=400 />'; ?></label>
-                </li>
-            </ul>
-        <?php endforeach; ?>
-    </div>
-
-    <div class="mb-3">
-        <label for="">Choose body</label>
-
-        <?php foreach ($productImage as $productImages) : ?>
-            <ul>
-                <li>
-                    <input type="checkbox" id="myCheckbox1" value="<?= $productImages['id']; ?>">
-                    <label for="myCheckbox1"><?= '<img src="../assets/' . $productImages['name'] . '" height=250 width=400 />'; ?></label>
-                </li>
-            </ul>
-        <?php endforeach; ?>
-    </div>
-
-    <input type="submit" class="btn btn-primary" name="submit-robot">
-    <!-- </form> -->
-
-    <!---LAYER ROBOT--->
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="">Add new Head</label>
-        <input type="file" name="image-head-robot">
-
-        <select name="head-color" id="">
-            <?php foreach ($color as $colors) : ?>
-                <option value="<?= $colors['id']; ?>">
-                    <?= $colors['name']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <select name="head-material" id="">
-            <?php foreach ($material as $mat) : ?>
-                <option value="<?= $mat['id']; ?>">
-                    <?= $mat['type']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <input type="submit" name="submit-head-robot" value="Add">
-    </form>
-
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="">Add new body</label>
-        <input type="file" name="image-body-robot">
-
-        <select name="body-color" id="">
-            <?php foreach ($color as $colors) : ?>
-                <option value="<?= $colors['id']; ?>">
-                    <?= $colors['name']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <select name="body-material" id="">
-            <?php foreach ($material as $mat) : ?>
-                <option value="<?= $mat['id']; ?>">
-                    <?= $mat['type']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <input type="submit" name="submit-body-robot" value="Add">
-    </form>
-    <?php
-    echo "<pre>";
-    var_dump($_POST['head-color']);
-    echo "</pre>";
-
-    ?>
 
 </body>
 

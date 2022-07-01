@@ -1,0 +1,24 @@
+#box-robots-filter {
+  height: 25%;
+  width: 35%;
+  padding: 12px 16px;
+}
+
+#container-filter-robots{
+    margin-top: 20px;
+  }
+
+.filter-color,
+.filter-mat {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: blue;
+    cursor: pointer;
+}
+
+.filter-color,
+.filter-mat {
+  background-color: #ddd;
+}
+
