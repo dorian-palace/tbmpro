@@ -95,6 +95,7 @@ foreach ($bodyRobot as $body) {
     <div class="container-filter-robot" id="container-filter-robot">
 
         <div class="here" id="here"></div>
+        <div class="container" id="container"></div>
 
         <div class="box-robots-filter" id="box-robots-filter">
 

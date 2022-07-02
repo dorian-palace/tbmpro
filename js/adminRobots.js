@@ -62,6 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         images = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].name + '">';
 
+
+                        //function for each images create input type check for each images
+
+
+
                         // let lab = document.getElementById('label')
                         // console.log(lab)
                         // value = images/
@@ -89,7 +94,35 @@ document.addEventListener("DOMContentLoaded", () => {
                         // });
                         // $inner = document.getElementsByName("interest").innerHTML = images;
                         // }
+
+                        // console.log(resDAta[y].id)
+
+                        // function checkbox() {
+                        //     const checkbox = document.createElement("input");
+                        //     checkbox.type = "checkbox";
+                        //     checkbox.name = "checkbox";
+                        //     checkbox.value = resDAta[y].id;
+                        //     checkbox.id = "checkbox";
+                        //     document.getElementById("box-robots-filter").appendChild(checkbox);
+                        // }
+                        // checkbox();
+                        // document.getElementById('box-robots-filter').innerHTML = images;
+
+
+                        const newLabel = document.createElement("label");
+                        newLabel.setAttribute("for", 'checkbox');
+                        newLabel.innerHTML = images;
+
+                        const newCheckbox = document.createElement("input");
+                        newCheckbox.setAttribute("type", 'checkbox');
+                        newCheckbox.setAttribute("id", 'checkbox');
+                        newCheckbox.setAttribute("value", resDAta[y].id);
+
+                        document.body.appendChild(newLabel);
+                        document.body.appendChild(newCheckbox);
+
                     }
+
                     // let check = document.getElementById('checkbox-filter-robots')
                     // check.img
                     // document.getElementById("placehere").appendChild("elem");
@@ -98,10 +131,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     // p.setAttribute("type", "checkbox");
                     // let input = document.body.appendChild(p);
                     // input.innerHTML = images;
-                    document.getElementById('box-robots-filter').innerHTML = images;
+
+
+                    // var checkbox = document.createElement('input');
+                    //     checkbox.type = 'checkbox';
+                    //     checkbox.id = 'car';
+                    //     checkbox.name = 'interest';
+                    //     checkbox.value = innerHTML = images.id;
+
+                    //     var label = document.createElement('label')
+                    //     label.htmlFor = 'car';
+                    //     label.appendChild(document.createTextNode('Car'));
+
+                    //     var br = document.createElement('br');
+
+                    //     var container = document.getElementById('container');
+                    //     container.appendChild(checkbox);
+                    //     container.appendChild(label);
+                    //     container.appendChild(br);
                 });
 
-                // elem = innerHTML.images;
+            // elem = innerHTML.images;
         });
     }
 })
