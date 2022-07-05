@@ -25,9 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     for (y = 0; y < resultColor.length; ++y) {
 
                         images = images + '<img id="box-robots-filter" src="../assets/' + resultColor[y].name + '">';
+
+                        const container = document.getElementById("container");
+                        const newLabel = document.createElement("label");
+                        newLabel.setAttribute("for", 'checkbox');
+                        newLabel.innerHTML = images;
+
+                        const newCheckbox = document.createElement("input");
+                        newCheckbox.setAttribute("type", 'checkbox');
+                        newCheckbox.setAttribute("id", 'checkbox');
+                        newCheckbox.setAttribute("name", 'checkbox');
+                        newCheckbox.setAttribute("value", resultColor[y].id);
+
+                        container.appendChild(newLabel);
+                        container.appendChild(newCheckbox);
                     }
-                    // console.log(images)
-                    document.getElementById('box-robots-filter').innerHTML = images;
                 });
 
         });
@@ -62,53 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         images = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].name + '">';
 
-
-                        //function for each images create input type check for each images
-
-
-
-                        // let lab = document.getElementById('label')
-                        // console.log(lab)
-                        // value = images/
-                        // for (let index = 0; index < images; index++) {
-                        //     const element = images[index];
-                        //     console.log(index)
-                        //     // label.setAttribute("id", "toto")
-                        //     // // let toto = div.append(label);
-                        //     // label.innerHTML = images
-                        // let div = document.getElementById("container-filter-robot")
-                        //     let label = document.createElement("INPUT")
-                        //     label.setAttribute("type", "checkbox");
-
-                        //         // .append(`<input type="checkbox" id="" name="interest">`)
-                        //         // .append('<label for="interest"></label></div>')
-                        //         // //document.getElementById('interest').innerHTML = images
-
-                        //         // .append(`<br>`);
-
-                        // }
-                        // for (var value of images) {
-                        // console.log(value)
-                        // console.table(images)
-                        // $(images).each(function () {
-                        // });
-                        // $inner = document.getElementsByName("interest").innerHTML = images;
-                        // }
-
-                        // console.log(resDAta[y].id)
-
-                        // function checkbox() {
-                        //     const checkbox = document.createElement("input");
-                        //     checkbox.type = "checkbox";
-                        //     checkbox.name = "checkbox";
-                        //     checkbox.value = resDAta[y].id;
-                        //     checkbox.id = "checkbox";
-                        //     document.getElementById("box-robots-filter").appendChild(checkbox);
-                        // }
-                        // checkbox();
-                        // document.getElementById('box-robots-filter').innerHTML = images;
-
-
+                        const container = document.getElementById("container");
                         const newLabel = document.createElement("label");
                         newLabel.setAttribute("for", 'checkbox');
                         newLabel.innerHTML = images;
@@ -116,42 +82,43 @@ document.addEventListener("DOMContentLoaded", () => {
                         const newCheckbox = document.createElement("input");
                         newCheckbox.setAttribute("type", 'checkbox');
                         newCheckbox.setAttribute("id", 'checkbox');
+                        newCheckbox.setAttribute("name", 'checkbox');
                         newCheckbox.setAttribute("value", resDAta[y].id);
 
-                        document.body.appendChild(newLabel);
-                        document.body.appendChild(newCheckbox);
-
+                        container.appendChild(newLabel);
+                        container.appendChild(newCheckbox);
                     }
-
-                    // let check = document.getElementById('checkbox-filter-robots')
-                    // check.img
-                    // document.getElementById("placehere").appendChild("elem");
-                    // let checkbox = document.getElementById("checkbox-filter-robots");
-                    // var p = document.createElement("INPUT");
-                    // p.setAttribute("type", "checkbox");
-                    // let input = document.body.appendChild(p);
-                    // input.innerHTML = images;
-
-
-                    // var checkbox = document.createElement('input');
-                    //     checkbox.type = 'checkbox';
-                    //     checkbox.id = 'car';
-                    //     checkbox.name = 'interest';
-                    //     checkbox.value = innerHTML = images.id;
-
-                    //     var label = document.createElement('label')
-                    //     label.htmlFor = 'car';
-                    //     label.appendChild(document.createTextNode('Car'));
-
-                    //     var br = document.createElement('br');
-
-                    //     var container = document.getElementById('container');
-                    //     container.appendChild(checkbox);
-                    //     container.appendChild(label);
-                    //     container.appendChild(br);
                 });
-
-            // elem = innerHTML.images;
         });
     }
+
+    const submitRobot = document.getElementById("submit-robot");
+    const nameRobot = document.getElementById("name-robot");
+    // get both checkbox value for the FormData to send to phph traitement
+
+
+    submitRobot.addEventListener("click", function () {
+
+
+        const checkbox = document.getElementById("checkbox");
+        console.log(checkbox);
+
+        const data = new FormData();
+        data.append("name-robot", nameRobot.value);
+
+        fetch('adminRouteurJs.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.text())
+            .then(body => {
+                // const data = JSON.parse(body);
+                // const result = data.nameRobot;
+                console.log(body)
+                // console.log(result)
+
+            })
+    })
+
+
 })

@@ -18,3 +18,11 @@ if (isset($_POST['select_mat'])) {
     $dataMat = ['materialHeadRobots' => $materialHeadRobots];
     echo json_encode($dataMat);
 }
+
+if (isset($_POST['name-robot']) && isset($_POST['select_color']) && isset($_POST['select_mat'])) {
+
+    echo "<pre>";
+    echo "aizpephiazeipazheipahzepihazp";
+    echo "</pre>";
+    // echo json_encode($_POST);    
+}

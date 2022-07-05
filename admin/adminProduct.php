@@ -18,7 +18,7 @@ $robot->newRobotBody();
 $productImage = $robot->getImages();
 
 
-
+// $robot->newRobot();
 $headRobot = $robot->getAllHeadRobots();
 
 $bodyRobot = $robot->getAllBodyRobots();
@@ -95,19 +95,13 @@ foreach ($bodyRobot as $body) {
     <div class="container-filter-robot" id="container-filter-robot">
 
         <div class="here" id="here"></div>
-        <div class="container" id="container"></div>
+        <div class="container" id="container" for="label"></div>
 
-        <div class="box-robots-filter" id="box-robots-filter">
-
-            <input type="checkbox" name="checkbox-filter-robots" class="checkbox-filter-robots" id="checkbox-filter-robots">
-            <label for="checkbox-filter-robots" id="label"></label>
-
-        </div>
 
     </div>
 
     <div class="mb-3">
-        <input type="text" name="name-robot" placeholder="name-robot">
+        <input type="text" name="name-robot" id="name-robot" placeholder="name-robot">
     </div>
 
 
@@ -133,7 +127,7 @@ foreach ($bodyRobot as $body) {
     </div>
 
 
-    <input type="submit" class="btn btn-primary" name="submit-robot">
+    <input type="submit" class="btn btn-primary" name="submit-robot" id="submit-robot">
     <!-- </form> -->
 
     <!---LAYER ROBOT--->
