@@ -4,26 +4,40 @@ require_once('../setting/data.php');
 class AdminUser extends Database
 {
 
+    public $limite;
+
     public function __construct()
     {
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+        } else {
+            $this->page = 1;
+        }
+        $this->limite = 5;
+        $this->debut = ($this->page - 1) * $this->limite;
         parent::__construct();
+
+        if ($_SESSION['id_role'] == 1) {
+            header('Location: index.php');
+        }
     }
 
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users WHERE id_role = 1 LIMIT $this->limite OFFSET $this->debut";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll();
         return $users;
     }
 
-    public function countUser(){
+    public function countUser()
+    {
         $sql = "SELECT COUNT(*) FROM users";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
-        $count = $stmt->fetchColumn();
-        return $count;
+        // $count = $stmt->fetchColumn();
+        return $stmt;
     }
 
     public function getSingleUser($id)
@@ -37,8 +51,14 @@ class AdminUser extends Database
         return $user;
     }
 
-    //update user que par id 1
-    //update admin que par id 10
+    public function getAdmin()
+    {
+        $sql = "SELECT * FROM users WHERE id_role = 10";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll();
+        return $users;
+    }
 
     public function updateUser()
     {
@@ -50,13 +70,12 @@ class AdminUser extends Database
             $login = secuData($_POST['loginUser']);
             $mail = secuData($_POST['mailUser']);
             $id_role = secuData($_POST['id_role']);
-            $id_quotes = secuData($_POST['id_quotes']);
             $idUser = secuData($_POST['submitUser']);
 
-            $sql = "UPDATE users SET name = ?, surname = ?,  mail = ?, login = ?, id_role = ?, id_quotes = ? WHERE id = ?";
+            $sql = "UPDATE users SET name = ?, surname = ?,  mail = ?, login = ?, id_role = ? WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
-                $name, $surname, $mail, $login, $id_role, $id_quotes, $idUser
+                $name, $surname, $mail, $login, $id_role, $idUser
             ]);
         }
     }

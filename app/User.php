@@ -1,36 +1,138 @@
 <?php
+// var_dump(__DIR__);
+// require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
+// /Applications/MAMP/htdocs/tbmpro/setting/db.php
+// require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
 require_once('../setting/db.php');
+require_once('../setting/data.php');
 class User extends Database
 {
+    private $login;
+    private $password;
+    private $confPassword;
+    private $name;
+    private $surname;
+    private $mail;
+    private $id;
+
+    private $loginSignIn;
+    private $passwordSignIn;
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function signUp($name, $surname, $mail, $login, $password, $id_role, $id_quotes)
+    public function signUp($login, $password, $name, $surname, $mail)
     {
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO user (name, surname, mail, login, password, id_role, id_quotes) VALUES (:name, :surname, :mail, :login, :password, :id_role, :id_quotes)";
-        $stmt = $this->db->prepare($sql);
+
+        if (isset($_POST['submit_signUp'])) {
+
+            $login = secuData($_POST['login_singUp']);
+            $password = secuData($_POST['password_singUp']);
+            $name = secuData($_POST['name_signUp']);
+            $surname = secuData($_POST['surname_signUp']);
+            $mail = secuData($_POST['mail_singUp']);
+
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+            $sql = "INSERT INTO users (name, surname, mail, login, password, id_role) VALUES (?, ?, ?, ?, ?, 1)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                $name,
+                $surname,
+                $mail,
+                $login,
+                $hashed_password
+            ]);
+        }
+    }
+
+
+    public function userExist()
+    {
+        $login = secuData($_POST['login_singUp']);
+        $sql = "SELECT * FROM users WHERE login = ?";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            ':name' => $name,
-            ':surname' => $surname,
-            ':mail' => $mail,
-            ':login' => $login,
-            ':password' => $password,
-            ':id_role' => $id_role,
-            ':id_quotes' => $id_quotes
+            $login
         ]);
+        $user = $stmt->rowCount();
+        if ($user == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function confPassword()
+    {
+        $password = secuData($_POST['password_singUp']);
+        $confPassword = secuData($_POST['confirm_password_singUp']);
+        if ($password == $confPassword) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function valideEmail()
+    {
+        $mail = secuData($_POST['mail_singUp']);
+        if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function displayMessage($msg)
+    {
+
+        if (isset($msg)) {
+
+            echo '<div class="msg">' . $msg . '</div>';
+        }
+    }
+
+
+    public function confirmSignUp($login, $password, $name, $surname, $mail)
+    {
+        if ($this->confPassword()) {
+
+            if ($this->valideEmail()) {
+
+                if ($this->userExist()) {
+
+                    $this->signUp($login, $password, $name, $surname, $mail);
+                    header('Location: connexion.php');
+                }
+            } else {
+                $this->displayMessage('Votre adresse mail n\'est pas valide');
+            }
+        } else {
+            $this->displayMessage('Vos mots de passe ne correspondent pas');
+        }
+    }
+
+    public function getUserInfo()
+    {
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $_SESSION['id']
+        ]);
+        $user = $stmt->fetch();
+        return $user;
     }
 
     public function signIn($login, $password)
     {
-        $sql = "SELECT * FROM user WHERE login = :login AND password = :password";
-        $stmt = $this->db->prepare($sql);
+        $sql = "SELECT * FROM users WHERE login = ? AND password = ?";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            ':login' => $login,
-            ':password' => $password
+            $login,
+            $password
         ]);
         $user = $stmt->fetch();
         if ($user) {
@@ -43,33 +145,33 @@ class User extends Database
             $_SESSION['id_quotes'] = $user['id_quotes'];
             header('Location: index.php');
         } else {
-            echo "error";
+            $msg = "error";
         }
     }
 
-    public function userExist($login)
+    public function connect($login, $password)
     {
-        $sql = "SELECT * FROM user WHERE login = :login";
-        $stmt = $this->db->prepare($sql);
+        $sql = "SELECT * FROM users WHERE login = ?";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            ':login' => $login
+            $login
         ]);
-        $user = $stmt->fetch();
-        if ($user) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        $user = $stmt->rowCount();
 
-    public function getUserInfo()
-    {
-        $sql = "SELECT * FROM user WHERE id = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            ':id' => $_SESSION['id']
-        ]);
-        $user = $stmt->fetch();
-        return $user;
+        if ($user == 1) {
+
+            $info = $stmt->fetch();
+
+            if (password_verify($password, $info['password'])) {
+                $_SESSION['id'] = $info['id'];
+                $_SESSION['name'] = $info['name'];
+                $_SESSION['surname'] = $info['surname'];
+                $_SESSION['mail'] = $info['mail'];
+                $_SESSION['login'] = $info['login'];
+                $_SESSION['id_role'] = $info['id_role'];
+            } else {
+                $msg = "error";
+            }
+        }
     }
 }
