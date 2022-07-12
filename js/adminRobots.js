@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         buttonColorClass[i].addEventListener("click", function () {
 
+            const oldContainer = document.getElementById("container");
+            // console.log(oldContainer)
+
+            if (oldContainer != null) {
+                $(oldContainer).empty();
+                // console.log(oldContainer)
+            }
+
             const idButton = buttonColorClass[i].id;
             const params = idButton.substring(13);
             const data = new FormData();
@@ -43,13 +51,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
         });
+        // return tata
     }
-
+    // const myset = new Set();
+    // // console.log(myset);
+    // const toto = document.getElementById("container");
+    // console.log(toto)
+    // myset.add(toto);
+    // console.log(myset);
     const buttonMaterialClass = document.getElementsByClassName("filter-mat")
 
     for (let x = 0; x < buttonMaterialClass.length; x++) {
 
         buttonMaterialClass[x].addEventListener("click", function () {
+
+
+            const oldContainer = document.getElementById("container");
+            // console.log(oldContainer)
+
+            if (oldContainer != null) {
+                $(oldContainer).empty();
+                // console.log(oldContainer)
+            }
+            // oldConsole.log(oldContainer);
+            // oldContainer.innerHTML = "";
+            // console.log(oldContainer);
+
 
             const idButtonMat = buttonMaterialClass[x].id
             const paramsMat = idButtonMat.substring(11);
@@ -87,9 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         container.appendChild(newLabel);
                         container.appendChild(newCheckbox);
+
+
                     }
                 });
         });
+        // return mata;
     }
 
     const submitRobot = document.getElementById("submit-robot");
@@ -98,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     submitRobot.addEventListener("click", function () {
-
+        //submit new robot
 
         const checkbox = document.getElementById("checkbox");
         console.log(checkbox);
@@ -120,5 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
             })
     })
 
+    // buttonColorClass.addEventListener("click", function () {
+    //     //clear container
+    //     const container = document.getElementById("container");
+    //     console.log(container);
+    //     container.innerHTML = "";
+    //     console.log(container);
 
+    // })
 })

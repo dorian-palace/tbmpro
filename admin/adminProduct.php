@@ -86,8 +86,6 @@ foreach ($bodyRobot as $body) {
         <li><a href="#form-new-color">Manage colors</a></li>
     </ul>
 
-
-
     <!---ROBOT-->
     <!-- <form action="" method="post" enctype="multipart/form-data"> -->
     <label for="">New robot</label>
@@ -176,6 +174,8 @@ foreach ($bodyRobot as $body) {
 
         <input type="submit" name="submit-body-robot" value="Add">
     </form>
+
+
     <?php
     // echo "<pre>";
     // var_dump($_POST['head-color']);
