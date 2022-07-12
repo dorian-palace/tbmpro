@@ -206,7 +206,7 @@ class AdminArticle extends Database{
                     ON images.id = articles.id_image 
                     SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName
                     WHERE articles.id = :id";
-                    var_dump($newTitleArticle,$newText,$newPicName,$idArticle);
+                    // var_dump($newTitleArticle,$newText,$newPicName,$idArticle);
                     $update = $this->pdo->prepare($sql);
                     $update->execute([
                         ":newTitleArticle" => $newTitleArticle,
@@ -218,7 +218,8 @@ class AdminArticle extends Database{
                     header("Refresh:0");
                
            //voir les pointsbrajputés
-           //voir ces headers 
+           //voir ces headers qui pointent est
+           //des points se rajoute à mon update
         }
     
     }

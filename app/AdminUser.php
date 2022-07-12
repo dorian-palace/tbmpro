@@ -34,7 +34,6 @@ class AdminUser extends Database
         $stmt->execute(array(
             'id' => $id
         ));
-        $user = $stmt->fetch();
         return $user;
     }
 

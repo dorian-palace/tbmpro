@@ -1,0 +1,4 @@
+# Example 1: redirect errors 
+#pb it doesen't work html? or php? 
+ErrorDocument 404 /404.php
+
