@@ -20,6 +20,17 @@ class AdminRobot extends Database
     //     }
     // }
 
+    public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
+    {
+
+        $sql = "INSERT INTO robots (name, id_image_head, id_image_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $name, $idHead, $idBody, $idCategorie, $idUser
+        ]);
+        return $request;
+    }
+
     public function getAllHeadRobots()
     {
         $sql = "SELECT * FROM head_robots";
