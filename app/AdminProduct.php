@@ -9,17 +9,6 @@ class AdminRobot extends Database
         parent::__construct();
     }
 
-    // public function newRobot($name, $idHead, $idBody, $id_categorie)
-    // {
-    //     if (isset($_POST['submit-robot'])) {
-
-    //         $sql = "INSERT INTO robot (name, id_head, id_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
-    //         $request = $this->pdo->prepare($sql);
-    //         $request->execute([$name, $idHead, $idBody, $id_categorie, $_SESSION['id']]);
-    //         return $request;
-    //     }
-    // }
-
     public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
     {
 

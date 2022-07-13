@@ -18,31 +18,11 @@ $robot->newRobotHead();
 $robot->newRobotBody();
 $productImage = $robot->getImages();
 
-
-// $robot->newRobot();
 $headRobot = $robot->getAllHeadRobots();
 
 $bodyRobot = $robot->getAllBodyRobots();
-// $headColor = $headRobot['id_color'];
 echo "<pre>";
-// var_dump($robot->getHeadRobots());
-// var_dump($robot->getBodyRobots());
-// $headColor;
 echo "</pre>";
-// foreach ($headRobot as $head) {
-
-
-//     $headMaterial = $head['id_material'];
-//     $layer = $head['name'];
-//     echo " <img src='../assets/" . $head['name'] . "' height=250 width=400 />";
-//     echo "<pre>";
-
-//     // var_dump($head);
-//     // var_dump($headColor);
-//     // var_dump($headMaterial);
-//     // var_dump($layer);
-//     echo "</pre>";
-// }
 
 foreach ($bodyRobot as $body) {
 
@@ -50,15 +30,9 @@ foreach ($bodyRobot as $body) {
     $bodyMaterial = $body['id_material'];
     $layer = $body['name'];
     echo "<pre>";
-
-    // var_dump($body);
-    // var_dump($bodyColor);
-    // var_dump($bodyMaterial);
-    // var_dump($layer);
     echo "</pre>";
 }
 
-// $robot->getHeadByColorAndMaterial();
 ?>
 <!DOCTYPE html>
 <html lang="en">
