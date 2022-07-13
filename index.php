@@ -20,7 +20,7 @@ require_once('app/User.php');
     <?php require_once("layouts/navbar.php")?>
     </header>
     <main>
-        <section>
+        <section class= "test-main">
 
         </section>
         <section>

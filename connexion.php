@@ -41,6 +41,9 @@ if (isset($_POST['submit_connexion'])) {
             </form>
         </div>
     </main>
+    <footer>
+        <?php require_once("layouts/footer.php")?>
+    </footer>
 </body>
 
 </html>

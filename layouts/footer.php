@@ -9,9 +9,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="footer, address, phone, icons" />
-
-	<title>Footer With Address And Phones</title>
-	
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="style.css">
@@ -19,62 +16,57 @@
 </head>
 
 	<body>
-		<div class="main"> FOOTER DESIGN IN HTML CSS</div>
+		
 		<footer class="footer-distributed">
 
 			<div class="footer-left">
 
-				<h3>WebDev<span>Trick</span></h3>
+				<h3>Technology<span>BasedMagic</span></h3>
 
 				<p class="footer-links">
 					<a href="#">Accueil</a>
 					·
 					<a href="#">Nous</a>
 					·
-					<a href="#">Pricing</a>
+					<a href="#">Connexion</a>
 					·
-					<a href="#">About</a>
+					<a href="#">Inscription</a>
 					·
-					<a href="#">Faq</a>
+					<a href="#">Galerie</a>
 					·
-					<a href="#">Contact</a>
+					<a href="#">Produits</a>
 				</p>
 
-				<p class="footer-company-name">webdevtrick &copy; 2019</p>
+				<p class="footer-company-name">technologybasedmagic &copy; 2022</p>
 			</div>
 
 			<div class="footer-center">
 
 				<div>
 					<i class="fa fa-map-marker"></i>
-					<p><span>21 Revolution Street</span> Delhi, India</p>
+					<p><span></span> Aix en Provence, France</p>
 				</div>
 
 				<div>
 					<i class="fa fa-phone"></i>
-					<p>+1 555 123456</p>
+					<p>Tél +33.(0).6.26.02.49.04</p>
 				</div>
 
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:support@company.com">contact@webdevtrick.com</a></p>
+					<p><a href="mailto:contact@tbm-studio.com">contact@tbm-studio.com</a></p>
 				</div>
 
 			</div>
 
 			<div class="footer-right">
 
-				<p class="footer-company-about">
-					<span>About the company</span>
-					Web Dev Trick is a blog for web designers, graphic designers, web developers &amp; SEO Learner.
-				</p>
-
 				<div class="footer-icons">
 
 					<a href="#"><i class="fa fa-facebook"></i></a>
 					<a href="#"><i class="fa fa-twitter"></i></a>
 					<a href="#"><i class="fa fa-linkedin"></i></a>
-					<a href="#"><i class="fa fa-github"></i></a>
+					<a href="#"><i class="fa fa-instagram"></i></a>
 
 				</div>
 

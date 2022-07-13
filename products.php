@@ -18,5 +18,8 @@ require_once('app/User.php');
     <header>
         <?php require_once("layouts/navbar.php")?>
     </header>
+    <footer>
+        <?php require_once("layouts/footer.php")?>
+    </footer>
 </body>
 </html>

@@ -48,6 +48,9 @@ if (isset($_POST['submit_signUp'])) {
             </form>
         </div>
     </main>
+    <footer>
+        <?php require_once("layouts/footer.php")?>
+    </footer>
 </body>
 
 </html>

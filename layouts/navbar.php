@@ -27,14 +27,46 @@ var_dump($_SESSION);
    <header>
         <nav>
             <div class="topnav" id="myTopnav">
-                <ul id="myLinks">
+                 
+                 <?php if(isset($userId)&&($userId === 1)){ ?>
+                     
+                    <ul id="myLinks">
+                        <a href="./index.php" class="active">Accueil</a>
+                        <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
+                        <a href="./galerie.php" class="link">Galerie</a>
+                        <a href="./products.php" class="link">Produits</a>
+                        <a href="./creation.php" class="link">Module</a>
+                    </ul> 
+                    <?php  } ?> 
+
+                <?php if(isset($userId)&&($userId === 10)){ ?>
+                    <ul id="myLinks">     
+                        <a href="./index.php" class="active">Accueil</a>
+                        <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
+                        <a href="./galerie.php" class="link">Galerie</a>
+                        <a href="./products.php" class="link">Produits</a>
+                        <a href="./creation.php" class="link">Module</a>
+                    </ul>            
+                <?php  } ?>    
+
+                <?php if(isset($userId)&&($userId === 100)){ ?>
+                    <ul id="myLinks">     
+                        <a href="./index.php" class="active">Accueil</a>
+                        <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
+                        <a href="./galerie.php" class="link">Galerie</a>
+                        <a href="./products.php" class="link">Produits</a>
+                        <a href="./creation.php" class="link">Module</a>
+                    </ul>            
+                <?php  } ?> 
+                <?php if(!isset($userId)){ ?>
+                    <ul id="myLinks">     
                     <a href="./index.php" class="active">Accueil</a>
                     <a href="./inscription.php"class="link">Inscription</a>
                     <a href="./connexion.php" class="link">Connexion</a>
                     <a href="./galerie.php" class="link">Galerie</a>
                     <a href="./products.php" class="link">Produits</a>
-                    <a href="./creation.php" class="link">Module</a>
-                </ul>
+                    </ul>            
+                <?php  } ?> 
                 <a 
                 class="icon" >
                 <i class="fa fa-bars"></i>
