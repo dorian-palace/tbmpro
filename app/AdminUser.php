@@ -1,7 +1,7 @@
 <?php
 require_once('../setting/db.php');
 require_once('../setting/data.php');
-echo 'class adminUser';
+// echo 'class adminUser';
 class AdminUser extends Database
 {
 

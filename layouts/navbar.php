@@ -2,13 +2,14 @@
 
 // require_once('../app/User.php');
 // require_once('./setting/data.php');
-$userId = $_SESSION['id_role'];
+$userId = intval($_SESSION['id_role']);
+
 
 // if($userId === 100)
 // $userToTest = new AdminUser();
 // $user = $userToTest->getSingleUser($userId);
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
   
 ?>
 
@@ -58,7 +59,7 @@ var_dump($_SESSION);
                         <a href="./creation.php" class="link">Module</a>
                     </ul>            
                 <?php  } ?> 
-                <?php if(!isset($userId)){ ?>
+                <?php if(empty($_SESSION)){ ?>
                     <ul id="myLinks">     
                     <a href="./index.php" class="active">Accueil</a>
                     <a href="./inscription.php"class="link">Inscription</a>
