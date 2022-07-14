@@ -110,7 +110,7 @@ foreach ($bodyRobot as $body) {
         </select>
     </div>
 
-    <button type="submit" class="btn btn-primary" name="submit-robot" id="submit-robot"> submit</button>
+    <button type="submit" value="submit-robot" class="btn btn-primary" name="submit-robot" id="submit-robot"> submit</button>
     <!-- <input type="submit" > -->
     <!-- </form> -->
 

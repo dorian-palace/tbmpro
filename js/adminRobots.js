@@ -1,13 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /**
-     * 
-     * modifie le nom des checkbox pour pouvoir avoir tout les id dont tu a besoin dans les checkbox 
-     * exemple checkbox id="id_color" & id_material
-     * 
-     * modifie les deux fetch 
-     * insert PHP SQL
-     */
 
     const buttonColorClass = document.getElementsByClassName("filter-color");
     for (let i = 0; i < buttonColorClass.length; i++) {
@@ -63,22 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             newCheckbox.setAttribute("id", 'checkbox-tete');
                             newCheckbox.setAttribute("name", 'checkbox-tete');
                             newCheckbox.setAttribute("value", resultColor[y].id);
-                            // console.log(resultColor)
-                            // console.log(images)
-                            // const tototo = [newLabel, newCheckbox]
 
-                            // for (let index = 0; index < tototo.length; index++) {
-                            //     const element = tototo[index];
-                            //     console.log(element)
-                            //     container.appendChild(element)
-
-                            // }
-                            // console.log(tototo)
-                            // container.appendChild(newLabel);
                             newLabel.appendChild(newCheckbox)
-
                             container.appendChild(newLabel);
-                            // container.appendChild(tototo[y])
                         }
                     }
                 });
@@ -152,22 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             newCheckbox.setAttribute("id", 'checkbox-body');
                             newCheckbox.setAttribute("name", 'checkbox-body');
                             newCheckbox.setAttribute("value", resultBodyColor[y].id);
-                            // console.log(resultColor)
-                            // console.log(images)
-                            // const tototo = [newLabel, newCheckbox]
 
-                            // for (let index = 0; index < tototo.length; index++) {
-                            //     const element = tototo[index];
-                            //     console.log(element)
-                            //     container.appendChild(element)
-
-                            // }
-                            // console.log(tototo)
-                            // container.appendChild(newLabel);
                             newLabel.appendChild(newCheckbox)
-
                             container.appendChild(newLabel);
-                            // container.appendChild(tototo[y])
                         }
                     }
                 });
@@ -183,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
             /**
              * function qui trie les robots en fonction de la matière de leurs corps
              */
-
 
             const oldContainer = document.getElementById("container");
 
@@ -245,8 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
             /**
              * function qui trie les robots en fonction de la matière de leurs tête
              */
-
-
             const oldContainer = document.getElementById("container");
 
             if (oldContainer != null) {
@@ -299,13 +262,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const submitRobot = document.getElementById("submit-robot");
+    console.log(submitRobot)
     submitRobot.addEventListener("click", () => {
 
         // let btnValue = submitRobot.value;
         const dataButton = new FormData();
-        console.log(dataButton)
+        // console.log(dataButton)
         dataButton.append("submit-robot", submitRobot.value);
-
+        // console.log(dataButton)
         fetch('adminRouteurJs.php', {
                 method: 'POST',
                 body: dataButton
@@ -322,7 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = new FormData();
         data.append("categorie-robot", getCategories.value);
-
         fetch('adminRouteurJs.php', {
                 method: 'POST',
                 body: data
@@ -354,9 +317,8 @@ document.addEventListener("DOMContentLoaded", () => {
     submitRobot.addEventListener("click", function () {
         //récupère l'id de la checkbox qui correspond a l'id de l'image
         // id tete
-        const submitRobot = document.getElementById("name-robot");
         const checkbox = document.getElementById("checkbox-tete")
-        console.log(checkbox)
+        // console.log(checkbox)
 
         const data = new FormData();
         data.append("checkbox-head-robot", checkbox.value);
@@ -374,9 +336,8 @@ document.addEventListener("DOMContentLoaded", () => {
     submitRobot.addEventListener("click", function () {
         //récupère l'id de la checkbox qui correspond a l'id de l'image
         // id body
-        const submitRobot = document.getElementById("name-robot");
         const checkbox = document.getElementById("checkbox-body")
-        console.log(checkbox)
+        // console.log(checkbox)
 
         const data = new FormData();
         data.append("checkbox-body-robot", checkbox.value);
