@@ -27,7 +27,7 @@ if (isset($_POST['select_mat'])) {
 
 // if (isset($_POST['name-robot'])) {
 
-//     // var_dump($_POST['name-robot']);
+//     var_dump($_POST['name-robot']);
 //     var_dump($_POST);
 
 // }
@@ -46,9 +46,9 @@ if (isset($_POST['select_mat'])) {
 // }
 
 
-if (isset($_POST)) {
-    var_dump($_POST);
-}
+// if (isset($_POST)) {
+//     var_dump($_POST);
+// }
 // if (isset($_POST['checkbox-body-robot'])) {
 
 //     var_dump($_POST);
@@ -68,7 +68,23 @@ if (isset($_POST)) {
 //     echo "nazfeygazuieguazgeuazgbduoazvdiuvazduiazv";
 // }
 
+if (isset($_POST['submit-robot'])) {
+    var_dump($_POST);
+    if (isset($_POST['name-robot']) && isset($_POST['checkbox-head-robot']) && isset($_POST['checkbox-body-robot']) && isset($_POST['categorie-robot'])) {
+        
+        $name = secuData($_POST['name-robot']);
+        $head = secuData($_POST['checkbox-head-robot']);
+        $body = secuData($_POST['checkbox-body-robot']);
+        $categorie = secuData($_POST['categorie-robot']);
+        $idUser = $_SESSION['id'];
 
+        $robot->newRobots($name, $head, $body, $categorie, $idUser);
+        // echo json_encode($robot);
+        echo "nazfeygazuieguazgeuazgbduoazvdiuvazduiazv";
+    }
+}
 
-
+// if (isset($_POST['submit-robot']) && isset($_POST['categorie-robot'])){
+//     var_dump($_POST);
+// }
 // if (isset($_POST['select-color']) && isset($_POST['name-robot']) && isset)

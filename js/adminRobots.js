@@ -265,14 +265,27 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(submitRobot)
     submitRobot.addEventListener("click", () => {
 
+        const getCategories = document.getElementById("categorieNewRobot");
+        const nameRobot = document.getElementById("name-robot");
+        const checkboxHead = document.getElementById("checkbox-tete")
+        const checkboxBody = document.getElementById("checkbox-body")
+
+        const dataCategorie = new FormData();
+        dataCategorie.append("categorie-robot", getCategories.value);
+        dataCategorie.append("submit-robot", submitRobot.value);
+        dataCategorie.append("name-robot", nameRobot.value);
+        dataCategorie.append("checkbox-head-robot", checkboxHead.value);
+        dataCategorie.append("checkbox-body-robot", checkboxBody.value);
+        
+
         // let btnValue = submitRobot.value;
-        const dataButton = new FormData();
+        // const dataButton = new FormData();
         // console.log(dataButton)
-        dataButton.append("submit-robot", submitRobot.value);
+        // dataButton.append("submit-robot", submitRobot.value);
         // console.log(dataButton)
         fetch('adminRouteurJs.php', {
                 method: 'POST',
-                body: dataButton
+                body: dataCategorie
             })
             .then(response => response.text())
             .then(body => {
@@ -282,10 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     submitRobot.addEventListener("click", function () {
         // get categories 
-        const getCategories = document.getElementById("categorieNewRobot");
-
-        const data = new FormData();
-        data.append("categorie-robot", getCategories.value);
+    
         fetch('adminRouteurJs.php', {
                 method: 'POST',
                 body: data
