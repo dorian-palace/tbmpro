@@ -26,13 +26,15 @@ class User extends Database
     public function signUp($login, $password, $name, $surname, $mail)
     {
 
-        if (isset($_POST['submit_signUp'])) {
+        if (isset($_POST['mail_singUp'])) {
 
             $login = secuData($_POST['login_singUp']);
             $password = secuData($_POST['password_singUp']);
             $name = secuData($_POST['name_signUp']);
             $surname = secuData($_POST['surname_signUp']);
             $mail = secuData($_POST['mail_singUp']);
+
+            $_POST['lol2'] = "inscrit";
 
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
@@ -91,7 +93,7 @@ class User extends Database
 
         if (isset($msg)) {
 
-            echo '<div class="msg">' . $msg . '</div>';
+            echo ' <div class="msg"> ' . $msg . '</div> <img src="assets/img/iconrobot.png" alt="Petit robot">';
         }
     }
 

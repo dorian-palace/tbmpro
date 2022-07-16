@@ -2,7 +2,8 @@
 require_once('app/User.php');
 require_once('setting/data.php');
 
-if (isset($_POST['submit_signUp'])) {
+
+if (isset($_POST['mail_singUp']) && !empty ($_POST['mail_singUp'])) {
 
     if (isset($_POST['login_singUp'], $_POST['password_singUp'], $_POST['confirm_password_singUp'], $_POST['name_signUp'], $_POST['surname_signUp'], $_POST['mail_singUp'])) {
 
@@ -14,9 +15,15 @@ if (isset($_POST['submit_signUp'])) {
         $mail = secuData($_POST['mail_singUp']);
         $user = new User();
         $user->confirmSignUp($login, $password, $name, $surname, $mail);
+
+
     }
 
 
+}
+
+if (isset($_POST['lol'])){
+    echo ' <div class="msg"> ' . "Certains champs sont vides" . '</div> <img src="assets/img/iconrobot.png" alt="Petit robot">';
 }
 ?>
 
@@ -42,7 +49,7 @@ if (isset($_POST['submit_signUp'])) {
                 <input type="password" placeholder="password" name="password_singUp">
                 <input type="password" placeholder="paswword" name="confirm_password_singUp">
 
-                <button class="treat-button" type="submit" id = "buttonregister">
+                <button class="button" type="submit" id = "buttonregister" name = "lol">
                 <img src="assets/img/suivantrobot.png" alt="Bouton suivant technology based magic" id ="nextimg">
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>		

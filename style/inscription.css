@@ -7,7 +7,7 @@ body {
     
     
     
-    .treat-button {
+    .button {
       appearance: none;
       background: linear-gradient(to bottom, rgb(44, 88, 141), #0e2c64);
       border: none;
@@ -27,12 +27,12 @@ body {
     }
     
     
-    .treat-button:active {
+    .button:active {
         transform: scale(0.8) translateY(10%);
         transition-timing-function: cubic-bezier(.5, 0, .5, 1);
       }
     
-    .treat-button:hover {
+    .button:hover {
         box-shadow: 0 3px 10px rgba(255, 255, 255, 0.877);
       }
     
@@ -47,10 +47,13 @@ body {
       }
       
     form {
+        padding-top: 100px;
+        padding-bottom: 20px;
         max-width: 600px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap : 5px;
     
     }
 
@@ -66,7 +69,16 @@ body {
     }
       
     *{
+        text-align: center;
         box-sizing: border-box;
+        color: white;
+    }
+
+    .msg {
+    padding-top: 100px;
+    color: rgb(214, 214, 0);
+    font-size: larger;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e6007379, 0 0 60px #e6007373, 0 0 70px #e600737c;
     }
     
     /* .progressbar {
