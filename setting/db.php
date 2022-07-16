@@ -15,7 +15,7 @@ class Database
             $pdo = new PDO(
                 $dns,
                 'root',
-                'root',
+                '',
 
                 [
 

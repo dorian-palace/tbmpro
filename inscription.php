@@ -15,6 +15,8 @@ if (isset($_POST['submit_signUp'])) {
         $user = new User();
         $user->confirmSignUp($login, $password, $name, $surname, $mail);
     }
+
+
 }
 ?>
 
@@ -26,6 +28,7 @@ if (isset($_POST['submit_signUp'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
+    <link rel="stylesheet" href="style/inscription.css">
 </head>
 
 <body>
@@ -38,7 +41,11 @@ if (isset($_POST['submit_signUp'])) {
                 <input type="text" placeholder="login" name="login_singUp">
                 <input type="password" placeholder="password" name="password_singUp">
                 <input type="password" placeholder="paswword" name="confirm_password_singUp">
-                <input type="submit" name="submit_signUp">
+
+                <button class="treat-button" type="submit" id = "buttonregister">
+                <img src="assets/img/suivantrobot.png" alt="Bouton suivant technology based magic" id ="nextimg">
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>		
             </form>
         </div>
     </main>
