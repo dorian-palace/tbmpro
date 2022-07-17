@@ -8,6 +8,17 @@ class AdminRobot extends Database
     {
         parent::__construct();
     }
+    /**
+     * SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.id sELECT id FROM head_robots AS id_head INNER JOIN body_robots ON robots.id_image_body = body_robots.id WHERE robots.id_user = 1
+     * 
+     * 
+     * 
+    SELECT * FROM robots 
+    INNER JOIN head_robots ON robots.id_image_head = head_robots.id 
+    INNER JOIN body_robots ON robots.id_image_body = body_robots.id
+    WHERE robots.id_user = 20
+
+     */
 
     public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
     {
@@ -16,6 +27,46 @@ class AdminRobot extends Database
         $request = $this->pdo->prepare($sql);
         $request->execute([
             $name, $idHead, $idBody, $idCategorie, $idUser
+        ]);
+        return $request;
+    }
+
+    public function getAllRobots()
+    {
+        /**
+         * INNER JOIN les tables pour pouvoir display les images du robot
+         * SELECT * FROM robots INNER JOIN images ON robots.id_image_head = images.id WHERE robots.id_user = 1
+         
+         */
+        /**
+         * SELECT * FROM robots
+
+INNER JOIN head_robots ON robots.id_image_head = head_robots.id 
+INNER JOIN body_robots ON robots.id_image_body = body_robots.id
+WHERE robots.id_user = 20
+give alias to this request
+         */
+
+
+
+
+
+
+        $sql = "SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.head_id  INNER JOIN body_robots ON robots.id_image_body = body_robots.body_id INNER JOIN users ON robots.id_user = users.id WHERE robots.id_user = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $_SESSION['id']
+        ]);
+        $robots = $request->fetchAll();
+        return $robots;
+    }
+
+    public function deleteRobot($id)
+    {
+        $sql = "DELETE FROM robots WHERE id_robot = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $id
         ]);
         return $request;
     }
@@ -107,9 +158,9 @@ class AdminRobot extends Database
     {
 
         if (isset($_POST['submit-head-robot'])) {
-            echo "ok1";
+            // echo "ok1";
             if (isset($_FILES['image-head-robot'])) {
-                echo "ok2";
+                // echo "ok2";
                 $tmpName = $_FILES['image-head-robot']['tmp_name'];
                 $name = $_FILES['image-head-robot']['name'];
                 $size = $_FILES['image-head-robot']['size'];
@@ -124,23 +175,23 @@ class AdminRobot extends Database
                 $maxSize = 40000;
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-                    echo "ok3";
+                    // echo "ok3";
                     if (isset($name)) {
-                        echo "ok4",
+                        // echo "ok4",
                         $namePicToRegister = $name . '.' . $extension;
 
-                        $sql = "SELECT * FROM head_robots WHERE name = ?";
+                        $sql = "SELECT * FROM head_robots WHERE head_name = ?";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
                         $requestImg = $request->fetchAll();
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
-                            echo "ok5";
+                            // echo "ok5";
                             $color = secuData($_POST['head-color']);
                             $materials = secuData($_POST['head-material']);
 
-                            $sql = "INSERT INTO  `head_robots`(name, id_color, id_material) VALUES (?,?,?)";
+                            $sql = "INSERT INTO  `head_robots`(head_name, id_color, id_material) VALUES (?,?,?)";
                             $request = $this->pdo->prepare($sql);
                             $request->execute([
                                 $namePicToRegister, $color, $materials
@@ -160,9 +211,9 @@ class AdminRobot extends Database
     {
 
         if (isset($_POST['submit-body-robot'])) {
-            echo "ok1";
+            // echo "ok1";
             if (isset($_FILES['image-body-robot'])) {
-                echo "ok2";
+                // echo "ok2";
                 $tmpName = $_FILES['image-body-robot']['tmp_name'];
                 $name = $_FILES['image-body-robot']['name'];
                 $size = $_FILES['image-body-robot']['size'];
@@ -177,23 +228,23 @@ class AdminRobot extends Database
                 $maxSize = 40000;
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-                    echo "ok3";
+                    // echo "ok3";
                     if (isset($name)) {
-                        echo "ok4",
+                        // echo "ok4",
                         $namePicToRegister = $name . '.' . $extension;
 
-                        $sql = "SELECT * FROM body_robots WHERE name = ?";
+                        $sql = "SELECT * FROM body_robots WHERE body_name = ?";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
                         $requestImg = $request->fetchAll();
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
-                            echo "ok5";
+                            // echo "ok5";
                             $color = secuData($_POST['body-color']);
                             $materials = secuData($_POST['body-material']);
 
-                            $sql = "INSERT INTO  `body_robots`(name, id_color, id_material) VALUES (?,?,?)";
+                            $sql = "INSERT INTO  `body_robots`(body_name, id_color, id_material) VALUES (?,?,?)";
                             $request = $this->pdo->prepare($sql);
                             $request->execute([
                                 $namePicToRegister, $color, $materials

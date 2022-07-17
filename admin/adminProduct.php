@@ -2,6 +2,9 @@
 require_once('../app/AdminProduct.php');
 // var_dump($_POST);
 // echo "blalazelkalzekae";
+if ($_SESSION['id_role'] == 1) {
+    header('Location: ../index.php');
+}
 var_dump($_SESSION);
 $robot = new AdminRobot();
 $robot->newColor();
@@ -21,7 +24,10 @@ $productImage = $robot->getImages();
 $headRobot = $robot->getAllHeadRobots();
 
 $bodyRobot = $robot->getAllBodyRobots();
+
+$allRobots = $robot->getAllRobots();
 echo "<pre>";
+// var_dump($allRobots);
 echo "</pre>";
 
 foreach ($bodyRobot as $body) {
@@ -162,12 +168,42 @@ foreach ($bodyRobot as $body) {
     </form>
 
 
+    <!---DISPLAY MANAGE ROBOTS-->
     <?php
-    // echo "<pre>";
-    // var_dump($_POST['head-color']);
-    // echo "</pre>";
+    foreach ($allRobots as $nbRobots) :
 
+        echo "<pre>";
+        var_dump($nbRobots);
+        echo "</pre>";
+
+        /**
+         * INNER JOIN les tables pour pouvoir display les images du robot
+         */
     ?>
+        <div class="display-robot">
+            <div class="display-robot-name">
+                <?= $nbRobots['name']; ?>
+            </div>
+            <div class="display-robot-material">
+                <ul>
+                    <li><b> crée par <?= $nbRobots['surname'] ?></b></li>
+                </ul>
+            </div>
+            <div class="display-robot-categorie">
+                <img src="../assets/<?= $nbRobots['head_name']; ?>" alt="">
+            </div>
+            <div class="display-robot-color">
+                <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="">
+            </div>
+
+            <div class="display-robot-delete">
+                <!-- <button type="submit" value="<?= $nbRobots['id_robot']; ?>">DELETE</button> -->
+                <a href="adminProduct.php?id=<?= $nbRobots['id_robot']; ?>">Delete</a>
+            </div>
+        </div>
+
+    <?php endforeach; ?>
+
 
 
     <!---CATEGORIES-->
@@ -204,6 +240,8 @@ foreach ($bodyRobot as $body) {
         $singleCategorie = $robot->getCategorieById($_GET['id']);
         $robot->updateCategorie($_GET['id']);
         $robot->deleteCategorie($_GET['id']);
+        $robot->deleteRobot($_GET['id']);
+
     ?>
 
 
@@ -217,6 +255,7 @@ foreach ($bodyRobot as $body) {
         </form>
         <button type="submit" class="btn btn-danger" name="delete-categorie" value="<?= $singleCategorie[0]['id']; ?>">Delete</button>
     <?php
+        // header('Location: adminProduct.php');
     }
     ?>
 

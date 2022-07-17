@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (let index = 0; index < resultBodyColor.length; ++index) {
 
-                            const element = resultBodyColor[index].name;
+                            const element = resultBodyColor[index].head_name;
 
-                            image = images + '<img id="box-robots-filter" src="../assets/' + resultColor[y].name + '">';
+                            image = images + '<img id="box-robots-filter" src="../assets/' + resultColor[y].head_name + '">';
                             // console.table(image)
 
                             const container = document.getElementById("container");
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             newCheckbox.setAttribute("type", 'checkbox');
                             newCheckbox.setAttribute("id", 'checkbox-tete');
                             newCheckbox.setAttribute("name", 'checkbox-tete');
-                            newCheckbox.setAttribute("value", resultColor[y].id);
+                            newCheckbox.setAttribute("value", resultColor[y].head_id);
 
                             newLabel.appendChild(newCheckbox)
                             container.appendChild(newLabel);
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     for (y = 0; y < resultBodyColor.length; ++y) {
 
                         for (let index = 0; index < resultBodyColor.length; ++index) {
-
+                            // console.log(resultBodyColor)
                             const element = resultBodyColor[index].name;
                             // console.log(element)
                             // console.log(resultColor)
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             // console.log(allColor)
                             // console.log(allColor)
 
-                            image = images + '<img id="box-robots-filter" src="../assets/' + resultBodyColor[y].name + '">';
+                            image = images + '<img id="box-robots-filter" src="../assets/' + resultBodyColor[y].body_name + '">';
                             // console.table(image)
 
                             const container = document.getElementById("container");
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     for (y = 0; y < resDAta.length; ++y) {
 
-                        image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].name + '">';
+                        image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].head_name + '">';
 
                         const container = document.getElementById("container");
                         const newLabel = document.createElement("label");
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         newCheckbox.setAttribute("id", 'checkbox');
                         newCheckbox.setAttribute("name", 'checkbox');
                         newCheckbox.setAttribute("aria-labelledby", 'thatlabel')
-                        newCheckbox.setAttribute("value", resDAta[y].id);
+                        newCheckbox.setAttribute("value", resDAta[y].head_id);
 
                         newLabel.appendChild(newCheckbox)
 
@@ -235,10 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const resDAta = mydata.materialBodyRobots;
                     // console.log(resDAta)
                     let images = '';
-
+                    
                     for (y = 0; y < resDAta.length; ++y) {
+                        // console.log(resDAta)
 
-                        image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].name + '">';
+                        image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].body_name + '">';
 
                         const container = document.getElementById("container");
                         const newLabel = document.createElement("label");
@@ -251,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         newCheckbox.setAttribute("id", 'checkbox');
                         newCheckbox.setAttribute("name", 'checkbox');
                         newCheckbox.setAttribute("aria-labelledby", 'thatlabel')
-                        newCheckbox.setAttribute("value", resDAta[y].id);
+                        newCheckbox.setAttribute("value", resDAta[y].body_id);
 
                         newLabel.appendChild(newCheckbox)
                         container.appendChild(newLabel);
