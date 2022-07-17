@@ -93,15 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     // console.log(dataColor)
                     const resultBodyColor = dataColor.colorBodyRobots
                     // console.log(resultBodyColor)
-                    // console.log(resultColor)
 
                     let images = '';
 
                     for (y = 0; y < resultBodyColor.length; ++y) {
 
+                        // console.log(resultBodyColor)
                         for (let index = 0; index < resultBodyColor.length; ++index) {
-                            // console.log(resultBodyColor)
-                            const element = resultBodyColor[index].name;
+                            const element = resultBodyColor[index];
+                            // console.log(element)
                             // console.log(element)
                             // console.log(resultColor)
                             // console.log(resultBodyColor[y].name)
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             newCheckbox.setAttribute("type", 'checkbox');
                             newCheckbox.setAttribute("id", 'checkbox-body');
                             newCheckbox.setAttribute("name", 'checkbox-body');
-                            newCheckbox.setAttribute("value", resultBodyColor[y].id);
+                            newCheckbox.setAttribute("value", resultBodyColor[y].body_id);
 
                             newLabel.appendChild(newCheckbox)
                             container.appendChild(newLabel);
@@ -233,10 +233,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     const mydata = JSON.parse(data);
                     // console.log(mydata)
                     const resDAta = mydata.materialBodyRobots;
-                    // console.log(resDAta)
+                    console.log(resDAta)
+
                     let images = '';
-                    
+
                     for (y = 0; y < resDAta.length; ++y) {
+                        // console.log(resDAta[y])
                         // console.log(resDAta)
 
                         image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].body_name + '">';
@@ -277,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dataCategorie.append("name-robot", nameRobot.value);
         dataCategorie.append("checkbox-head-robot", checkboxHead.value);
         dataCategorie.append("checkbox-body-robot", checkboxBody.value);
-        
+
 
         // let btnValue = submitRobot.value;
         // const dataButton = new FormData();
@@ -296,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     submitRobot.addEventListener("click", function () {
         // get categories 
-    
+
         fetch('adminRouteurJs.php', {
                 method: 'POST',
                 body: data

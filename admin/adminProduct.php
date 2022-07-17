@@ -30,14 +30,14 @@ echo "<pre>";
 // var_dump($allRobots);
 echo "</pre>";
 
-foreach ($bodyRobot as $body) {
+// foreach ($bodyRobot as $body) {
 
-    $bodyColor = $body['id_color'];
-    $bodyMaterial = $body['id_material'];
-    $layer = $body['name'];
-    echo "<pre>";
-    echo "</pre>";
-}
+//     $bodyColor = $body['id_color'];
+//     $bodyMaterial = $body['id_material'];
+//     $layer = $body['body_name'];
+//     echo "<pre>";
+//     echo "</pre>";
+// }
 
 ?>
 <!DOCTYPE html>
@@ -169,40 +169,48 @@ foreach ($bodyRobot as $body) {
 
 
     <!---DISPLAY MANAGE ROBOTS-->
+    <button type="submit" name="delete-this-robot">Display & manage Robots</button>
     <?php
-    foreach ($allRobots as $nbRobots) :
+    if (isset($_POST['delete-this-robot'])) {
 
-        echo "<pre>";
-        var_dump($nbRobots);
-        echo "</pre>";
 
-        /**
-         * INNER JOIN les tables pour pouvoir display les images du robot
-         */
+        foreach ($allRobots as $nbRobots) :
+
+            echo "<pre>";
+            var_dump($nbRobots);
+            echo "</pre>";
+
+            /**
+             * INNER JOIN les tables pour pouvoir display les images du robot
+             */
     ?>
-        <div class="display-robot">
-            <div class="display-robot-name">
-                <?= $nbRobots['name']; ?>
-            </div>
-            <div class="display-robot-material">
-                <ul>
-                    <li><b> crée par <?= $nbRobots['surname'] ?></b></li>
-                </ul>
-            </div>
-            <div class="display-robot-categorie">
-                <img src="../assets/<?= $nbRobots['head_name']; ?>" alt="">
-            </div>
-            <div class="display-robot-color">
-                <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="">
+            <div class="display-robot">
+                <div class="display-robot-name">
+                    <?= $nbRobots['name']; ?>
+                </div>
+                <div class="display-robot-material">
+                    <ul>
+                        <li><b> crée par <?= $nbRobots['surname'] ?></b></li>
+                    </ul>
+                </div>
+                <div class="display-robot-categorie">
+                    <img src="../assets/<?= $nbRobots['head_name']; ?>" alt="">
+                </div>
+                <div class="display-robot-color">
+                    <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="">
+                </div>
+
+                <div class="display-robot-delete">
+                    <!-- <button type="submit" value="<?= $nbRobots['id_robot']; ?>">DELETE</button> -->
+                    <a href="adminProduct.php?id=<?= $nbRobots['id_robot']; ?>">Delete</a>
+                </div>
             </div>
 
-            <div class="display-robot-delete">
-                <!-- <button type="submit" value="<?= $nbRobots['id_robot']; ?>">DELETE</button> -->
-                <a href="adminProduct.php?id=<?= $nbRobots['id_robot']; ?>">Delete</a>
-            </div>
-        </div>
+    <?php
 
-    <?php endforeach; ?>
+        endforeach;
+    }
+    ?>
 
 
 
