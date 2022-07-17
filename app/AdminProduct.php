@@ -33,30 +33,9 @@ class AdminRobot extends Database
 
     public function getAllRobots()
     {
-        /**
-         * INNER JOIN les tables pour pouvoir display les images du robot
-         * SELECT * FROM robots INNER JOIN images ON robots.id_image_head = images.id WHERE robots.id_user = 1
-         
-         */
-        /**
-         * SELECT * FROM robots
-
-INNER JOIN head_robots ON robots.id_image_head = head_robots.id 
-INNER JOIN body_robots ON robots.id_image_body = body_robots.id
-WHERE robots.id_user = 20
-give alias to this request
-         */
-
-
-
-
-
-
-        $sql = "SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.head_id  INNER JOIN body_robots ON robots.id_image_body = body_robots.body_id INNER JOIN users ON robots.id_user = users.id WHERE robots.id_user = ?";
+        $sql = "SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.head_id  INNER JOIN body_robots ON robots.id_image_body = body_robots.body_id INNER JOIN users ON robots.id_user = users.id ORDER BY robots.id_robot DESC";
         $request = $this->pdo->prepare($sql);
-        $request->execute([
-            $_SESSION['id']
-        ]);
+        $request->execute();
         $robots = $request->fetchAll();
         return $robots;
     }

@@ -296,18 +296,18 @@ document.addEventListener("DOMContentLoaded", () => {
             })
     });
 
-    submitRobot.addEventListener("click", function () {
-        // get categories 
+    // submitRobot.addEventListener("click", function () {
+    //     // get categories 
 
-        fetch('adminRouteurJs.php', {
-                method: 'POST',
-                body: data
-            })
-            .then(response => response.text())
-            .then(body => {
-                console.log(body)
-            })
-    })
+    //     fetch('adminRouteurJs.php', {
+    //             method: 'POST',
+    //             body: data
+    //         })
+    //         .then(response => response.text())
+    //         .then(body => {
+    //             console.log(body)
+    //         })
+    // })
 
     submitRobot.addEventListener("click", function () {
         //récupère le nom du robot
