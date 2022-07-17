@@ -18,18 +18,23 @@ body {
       user-select: none;
       cursor: pointer;
       z-index: 1;
-      box-shadow: .2s;
-      margin-left: 15px;
-      margin-right: 15px;
-      height: 113px;
       box-shadow: 0 0 1em rgba(white, .2);
       transition: transform .1s cubic-bezier(.5, 0, .5, 1);
+    box-shadow: .2s;
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 113px;
     }
+    
+    
     .button:active {
         transform: scale(0.8) translateY(10%);
-        transition-timing-function: cubic-bezier(.5, 0, .5, 1);}
+        transition-timing-function: cubic-bezier(.5, 0, .5, 1);
+      }
+    
     .button:hover {
-        box-shadow: 0 3px 10px rgba(255, 255, 255, 0.877);}
+        box-shadow: 0 3px 10px rgba(255, 255, 255, 0.877);
+      }
     
     
     .container{
@@ -73,14 +78,7 @@ body {
     padding-top: 100px;
     color: rgb(214, 214, 0);
     font-size: larger;
-    text-shadow:
-    0 0 10px #fff,
-     0 0 20px #fff,
-      0 0 30px #e60073,
-       0 0 40px #e60073,
-        0 0 50px #e6007379,
-         0 0 60px #e6007373,
-          0 0 70px #e600737c;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e6007379, 0 0 60px #e6007373, 0 0 70px #e600737c;
     }
     
     /* .progressbar {

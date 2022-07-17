@@ -1,7 +1,7 @@
 <?php
 require_once('app/User.php');
 
-if (isset($_POST['submit_connexion'])) {
+if (isset($_POST['password_connexion'])) {
     if (isset($_POST['login_connexion'], $_POST['password_connexion'])) {
 
         $loginSignIn = $_POST['login_connexion'];
@@ -10,7 +10,7 @@ if (isset($_POST['submit_connexion'])) {
         $user->connect($loginSignIn, $passwordSignIn);
 
         echo "<pre>";
-        var_dump($_SESSION);
+        echo ' <div class="msg"> ' . "Bienvenue" . '</div> <img src="assets/img/iconrobot.png" alt="Petit robot">';
         echo "</pre>";
     }
 }
@@ -23,15 +23,21 @@ if (isset($_POST['submit_connexion'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
+    <link rel="stylesheet" href="style/connexion.css">
 </head>
 
 <body>
     <main>
-        <div class="container_form_connexion">
+    <div class="form_singUp">
+
             <form action="" method="post">
                 <input type="text" placeholder="login" name="login_connexion">
                 <input type="password" placeholder="password" name="password_connexion">
-                <input type="submit" name="submit_connexion">
+                <button class="button" type="submit" id = "buttonregister" name = "lol">
+                <img src="assets/img/suivantrobot.png" alt="Bouton suivant technology based magic" id ="nextimg">
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>		
+
             </form>
         </div>
     </main>
