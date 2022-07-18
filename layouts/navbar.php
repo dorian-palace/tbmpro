@@ -1,15 +1,6 @@
 <?php 
 
-// require_once('../app/User.php');
-// require_once('./setting/data.php');
 $userId = intval($_SESSION['id_role']);
-
-
-// if($userId === 100)
-// $userToTest = new AdminUser();
-// $user = $userToTest->getSingleUser($userId);
-
-// var_dump($_SESSION);
   
 ?>
 
@@ -37,6 +28,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
                         <a href="./creation.php" class="link">Module</a>
+                        <a href="./profil.php" class="link">Profil</a>
                     </ul> 
                     <?php  } ?> 
 
@@ -47,6 +39,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
                         <a href="./creation.php" class="link">Module</a>
+                        <a href="./profil.php" class="link">Profil</a>
                     </ul>            
                 <?php  } ?>    
 
@@ -57,6 +50,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
                         <a href="./creation.php" class="link">Module</a>
+                        <a href="./profil.php" class="link">Profil</a>
                     </ul>            
                 <?php  } ?> 
                 <?php if(empty($_SESSION)){ ?>

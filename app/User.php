@@ -1,5 +1,5 @@
 <?php
-var_dump(__DIR__);
+// var_dump(__DIR__);
 require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
 // require_once('../setting/db.php');
 // /Applications/MAMP/htdocs/tbmpro/setting/db.php
@@ -173,5 +173,32 @@ class User extends Database
                 $msg = "error";
             }
         }
+    }
+
+    public function updateUser(){
+
+        if (isset($_POST['submit_new'],$_POST['name_new'],$_POST['surname_new'],$_POST['email_new'],$_POST['login_new'],$_POST['password_new'],$_POST['confirm_password_new'])){
+            $name = secuData($_POST['name_new']);
+            $surname = secuData($_POST['surname_new']);
+            $login = secuData($_POST['login_new']);
+            $mail = secuData($_POST['mail_new']);
+            $newPassword = secuData($_POST['password_new']);
+           
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $password = $
+
+
+            $sql = "UPDATE users SET name = :name, surname = :surname, login = :login, mail = :mail, password = :password";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ":name" => $name,
+                ":surname" => $surname,
+                ":login" => $login,
+                ":mail" => $mail,
+                ":password" => $password
+            ]);
+        }
+
+       
     }
 }
