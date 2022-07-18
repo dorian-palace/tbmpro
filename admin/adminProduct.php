@@ -60,7 +60,7 @@ echo "</pre>";
 <body>
 
 
-    <ul>
+    <ul class="link-to">
         <li><a href="">Manage Robot</a></li>
         <li><a href="">Add head & body to robot</a></li>
         <li><a href="">Manage Categories</a></li>
@@ -194,8 +194,8 @@ echo "</pre>";
             <!-- </div> -->
 
             <div class="display-robot-delete">
-                <!-- <button type="submit" value="<?= $nbRobots['id_robot']; ?>">DELETE</button> -->
-                <a href="adminProduct.php?id=<?= $nbRobots['id_robot']; ?>">Delete</a>
+                <button type="submit" name="delete-robot" id="delete-robot" value="<?= $nbRobots['id_robot']; ?>">DELETE</button>
+                <!-- <a href="adminProduct.php?id=<?= $nbRobots['id_robot']; ?>">Delete</a> -->
             </div>
         </div>
     <?php
@@ -239,7 +239,7 @@ echo "</pre>";
         $singleCategorie = $robot->getCategorieById($_GET['id']);
         $robot->updateCategorie($_GET['id']);
         $robot->deleteCategorie($_GET['id']);
-        $robot->deleteRobot($_GET['id']);
+        // $robot->deleteRobot($_GET['id']);
 
     ?>
 

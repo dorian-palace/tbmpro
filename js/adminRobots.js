@@ -264,8 +264,40 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+    const deleteRobot = document.getElementsByName("delete-robot");
+
+    for (let z = 0; z < deleteRobot.length; z++) {
+
+        // console.log(deleteRobot[z].value)
+        deleteRobot[z].addEventListener("click", function () {
+
+            const idRobot = deleteRobot[z].value
+            // console.log(idRobot)
+
+            // console.log(deleteRobot)
+
+            // console.log(deleteRobot[i])
+            const deleteData = new FormData();
+            deleteData.append("delete-robot", idRobot);
+            console.log(deleteData)
+
+            fetch('adminRouteurJs.php', {
+                    method: 'POST',
+                    body: deleteData
+                })
+                .then(response => response.text())
+
+                .then(data => {
+                    console.log(data)
+                    window.location.reload();
+                })
+        })
+    }
+
+
     const submitRobot = document.getElementById("submit-robot");
-    console.log(submitRobot)
+    // console.log(submitRobot)
     submitRobot.addEventListener("click", () => {
 
         const getCategories = document.getElementById("categorieNewRobot");

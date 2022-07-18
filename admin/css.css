@@ -1,3 +1,7 @@
+/* body{
+  size: 100vh;
+} */
+
 #box-robots-filter {
   height: 25%;
   width: 35%;
@@ -25,4 +29,14 @@
 .display-robot-head, .display-robot-body{
   max-width: 100px;
   max-height: 100px;
+}
+
+a{
+  text-decoration: none;
+
+}
+.link-to{
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
 }

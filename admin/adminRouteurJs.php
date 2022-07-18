@@ -21,6 +21,14 @@ if (isset($_POST['select_mat'])) {
     echo json_encode($dataMat);
 }
 
+if (isset($_POST['delete-robot'])) {
+
+    $button = intval($_POST['delete-robot']);
+    $deleteRobot = $robot->deleteRobot($button);
+    echo json_encode($deleteRobot);
+    // var_dump($button);
+}
+
 if (isset($_POST['submit-robot'])) {
     var_dump($_POST);
     if (isset($_POST['name-robot']) && isset($_POST['checkbox-head-robot']) && isset($_POST['checkbox-body-robot']) && isset($_POST['categorie-robot'])) {
