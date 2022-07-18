@@ -107,7 +107,8 @@ class User extends Database
                 if ($this->userExist()) {
 
                     $this->signUp($login, $password, $name, $surname, $mail);
-                    header('Location: connexion.php');
+                    echo 'Inscription réussie';
+                    header("Refresh:2; url=connexion.php", true, 303);
                 }
             } else {
                 $this->displayMessage('Votre adresse mail n\'est pas valide');

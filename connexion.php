@@ -12,6 +12,7 @@ if (isset($_POST['password_connexion'])) {
         echo "<pre>";
         echo ' <div class="msg"> ' . "Bienvenue" . '</div> <img src="assets/img/iconrobot.png" alt="Petit robot">';
         echo "</pre>";
+        header("Refresh:2; url=http://localhost/tbm/", true, 303);
     }
 }
 ?>

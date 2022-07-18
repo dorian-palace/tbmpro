@@ -35,17 +35,24 @@ body {
     .button:hover {
         box-shadow: 0 3px 10px rgba(255, 255, 255, 0.877);
       }
-    
-    
-    .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 0px;
-    margin: 0px;
-      }
+
       
+img{
+Max-width:100%;
+object-fit: contain;
+}  
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+padding: 0px;
+margin: 0px;
+}
+      
+
+
+
     form {
         padding-top: 100px;
         padding-bottom: 20px;
