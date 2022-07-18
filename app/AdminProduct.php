@@ -6,19 +6,15 @@ class AdminRobot extends Database
 {
     public function __construct()
     {
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+        } else {
+            $this->page = 1;
+        }
+        $this->limite = 5;
+        $this->debut = ($this->page - 1) * $this->limite;
         parent::__construct();
     }
-    /**
-     * SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.id sELECT id FROM head_robots AS id_head INNER JOIN body_robots ON robots.id_image_body = body_robots.id WHERE robots.id_user = 1
-     * 
-     * 
-     * 
-    SELECT * FROM robots 
-    INNER JOIN head_robots ON robots.id_image_head = head_robots.id 
-    INNER JOIN body_robots ON robots.id_image_body = body_robots.id
-    WHERE robots.id_user = 20
-
-     */
 
     public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
     {
@@ -33,11 +29,23 @@ class AdminRobot extends Database
 
     public function getAllRobots()
     {
-        $sql = "SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.head_id  INNER JOIN body_robots ON robots.id_image_body = body_robots.body_id INNER JOIN users ON robots.id_user = users.id ORDER BY robots.id_robot DESC";
+        $sql = "SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.head_id  INNER JOIN body_robots ON robots.id_image_body = body_robots.body_id INNER JOIN users ON robots.id_user = users.id ORDER BY robots.id_robot DESC LIMIT $this->limite OFFSET $this->debut";
         $request = $this->pdo->prepare($sql);
         $request->execute();
         $robots = $request->fetchAll();
         return $robots;
+    }
+
+    /**
+     * count for pagination for robots
+     */
+    public function countRobots()
+    {
+        $sql = "SELECT COUNT(*) FROM robots";
+        $request = $this->pdo->prepare($sql);
+        $request->execute();
+        // $count = $request->fetchColumn();
+        return $request;
     }
 
     public function deleteRobot($id)

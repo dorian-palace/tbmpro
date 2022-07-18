@@ -30,6 +30,17 @@ echo "<pre>";
 // var_dump($allRobots);
 echo "</pre>";
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+} else {
+    $page = 1;
+}
+
+$start = $robot->countRobots();
+$nbStart = $start->fetchColumn();
+$limit = 5;
+$total = ceil($nbStart / $limit);
+
 // foreach ($bodyRobot as $body) {
 
 //     $bodyColor = $body['id_color'];
@@ -169,6 +180,7 @@ echo "</pre>";
 
     <!---DISPLAY MANAGE ROBOTS-->
     <button type="submit" name="delete-this-robot">Display & manage Robots</button>
+    <!-- <input type="submit" name="delete-this-robot"> -->
     <?php
     // if (isset($_POST['delete-this-robot'])) {
     foreach ($allRobots as $nbRobots) :
@@ -187,10 +199,10 @@ echo "</pre>";
                 </ul>
             </div>
             <!-- <div class="display-robot-head"> -->
-                <img src="../assets/<?= $nbRobots['head_name']; ?>" alt="" class="display-robot-head">
+            <img src="../assets/<?= $nbRobots['head_name']; ?>" alt="" class="display-robot-head">
             <!-- </div> -->
             <!-- <div class="display-robot-body"> -->
-                <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="" class="display-robot-body">
+            <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="" class="display-robot-body">
             <!-- </div> -->
 
             <div class="display-robot-delete">
@@ -202,6 +214,15 @@ echo "</pre>";
     endforeach;
     // }
     ?>
+    <ul class="pagination" style="align-items:center;">
+        <li class="disabled"><?php if ($page > 1) { ?><a href="?page=<?= $page - 1  ?>"><i class="material-icons">
+                        < </i></a><?php } ?></li>
+
+        <li class="waves-effect"> <?php for ($i = 1; $i <= $total; $i++) {
+                                    ?><a href="?page=<?= $i; ?>"><?= $i; ?></a> <?php } ?></li>
+
+        <li class="disabled"><?php if ($page < $total) { ?><a href="?page=<?= $page + 1; ?>"><i class="material-icons"> > </i></a><?php } ?></li>
+    </ul>
 
 
 
