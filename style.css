@@ -1,0 +1,76 @@
+/**
+ * FICHIER DE STYLE GENERAL CSS
+ *
+ * Projet: Technology Based Magic 
+ * Projet Professionel
+ * 
+ * SOMMAIRE
+ * 
+ * 
+ * 
+ * ========================================================================= */
+
+
+ /** 
+ * RESET 
+ * ========================================================================= */
+ 
+
+ /** 
+ * Evite les box plus grandes que le parents lorsque l'enfant à du 
+ * padding, border etc..
+ */
+
+ *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+/** 
+ * Enlève les marges par default
+ */
+* {
+    margin: 0;
+  }
+
+/** 
+ * Evite le pb de size, 
+ * Il est possible d'utiliser les vh mais elles ne sont pas encore au points 
+ * pour les ecrans mobiles 
+ */
+
+html, body {
+height: 100%;
+}
+
+/**
+*Qu'est-ce que les WCAG ? 
+*Les directives d'accessibilité du contenu Web 
+*(WCAG ou Web Content Accessibility Guidelines en anglais) 
+*sont un ensemble de normes pour rendre le contenu web
+*Ici on a augmenté l'interlignage verticale pour les dislexiques
+*avec une fonctiin calque
+*/
+* {
+    line-height: calc(1em + 0.5rem);
+}
+
+/** 
+ * Empeche les image d'être plus grandes que leur boxs
+ */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+/** 
+ * Met le style du parents sur les éléments des formulaires
+ */
+input, button, textarea, select {
+    font: inherit;
+}
+/** 
+ * Empêche le texte de depasser de sa box et rajoute automatiquement les traits d'union
+ */
+p {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
