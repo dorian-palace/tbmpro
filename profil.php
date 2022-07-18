@@ -4,23 +4,7 @@ require_once('setting/data.php');
 require_once('app/User.php');
 
 var_dump($_SESSION);
-$userUpdate = new User();
-$userUpdate->updateUser();
-if (isset($_SESSION)){
 
-    if(isset($_POST['submit_new'],$_POST['name_new'],$_POST['surname_new'],$_POST['email_new'],$_POST['login_new'],$_POST['password_new'],$_POST['confirm_password_new']) ){ 
-        
-        $login = secuData($_POST['login_new']);
-        $password = secuData($_POST['password_new']);
-        $confPassword = secuData($_POST['confirm_password_new']);
-        $name = secuData($_POST['name_new']);
-        $surname = secuData($_POST['surname_signUp']);
-        $mail = secuData($_POST['email_new']);
-        $userUpdate = new User();
-        $userUpdate->updateUser($name, $surname, $mail, $login,  $password );
-    }
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +32,23 @@ if (isset($_SESSION)){
                 <input type="password" placeholder="" name="password_new">
                 <input type="password" placeholder="" name="confirm_password_new">
                 <input type="submit" name="submit_new">
+                <?php 
+             
+if (isset($_SESSION)){
+
+    // if(isset($_POST['submit_new'],$_POST['name_new'],$_POST['surname_new'],$_POST['email_new'],$_POST['login_new'],$_POST['password_new'],$_POST['confirm_password_new']) ){ 
+        
+        $login = secuData($_POST['login_new']);
+        $password = secuData($_POST['password_new']);
+        $confPassword = secuData($_POST['confirm_password_new']);
+        $name = secuData($_POST['name_new']);
+        $surname = secuData($_POST['surname_signUp']);
+        $mail = secuData($_POST['email_new']);
+    }
+    
+    $userUpdate = new User();
+    $userUpdate->updateUser($name, $surname, $mail, $login, $password);
+ ?>
             </form>
         </div>
     </main>
