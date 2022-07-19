@@ -1,6 +1,7 @@
 <?php
 require_once('../setting/db.php');
 require_once('../setting/data.php');
+// echo 'class adminUser';
 class AdminUser extends Database
 {
 
@@ -47,7 +48,6 @@ class AdminUser extends Database
         $stmt->execute(array(
             'id' => $id
         ));
-        $user = $stmt->fetch();
         return $user;
     }
 
