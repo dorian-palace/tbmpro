@@ -1,6 +1,7 @@
 <?php
 require_once('../setting/db.php');
 require_once('../setting/data.php');
+
 class AdminArticle extends Database{
 
     function __construct(){
