@@ -157,27 +157,27 @@ $total = ceil($nbStart / $limit);
 
     <!---DELETE LAYER ROBOT--->
     <div class="container-delete-head">
-    <fieldset>
-        <label for="">Delete Head</label>
-        <?php foreach ($headRobot as $head) :  ?>
-            <div class="container-delete-head">
-                <img src="../assets/<?= $head['head_name']; ?>" class="display-robot-head" alt="">
-                <button name="delete-head" value="<?= $head['head_id']; ?>">Delete head</button>
-            </div>
-        <?php endforeach; ?>
-    </fieldset>
+        <fieldset>
+            <label for="">Delete Head</label>
+            <?php foreach ($headRobot as $head) :  ?>
+                <div class="container-delete-head">
+                    <img src="../assets/<?= $head['head_name']; ?>" class="display-robot-head" alt="">
+                    <button name="delete-head" value="<?= $head['head_id']; ?>">Delete head</button>
+                </div>
+            <?php endforeach; ?>
+        </fieldset>
     </div>
 
     <div class="container-delete-body">
-    <fieldset>
-        <label for="">Delete Body</label>
-        <?php foreach ($bodyRobot as $body) : ?>
+        <fieldset>
+            <label for="">Delete Body</label>
+            <?php foreach ($bodyRobot as $body) : ?>
 
                 <img src="../assets/<?= $body['body_name']; ?>" class="display-robot-head" alt="">
                 <button name="delete-body" value="<?= $body['body_id']; ?>">Delete body</button>
-                <?php endforeach; ?>
-            </fieldset>
-        </div>
+            <?php endforeach; ?>
+        </fieldset>
+    </div>
 
     <!----FIN DELETE ROBOT-->
 
@@ -229,11 +229,10 @@ $total = ceil($nbStart / $limit);
         </div>
     </form>
 
-    <table class="table">
-        <tr>
-            <th>
-                Categorie:
-            </th>
+    <table>
+        <th>
+            Update Categorie:
+        </th>
         </tr>
 
         <tr>
@@ -245,78 +244,82 @@ $total = ceil($nbStart / $limit);
 
         </tr>
     <?php endforeach; ?>
-
     </table>
+
+
+    <select name="select-category-delete" id="select-category-delete">
+        <?php foreach ($getCategories as $categories) : var_dump($categories) ?>
+            <option value="<?= $categories['id']; ?>">
+                <?= $categories['name']; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <button type="submit" id="delete-category" name="delete-category">Delete</button>
+
+
+
 
     <?php
     if (isset($_GET['id'])) {
         $singleCategorie = $robot->getCategorieById($_GET['id']);
-        $robot->updateCategorie($_GET['id']);
-        $robot->deleteCategorie($_GET['id']);
-        // $robot->deleteRobot($_GET['id']);
-
     ?>
 
+        <!-- <form action="" method="post" id="form-new-cat"> -->
+        <div class="mb-3">
+            <input type="text" id="name-cat" name="update-name-categorie" value="<?= $singleCategorie[0]['name']; ?>">
+        </div>
+        <div class="mb-3">
+            <button type="submit" id="update-cat" name="submit-update-categorie" value="<?= $singleCategorie[0]['id']; ?>">Update</button>
+        </div>
+        <!-- </form> -->
+        <button type=" submit" id="delete-cat" class="btn btn-danger" name="delete-categorie" value="<?= $singleCategorie[0]['id']; ?>">Delete</button>
 
-        <form action="" method="post" id="form-new-cat">
-            <div class="mb-3">
-                <input type="text" name="update-name-categorie" value="<?= $singleCategorie[0]['name']; ?>">
-            </div>
-            <div class="mb-3">
-                <input type="submit" name="submit-update-categorie">
+
+        <?php
+    } ?>
+
+        <!---MATERIALS-->
+        <form action="" method="post" id="form-new-materials" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="">New Materials</label>
+                <input type="text" name="new-material" placeholder="new material">
+                <input type="submit" name="submit_material" class="btn btn-primary" value="Add">
             </div>
         </form>
-        <button type="submit" class="btn btn-danger" name="delete-categorie" value="<?= $singleCategorie[0]['id']; ?>">Delete</button>
-    <?php
-        // header('Location: adminProduct.php');
-    }
-    ?>
 
-    <!---MATERIALS-->
-    <form action="" method="post" id="form-new-materials" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="">New Materials</label>
-            <input type="text" name="new-material" placeholder="new material">
-            <input type="submit" name="submit_material" class="btn btn-primary" value="Add">
-        </div>
-    </form>
-
-    <form action="" method="post">
+        <!-- <form action="" method="post"> -->
         <div class="form-group">
             <label for="">Materials to delete</label>
-            <select name="material" class="form-select">
+            <select name="material" id="mat-delete" class="form-select">
                 <?php foreach ($material as $materials) : ?>
                     <option value="<?= $materials['id']; ?>"><?= $materials['type']; ?></option>
                 <?php endforeach; ?>
             </select>
-            <button type="submit" name="mat_delete" class="btn btn-danger" value="<?= $materials['id']; ?>">Delete</button>
-            <?php $robot->deleteMaterials(@$_POST['material']); ?>
+            <button type="submit" id="delete-mat" name="mat_delete" class="btn btn-danger">Delete</button>
         </div>
-    </form>
+        <!-- </form> -->
 
-    <!--COLOR-->
-    <label for="">New Color</label>
-    <form action="" method="post" id="form-new-color" enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="text" name="new-color" placeholder="new color">
-            <input type="submit" name="submit_color" class="btn btn-primary" value="Add">
-        </div>
-    </form>
+        <!--COLOR-->
+        <label for="">New Color</label>
+        <form action="" method="post" id="form-new-color" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" name="new-color" placeholder="new color">
+                <input type="submit" name="submit_color" class="btn btn-primary" value="Add">
+            </div>
+        </form>
 
-    <form action="" method="post">
+        <!-- <form action="" method="post"> -->
         <div class="form-group">
 
             <label for="">Delete color</label>
-            <select name="select_delete" id="" class="form-select">
+            <select name="select_delete" id="select-delete" class="form-select">
                 <?php foreach ($color as $colors) : ?>
                     <option value="<?= $colors['id']; ?>"><?= $colors['name']; ?></option>
                 <?php endforeach; ?>
             </select>
-
-            <button type="submit" class="btn btn-danger" name="button_delete" value="<?= $colors['id']; ?>">Delete</button>
-            <?php $robot->deleteColor(@$_POST['select_delete']); ?>
+            <button type="submit" id="button-delete" class="btn btn-danger" name="button_delete">Delete</button>
         </div>
-    </form>
+        <!-- </form> -->
 
 
 </body>

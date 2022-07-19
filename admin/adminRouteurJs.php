@@ -53,8 +53,6 @@ if (isset($_POST['submit-robot'])) {
     // var_dump($_POST);
     if (isset($_POST['name-robot']) && isset($_POST['head-robot']) && isset($_POST['body-robot']) && isset($_POST['categorie-robot'])) {
 
-        // var_dump($_POST);
-
         $name = secuData($_POST['name-robot']);
         $head = secuData($_POST['head-robot']);
         $body = secuData($_POST['body-robot']);
@@ -63,11 +61,37 @@ if (isset($_POST['submit-robot'])) {
 
         $robot->newRobots($name, $head, $body, $categorie, $idUser);
         echo json_encode($robot);
-        // echo "nazfeygazuieguazgeuazgbduoazvdiuvazduiazv";
     }
 }
 
-if (isset($_POST['checkbox-head-robot'])) {
-    var_dump($_POST['checkbox-head-robot']);
-    echo "azeaze";
+if (isset($_POST['delete-category'])) {
+
+    $id = secuData($_POST['delete-category']);
+    $delete = $robot->deleteCategorie($id);
+    // var_dump($_POST);
+    echo json_encode($delete);
+}
+
+if (isset($_POST['delete-color'])) {
+
+    $id = secuData($_POST['delete-color']);
+    $delete = $robot->deleteColor($id);
+    echo json_encode($delete);
+}
+
+if (isset($_POST['delete-material'])) {
+
+    $id = secuData($_POST['delete-material']);
+    $delete = $robot->deleteMaterials($id);
+    echo json_encode($delete);
+}
+
+if (isset($_POST['update-category'])) {
+
+    // var_dump($_POST);
+    $name = secuData($_POST['update-category']);
+    $id = secuData($_POST['update-category-id']);
+    $update = $robot->updateCategorie($name, $id);
+    echo json_encode($update);
+    // var_dump($_POST);
 }

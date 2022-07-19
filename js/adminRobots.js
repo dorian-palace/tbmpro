@@ -293,6 +293,108 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+    const submitdDeleteCategory = document.getElementById("delete-category");
+
+    submitdDeleteCategory.addEventListener("click", function () {
+
+        const catToDelete = document.getElementById("select-category-delete")
+        console.log(catToDelete)
+
+        const valueSelect = catToDelete.options[catToDelete.selectedIndex].value;
+        console.log(valueSelect)
+
+        const deleteData = new FormData();
+        deleteData.append("delete-category", valueSelect);
+        console.log(deleteData)
+
+        fetch('adminRouteurJs.php', {
+                method: 'POST',
+                body: deleteData
+            })
+            .then(response => response.text())
+
+            .then(data => {
+                // console.log(data)
+                window.location.reload();
+            })
+    })
+
+    const submitdDeleteColor = document.getElementById("button-delete");
+
+    submitdDeleteColor.addEventListener("click", function () {
+
+        const colorToDelete = document.getElementById("select-delete")
+        console.log(colorToDelete)
+
+        const valueSelect = colorToDelete.options[colorToDelete.selectedIndex].value;
+        console.log(valueSelect)
+
+        const deleteData = new FormData();
+        deleteData.append("delete-color", valueSelect);
+        console.log(deleteData)
+
+        fetch('adminRouteurJs.php', {
+                method: 'POST',
+                body: deleteData
+            })
+            .then(response => response.text())
+
+            .then(data => {
+                // console.log(data)
+                window.location.reload();
+            })
+    })
+
+    const submitdDeleteMat = document.getElementById("delete-mat");
+
+    submitdDeleteMat.addEventListener("click", function () {
+
+        const matToDelete = document.getElementById("mat-delete")
+        console.log(matToDelete)
+
+        const valueSelect = matToDelete.options[matToDelete.selectedIndex].value;
+        console.log(valueSelect)
+
+        const deleteData = new FormData();
+        deleteData.append("delete-material", valueSelect);
+        console.log(deleteData)
+
+        fetch('adminRouteurJs.php', {
+                method: 'POST',
+                body: deleteData
+            })
+            .then(response => response.text())
+
+            .then(data => {
+                // console.log(data)
+                window.location.reload();
+            })
+    })
+
+    const submitUpdateCat = document.getElementById("update-cat");
+
+    submitUpdateCat.addEventListener("click", function () {
+
+        const catToupdate = document.getElementById("name-cat")
+        console.log(catToupdate.value)
+        const idUpdate = document.getElementById("update-cat")
+        const updateData = new FormData();
+        updateData.append("update-category", catToupdate.value);
+        updateData.append("update-category-id", idUpdate.value);
+        console.log(updateData)
+
+        fetch('adminRouteurJs.php', {
+                method: 'POST',
+                body: updateData
+            })
+            .then(response => response.text())
+
+            .then(data => {
+                // console.log(data)
+                window.location.reload();
+            })
+    })
+
     const deleteBody = document.getElementsByName("delete-body");
 
     for (let z = 0; z < deleteBody.length; z++) {
@@ -373,5 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
 
     });
+
+
 
 })

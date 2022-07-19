@@ -58,7 +58,8 @@ class AdminRobot extends Database
         return $request;
     }
 
-    public function deleteHead($id){
+    public function deleteHead($id)
+    {
         $sql = "DELETE FROM head_robots WHERE head_id = ?";
         $request = $this->pdo->prepare($sql);
         $request->execute([
@@ -67,7 +68,8 @@ class AdminRobot extends Database
         return $request;
     }
 
-    public function deleteBody($id){
+    public function deleteBody($id)
+    {
         $sql = "DELETE FROM body_robots WHERE body_id = ?";
         $request = $this->pdo->prepare($sql);
         $request->execute([
@@ -327,31 +329,27 @@ class AdminRobot extends Database
         return $results;
     }
 
-    public function updateCategorie($id)
+    public function updateCategorie($name, $id)
     {
-        if (!empty($_POST['update-name-categorie'])) {
-            $name = secuData($_POST['update-name-categorie']);
-            $sql = 'UPDATE categories SET name = ? WHERE id = ?';
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                $name,
-                $id
-            ]);
-        }
+
+        $sql = 'UPDATE categories SET name = ? WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $name,
+            $id
+        ]);
     }
 
     public function deleteCategorie($delete)
     {
-        if (isset($_POST['delete-categorie'])) {
+        $sql = 'DELETE FROM categories WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array(
+            $delete
+        ));
 
-            $sql = 'DELETE FROM categories WHERE id = ?';
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(array(
-                $delete
-            ));
-        }
 
-        // return $stmt;
+        return $stmt;
     }
 
     public function newCategories()
