@@ -1,5 +1,5 @@
 <?php
-var_dump(__DIR__);
+// var_dump(__DIR__);
 require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
 // require_once('../setting/db.php');
 // /Applications/MAMP/htdocs/tbmpro/setting/db.php

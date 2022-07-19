@@ -24,8 +24,10 @@ if (isset($_POST['submit_signUp'])) {
 <head>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script type="text/javascript" src="layouts/scriptNav.js"></script>
     <link href="layouts/styleNav.css" rel="stylesheet" />
+    <script type="text/javascript" src="layouts/scriptNav.js"></script>
+    <script src="scriptModal.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/img/favIcon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
@@ -36,36 +38,38 @@ if (isset($_POST['submit_signUp'])) {
         <?php require_once("layouts/navbar.php")?>
     </header>
     <main>
+    <div class="modal">
         <div class="form_box">
-        <h2>Inscription</h2>
-            <form action="" method="post">
+        <h1>Inscription</h1>
+            <form class="modal-content animate" action="" method="post">
                 <div class="user-box">
-                <input type="text"  name="name_signUp">
+                <input type="text"  name="name_signUp" autocomplete="off">
                 <label>Prénom</label>
                 </div>
                 <div class="user-box">
-                <input type="text" name="surname_signUp">
+                <input type="text" name="surname_signUp" autocomplete="off">
                 <label>Nom</label>
                 </div>
                 <div class="user-box">
-                <input type="email"  name="mail_singUp">
+                <input type="email"  name="mail_singUp" autocomplete="off">
                 <label>Mail</label>
                 </div>
                 <div class="user-box">
-                <input type="text"  name="login_singUp">
+                <input type="text"  name="login_singUp" autocomplete="off">
                 <label>Login</label>
                 </div>
                 <div class="user-box">
-                <input type="password" name="password_singUp">
+                <input type="password" name="password_singUp" autocomplete="off">
                 <label>Mot de passe</label>
                 </div>
                 <div class="user-box">
-                <input type="password" placeholder="confirmer le mot de passe" name="confirm_password_singUp">
+                <input type="password" placeholder="confirmer le mot de passe" name="confirm_password_singUp" autocomplete="off">
                 <label>Confirmer</label>
                 </div>
                 <input class= "btn_submit" type="submit" name="submit_signUp">
             </form>
         </div>
+    </div>
     </main>
     <footer>
         <?php require_once("layouts/footer.php")?>
