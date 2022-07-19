@@ -33,7 +33,7 @@ if (isset($_POST['submit_connexion'])) {
         <?php require_once("layouts/navbar.php")?>
     </header>
     <main>
-        <div class="container_form_connexion">
+        <div class="form_box">
             <form action="" method="post">
                 <input type="text" placeholder="login" name="login_connexion">
                 <input type="password" placeholder="password" name="password_connexion">

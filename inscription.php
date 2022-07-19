@@ -36,15 +36,34 @@ if (isset($_POST['submit_signUp'])) {
         <?php require_once("layouts/navbar.php")?>
     </header>
     <main>
-        <div class="form_singUp">
+        <div class="form_box">
+        <h2>Inscription</h2>
             <form action="" method="post">
-                <input type="text" placeholder="name" name="name_signUp">
-                <input type="text" placeholder="surname" name="surname_signUp">
-                <input type="email" placeholder="mail" name="mail_singUp">
-                <input type="text" placeholder="login" name="login_singUp">
-                <input type="password" placeholder="password" name="password_singUp">
-                <input type="password" placeholder="paswword" name="confirm_password_singUp">
-                <input type="submit" name="submit_signUp">
+                <div class="user-box">
+                <input type="text"  name="name_signUp">
+                <label>Prénom</label>
+                </div>
+                <div class="user-box">
+                <input type="text" name="surname_signUp">
+                <label>Nom</label>
+                </div>
+                <div class="user-box">
+                <input type="email"  name="mail_singUp">
+                <label>Mail</label>
+                </div>
+                <div class="user-box">
+                <input type="text"  name="login_singUp">
+                <label>Login</label>
+                </div>
+                <div class="user-box">
+                <input type="password" name="password_singUp">
+                <label>Mot de passe</label>
+                </div>
+                <div class="user-box">
+                <input type="password" placeholder="confirmer le mot de passe" name="confirm_password_singUp">
+                <label>Confirmer</label>
+                </div>
+                <input class= "btn_submit" type="submit" name="submit_signUp">
             </form>
         </div>
     </main>
