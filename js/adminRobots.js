@@ -50,13 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             newLabel.setAttribute("for", 'checkbox');
                             newLabel.innerHTML = image;
 
-                            const newCheckbox = document.createElement("input");
-                            newCheckbox.setAttribute("type", 'checkbox');
-                            newCheckbox.setAttribute("id", 'checkbox-tete');
-                            newCheckbox.setAttribute("name", 'checkbox-tete');
-                            newCheckbox.setAttribute("value", resultColor[y].head_id);
+                            const newRadio = document.createElement("input");
+                            newRadio.setAttribute("type", 'radio');
+                            newRadio.setAttribute("id", 'radio-head');
+                            newRadio.setAttribute("name", 'radio-head');
+                            newRadio.setAttribute("aria-labelledby", 'thatlabel')
+                            newRadio.setAttribute("value", rresultColor[y].head_id);
 
-                            newLabel.appendChild(newCheckbox)
+
+                            newLabel.appendChild(newRadio)
                             container.appendChild(newLabel);
                         }
                     }
@@ -101,21 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         // console.log(resultBodyColor)
                         for (let index = 0; index < resultBodyColor.length; ++index) {
                             const element = resultBodyColor[index];
-                            // console.log(element)
-                            // console.log(element)
-                            // console.log(resultColor)
-                            // console.log(resultBodyColor[y].name)
-                            // const nbColor = resultColor[y].name
-                            // const arrayColor = [element,
-                            //     nbColor
-                            // ]
-                            // console.log(arrayColor)
-                            // const nbBodyColor = resultBodyColor[y].name
-                            // console.log(nbColor)
-
-                            // const allColor = [resultColor, nbBodyColor]
-                            // console.log(allColor)
-                            // console.log(allColor)
 
                             image = images + '<img id="box-robots-filter" src="../assets/' + resultBodyColor[y].body_name + '">';
                             // console.table(image)
@@ -126,13 +113,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             newLabel.setAttribute("for", 'checkbox');
                             newLabel.innerHTML = image;
 
-                            const newCheckbox = document.createElement("input");
-                            newCheckbox.setAttribute("type", 'checkbox');
-                            newCheckbox.setAttribute("id", 'checkbox-body');
-                            newCheckbox.setAttribute("name", 'checkbox-body');
-                            newCheckbox.setAttribute("value", resultBodyColor[y].body_id);
+                            const newRadio = document.createElement("input");
+                            newRadio.setAttribute("type", 'radio');
+                            newRadio.setAttribute("id", 'radio-body');
+                            newRadio.setAttribute("name", 'radio-body');
+                            newRadio.setAttribute("aria-labelledby", 'thatlabel')
+                            newRadio.setAttribute("value", resultBodyColor[y].body_id);
 
-                            newLabel.appendChild(newCheckbox)
+
+                            newLabel.appendChild(newRadio)
                             container.appendChild(newLabel);
                         }
                     }
@@ -186,19 +175,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         newLabel.setAttribute("id", 'thatlabel')
                         newLabel.innerHTML = image;
 
-                        const newCheckbox = document.createElement("input");
-                        newCheckbox.setAttribute("type", 'checkbox');
-                        newCheckbox.setAttribute("id", 'checkbox');
-                        newCheckbox.setAttribute("name", 'checkbox');
-                        newCheckbox.setAttribute("aria-labelledby", 'thatlabel')
-                        newCheckbox.setAttribute("value", resDAta[y].head_id);
+                        const newRadio = document.createElement("input");
+                        newRadio.setAttribute("type", 'radio');
+                        newRadio.setAttribute("id", 'radio-head');
+                        newRadio.setAttribute("name", 'radio-head');
+                        newRadio.setAttribute("aria-labelledby", 'thatlabel')
+                        newRadio.setAttribute("value", resDAta[y].head_id);
 
-                        newLabel.appendChild(newCheckbox)
-
+                        newLabel.appendChild(newRadio)
                         container.appendChild(newLabel);
-                        // container.appendChild(newCheckbox);
-
-
                     }
                 });
         });
@@ -233,54 +218,43 @@ document.addEventListener("DOMContentLoaded", () => {
                     const mydata = JSON.parse(data);
                     // console.log(mydata)
                     const resDAta = mydata.materialBodyRobots;
-                    console.log(resDAta)
 
                     let images = '';
 
                     for (y = 0; y < resDAta.length; ++y) {
-                        // console.log(resDAta[y])
-                        // console.log(resDAta)
 
                         image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].body_name + '">';
 
                         const container = document.getElementById("container");
                         const newLabel = document.createElement("label");
-                        newLabel.setAttribute("for", 'checkbox');
+                        newLabel.setAttribute("for", 'radio');
                         newLabel.setAttribute("id", 'thatlabel')
                         newLabel.innerHTML = image;
 
-                        const newCheckbox = document.createElement("input");
-                        newCheckbox.setAttribute("type", 'checkbox');
-                        newCheckbox.setAttribute("id", 'checkbox');
-                        newCheckbox.setAttribute("name", 'checkbox');
-                        newCheckbox.setAttribute("aria-labelledby", 'thatlabel')
-                        newCheckbox.setAttribute("value", resDAta[y].body_id);
+                        const newRadio = document.createElement("input");
+                        newRadio.setAttribute("type", 'radio');
+                        newRadio.setAttribute("id", 'radio-body');
+                        newRadio.setAttribute("name", 'radio-body');
+                        newRadio.setAttribute("aria-labelledby", 'thatlabel')
+                        newRadio.setAttribute("value", resDAta[y].body_id);
 
-                        newLabel.appendChild(newCheckbox)
+                        newLabel.appendChild(newRadio)
                         container.appendChild(newLabel);
-                        // container.appendChild(newCheckbox);
                     }
                 });
         });
     }
 
-
     const deleteRobot = document.getElementsByName("delete-robot");
 
     for (let z = 0; z < deleteRobot.length; z++) {
 
-        // console.log(deleteRobot[z].value)
         deleteRobot[z].addEventListener("click", function () {
 
             const idRobot = deleteRobot[z].value
-            // console.log(idRobot)
 
-            // console.log(deleteRobot)
-
-            // console.log(deleteRobot[i])
             const deleteData = new FormData();
             deleteData.append("delete-robot", idRobot);
-            console.log(deleteData)
 
             fetch('adminRouteurJs.php', {
                     method: 'POST',
@@ -289,112 +263,115 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.text())
 
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
+                    window.location.reload();
+                })
+        })
+    }
+    const deleteHead = document.getElementsByName("delete-head");
+    // console.log(deleteHead)
+
+    for (let z = 0; z < deleteHead.length; z++) {
+
+        deleteHead[z].addEventListener("click", function () {
+
+            const idHead = deleteHead[z].value
+            const deleteData = new FormData();
+            deleteData.append("delete-head", idHead);
+            // console.log(deleteData)
+
+            fetch('adminRouteurJs.php', {
+                    method: 'POST',
+                    body: deleteData
+                })
+                .then(response => response.text())
+
+                .then(data => {
+                    // console.log(data)
                     window.location.reload();
                 })
         })
     }
 
+    const deleteBody = document.getElementsByName("delete-body");
+
+    for (let z = 0; z < deleteBody.length; z++) {
+
+        // console.log(deleteRobot[z].value)
+        deleteBody[z].addEventListener("click", function () {
+
+            const idBody = deleteBody[z].value
+            // console.log(idBody)
+
+            const deleteData = new FormData();
+            deleteData.append("delete-body", idBody);
+            // console.log(deleteData)
+
+            fetch('adminRouteurJs.php', {
+                    method: 'POST',
+                    body: deleteData
+                })
+                .then(response => response.text())
+
+                .then(data => {
+                    // console.log(data)
+                    window.location.reload();
+                })
+        })
+    }
 
     const submitRobot = document.getElementById("submit-robot");
-    // console.log(submitRobot)
+
     submitRobot.addEventListener("click", () => {
+
+        var inputsHead = document.getElementsByName("radio-head");
+
+        inputsHead.forEach(function (radio) {
+            // console.log(radio)
+
+            if (radio.checked) {
+
+                headId = radio.value
+            }
+
+            // console.log(radio.value + " is not checked");
+        });
+
+        var inputsBody = document.getElementsByName("radio-body");
+
+        inputsBody.forEach(function (radio) {
+            // console.log(radio)
+
+            if (radio.checked) {
+
+                bodyId = radio.value
+            }
+
+            // console.log(radio.value + " is not checked");
+        });
+        console.log(headId)
+        console.log(bodyId)
 
         const getCategories = document.getElementById("categorieNewRobot");
         const nameRobot = document.getElementById("name-robot");
-        const checkboxHead = document.getElementById("checkbox-tete")
-        const checkboxBody = document.getElementById("checkbox-body")
-
         const dataCategorie = new FormData();
         dataCategorie.append("categorie-robot", getCategories.value);
         dataCategorie.append("submit-robot", submitRobot.value);
         dataCategorie.append("name-robot", nameRobot.value);
-        dataCategorie.append("checkbox-head-robot", checkboxHead.value);
-        dataCategorie.append("checkbox-body-robot", checkboxBody.value);
+        dataCategorie.append("head-robot", headId);
+        dataCategorie.append("body-robot", bodyId);
 
-
-        // let btnValue = submitRobot.value;
-        // const dataButton = new FormData();
-        // console.log(dataButton)
-        // dataButton.append("submit-robot", submitRobot.value);
-        // console.log(dataButton)
         fetch('adminRouteurJs.php', {
                 method: 'POST',
                 body: dataCategorie
             })
             .then(response => response.text())
             .then(body => {
-                console.log(body)
+                // console.log(body)
+                console.log(dataCategorie)
+                window.location.reload();
             })
+
     });
-
-    // submitRobot.addEventListener("click", function () {
-    //     // get categories 
-
-    //     fetch('adminRouteurJs.php', {
-    //             method: 'POST',
-    //             body: data
-    //         })
-    //         .then(response => response.text())
-    //         .then(body => {
-    //             console.log(body)
-    //         })
-    // })
-
-    submitRobot.addEventListener("click", function () {
-        //récupère le nom du robot
-        const nameRobot = document.getElementById("name-robot");
-
-        const data = new FormData();
-        data.append("name-robot", nameRobot.value);
-
-        fetch('adminRouteurJs.php', {
-                method: 'POST',
-                body: data
-            })
-            .then(response => response.text())
-            .then(body => {
-                console.log(body)
-            })
-    })
-
-
-    submitRobot.addEventListener("click", function () {
-        //récupère l'id de la checkbox qui correspond a l'id de l'image
-        // id tete
-        const checkbox = document.getElementById("checkbox-tete")
-        // console.log(checkbox)
-
-        const data = new FormData();
-        data.append("checkbox-head-robot", checkbox.value);
-
-        fetch('adminRouteurJs.php', {
-                method: 'POST',
-                body: data
-            })
-            .then(response => response.text())
-            .then(body => {
-                console.log(body)
-            })
-    })
-
-    submitRobot.addEventListener("click", function () {
-        //récupère l'id de la checkbox qui correspond a l'id de l'image
-        // id body
-        const checkbox = document.getElementById("checkbox-body")
-        // console.log(checkbox)
-
-        const data = new FormData();
-        data.append("checkbox-body-robot", checkbox.value);
-
-        fetch('adminRouteurJs.php', {
-                method: 'POST',
-                body: data
-            })
-            .then(response => response.text())
-            .then(body => {
-                console.log(body)
-            })
-    })
 
 })

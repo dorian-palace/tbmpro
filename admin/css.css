@@ -1,10 +1,16 @@
-/* body{
+body{
   size: 100vh;
-} */
+  background-color: #111f32;
+  color: #DDD;
+}
 
+tr, th{
+  color: #DDD;
+}
+b, label{
+  color: #bc9b67;
+}
 #box-robots-filter {
-  height: 25%;
-  width: 35%;
   padding: 12px 16px;
 }
 
@@ -39,4 +45,52 @@ a{
   display: flex;
   justify-content: space-between;
   text-decoration: none;
+}
+
+.display-robot{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-robot{
+  color: red;
+}
+
+#box-robots-filter{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.container-new-robot{
+  display: flex;
+  align-items: center;
+  margin-top: 200px;
+  flex-direction: column;
+}
+
+.btn-primary{
+  padding: 20px;
+  margin: 20px;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+#divParent{
+  padding-top: 20px;
+  margin: 20px;
+}
+
+.form-new-head, .form-new-body, .container-delete-head, .container-delete-body{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  
 }

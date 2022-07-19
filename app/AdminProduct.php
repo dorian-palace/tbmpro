@@ -19,7 +19,7 @@ class AdminRobot extends Database
     public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
     {
 
-        $sql = "INSERT INTO robots (name, id_image_head, id_image_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO robots (name_robot, id_image_head, id_image_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
         $request = $this->pdo->prepare($sql);
         $request->execute([
             $name, $idHead, $idBody, $idCategorie, $idUser
@@ -51,6 +51,24 @@ class AdminRobot extends Database
     public function deleteRobot($id)
     {
         $sql = "DELETE FROM robots WHERE id_robot = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $id
+        ]);
+        return $request;
+    }
+
+    public function deleteHead($id){
+        $sql = "DELETE FROM head_robots WHERE head_id = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $id
+        ]);
+        return $request;
+    }
+
+    public function deleteBody($id){
+        $sql = "DELETE FROM body_robots WHERE body_id = ?";
         $request = $this->pdo->prepare($sql);
         $request->execute([
             $id

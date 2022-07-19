@@ -1,11 +1,10 @@
 <?php
 require_once('../app/AdminProduct.php');
-// var_dump($_POST);
-// echo "blalazelkalzekae";
+
 if ($_SESSION['id_role'] == 1) {
     header('Location: ../index.php');
 }
-// var_dump($_SESSION);
+
 $robot = new AdminRobot();
 $robot->newColor();
 $robot->getColor();
@@ -17,21 +16,18 @@ $material = $robot->getMaterials();
 $robot->newCategories();
 $getCategories = $robot->getCategories();
 
-$robot->newRobotHead();
-$robot->newRobotBody();
 $productImage = $robot->getImages();
 
+$robot->newRobotHead();
+$robot->newRobotBody();
 $headRobot = $robot->getAllHeadRobots();
-
 $bodyRobot = $robot->getAllBodyRobots();
-
 $allRobots = $robot->getAllRobots();
-echo "<pre>";
-// var_dump($allRobots);
-echo "</pre>";
+
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
-    $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+    $page = (int) strip_tags($_GET['page']); // On récupère la page courante 
+    //strip_tags — Supprime les balises HTML et PHP d'une chaîne
 } else {
     $page = 1;
 }
@@ -40,16 +36,6 @@ $start = $robot->countRobots();
 $nbStart = $start->fetchColumn();
 $limit = 5;
 $total = ceil($nbStart / $limit);
-
-// foreach ($bodyRobot as $body) {
-
-//     $bodyColor = $body['id_color'];
-//     $bodyMaterial = $body['id_material'];
-//     $layer = $body['body_name'];
-//     echo "<pre>";
-//     echo "</pre>";
-// }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,8 +55,6 @@ $total = ceil($nbStart / $limit);
 </head>
 
 <body>
-
-
     <ul class="link-to">
         <li><a href="">Manage Robot</a></li>
         <li><a href="">Add head & body to robot</a></li>
@@ -80,59 +64,52 @@ $total = ceil($nbStart / $limit);
     </ul>
 
     <!---ROBOT-->
-    <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-    <label for="">New robot</label>
+    <div class="container-new-robot">
+        <label for="">New robot</label>
 
-    <div class="container-filter-robot" id="container-filter-robot">
+        <div class="container-filter-robot" id="container-filter-robot">
+            <div class="container" id="container" for="label">
+                <!--append here-->
+            </div>
+        </div>
 
+        <div class="mb-3">
+            <input type="text" name="name-robot" id="name-robot" placeholder="name-robot">
+        </div>
 
-        <div class="container" id="container" for="label"></div>
-
-
-    </div>
-
-    <div class="mb-3">
-        <input type="text" name="name-robot" id="name-robot" placeholder="name-robot">
-    </div>
-
-
-
-
-    <div id="divParent">
-        <?php
-        foreach ($color as $allColor) :
-        ?>
-            <button class="filter-color" id="select_color_<?= $allColor['id']; ?>"><?= $allColor['name']; ?></button>
+        <div id="divParent">
+            <?php
+            foreach ($color as $allColor) :
+            ?>
+                <button class="filter-color" id="select_color_<?= $allColor['id']; ?>"><?= $allColor['name']; ?></button>
 
 
-        <?php endforeach; ?>
-    </div>
-
-    <div class="mb-3">
-
-        <?php foreach ($material as $mat) : ?>
-            <button class="filter-mat" id="select_mat_<?= $mat['id']; ?>"><?= $mat['type']; ?></button>
-        <?php endforeach; ?>
-
-
-    </div>
-
-    <div class="mb-3">
-        <select name="categorieNewRobot" id="categorieNewRobot">
-            <?php foreach ($getCategories as $cat) : ?>
-                <option value="<?= $cat['id']; ?>">
-                    <?= $cat['name']; ?>
-                </option>
             <?php endforeach; ?>
-        </select>
-    </div>
+        </div>
 
-    <button type="submit" value="submit-robot" class="btn btn-primary" name="submit-robot" id="submit-robot"> submit</button>
-    <!-- <input type="submit" > -->
-    <!-- </form> -->
+        <div class="mb-3">
+
+            <?php foreach ($material as $mat) : ?>
+                <button class="filter-mat" id="select_mat_<?= $mat['id']; ?>"><?= $mat['type']; ?></button>
+            <?php endforeach; ?>
+
+
+        </div>
+
+        <div class="mb-3">
+            <select name="categorieNewRobot" id="categorieNewRobot">
+                <?php foreach ($getCategories as $cat) : ?>
+                    <option value="<?= $cat['id']; ?>">
+                        <?= $cat['name']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <button type="submit" value="submit-robot" class="btn btn-primary" name="submit-robot" id="submit-robot"> submit</button>
+    </div>
 
     <!---LAYER ROBOT--->
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" class="form-new-head" method="post" enctype="multipart/form-data">
         <label for="">Add new Head</label>
         <input type="file" name="image-head-robot">
 
@@ -155,7 +132,7 @@ $total = ceil($nbStart / $limit);
         <input type="submit" name="submit-head-robot" value="Add">
     </form>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" class="form-new-body" method="post" enctype="multipart/form-data">
         <label for="">Add new body</label>
         <input type="file" name="image-body-robot">
 
@@ -178,25 +155,44 @@ $total = ceil($nbStart / $limit);
         <input type="submit" name="submit-body-robot" value="Add">
     </form>
 
-    <!---DISPLAY MANAGE ROBOTS-->
-    <button type="submit" name="delete-this-robot">Display & manage Robots</button>
-    <!-- <input type="submit" name="delete-this-robot"> -->
-    <?php
-    // if (isset($_POST['delete-this-robot'])) {
-    foreach ($allRobots as $nbRobots) :
-        // echo "<pre>";
-        // var_dump($nbRobots);
-        // echo "</pre>";
+    <!---DELETE LAYER ROBOT--->
+    <div class="container-delete-head">
+    <fieldset>
+        <label for="">Delete Head</label>
+        <?php foreach ($headRobot as $head) :  ?>
+            <div class="container-delete-head">
+                <img src="../assets/<?= $head['head_name']; ?>" class="display-robot-head" alt="">
+                <button name="delete-head" value="<?= $head['head_id']; ?>">Delete head</button>
+            </div>
+        <?php endforeach; ?>
+    </fieldset>
+    </div>
 
-    ?>
+    <div class="container-delete-body">
+    <fieldset>
+        <label for="">Delete Body</label>
+        <?php foreach ($bodyRobot as $body) : ?>
+
+                <img src="../assets/<?= $body['body_name']; ?>" class="display-robot-head" alt="">
+                <button name="delete-body" value="<?= $body['body_id']; ?>">Delete body</button>
+                <?php endforeach; ?>
+            </fieldset>
+        </div>
+
+    <!----FIN DELETE ROBOT-->
+
+
+
+    <?php foreach ($allRobots as $nbRobots) : ?>
+
         <div class="display-robot">
             <div class="display-robot-name">
-                <?= $nbRobots['name']; ?>
+                <b> Nom du robot <?= $nbRobots['name_robot']; ?> </b>
             </div>
             <div class="display-robot-material">
-                <ul>
-                    <li><b> crée par <?= $nbRobots['surname'] ?></b></li>
-                </ul>
+
+                <b> crée par <?= $nbRobots['surname'] ?></b>
+
             </div>
             <!-- <div class="display-robot-head"> -->
             <img src="../assets/<?= $nbRobots['head_name']; ?>" alt="" class="display-robot-head">
@@ -204,16 +200,13 @@ $total = ceil($nbStart / $limit);
             <!-- <div class="display-robot-body"> -->
             <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="" class="display-robot-body">
             <!-- </div> -->
-
             <div class="display-robot-delete">
-                <button type="submit" name="delete-robot" id="delete-robot" value="<?= $nbRobots['id_robot']; ?>">DELETE</button>
-                <!-- <a href="adminProduct.php?id=<?= $nbRobots['id_robot']; ?>">Delete</a> -->
+                <button type="submit" name="delete-robot" class="delete-robot" id="delete-robot" value="<?= $nbRobots['id_robot']; ?>">DELETE</button>
             </div>
         </div>
     <?php
-    endforeach;
-    // }
-    ?>
+    endforeach; ?>
+
     <ul class="pagination" style="align-items:center;">
         <li class="disabled"><?php if ($page > 1) { ?><a href="?page=<?= $page - 1  ?>"><i class="material-icons">
                         < </i></a><?php } ?></li>
