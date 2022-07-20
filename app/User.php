@@ -174,4 +174,34 @@ class User extends Database
             }
         }
     }
+
+    public function updateUser(){
+
+        if (isset($_POST['submit_new'],$_POST['name_new'],$_POST['surname_new'],$_POST['email_new'],$_POST['login_new'],$_POST['password_new'],$_POST['confirm_password_new'])){
+
+            $name = secuData($_POST['name_new']);
+            $surname = secuData($_POST['surname_new']);
+            $login = secuData($_POST['login_new']);
+            $mail = secuData($_POST['mail_new']);
+            $newPassword = secuData($_POST['password_new']);
+            $idUser = intval($_SESSION["id"]);
+           
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $password = $newPassword;
+
+
+            $sql = "UPDATE users SET name = :name, surname = :surname, login = :login, mail = :mail, password = :password WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ":name" => $name,
+                ":surname" => $surname,
+                ":login" => $login,
+                ":mail" => $mail,
+                ":password" => $password,
+                "id" => $idUser
+            ]);
+        }
+
+       
+    }
 }

@@ -4,13 +4,6 @@
 // require_once('./setting/data.php');
 if (isset($_SESSION['id_role']))
 $userId = intval($_SESSION['id_role']);
-
-
-// if($userId === 100)
-// $userToTest = new AdminUser();
-// $user = $userToTest->getSingleUser($userId);
-
-// var_dump($_SESSION);
   
 ?>
 
