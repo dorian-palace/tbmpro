@@ -49,7 +49,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
                         <a href="./creation.php" class="link">Module</a>
-                        <a href="./profil.php" class="link">Profil</a>
+                        <a href="./admin.php" class="link">Admin</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
                     </ul>            
                 <?php  } ?>    
@@ -60,7 +60,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
                         <a href="./creation.php" class="link">Module</a>
-                        <a href="./profil.php" class="link">Profil</a>
+                        <a href="./admin.php" class="link">Admin</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
                     </ul>            
                 <?php  } ?> 
