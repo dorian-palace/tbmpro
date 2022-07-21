@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             image = images + '<img id="box-robots-filter" src="../assets/' + resultBodyColor[y].body_name + '">';
 
-                            
+
                             // console.table(image)
 
                             const container = document.getElementById("container");
