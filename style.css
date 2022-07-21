@@ -143,6 +143,15 @@ color: var(--main-blue);
     0 0 100px var(--main-blue); */
 }
 
+.active{
+    color: var(--main-blue) !important;
+}
+
+.active:hover{
+    color: var(--main-gold) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
 .topnav a.active {
 padding: 14px 14px;
 background-color: var(--main-dark-blue);
@@ -196,13 +205,9 @@ body {
 
 .form_box {
   font-family: "Avenir-Book";
-  
-  /* position: absolute; 
-  top: 50%;
-  left: 50%;  */
+ 
   width: 400px;
   padding: 40px;
-  /* transform: translate(-50%, -50%); */
   background: rgba(17, 31, 50, 0.932);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
@@ -315,10 +320,12 @@ body {
         justify-content: center;
         
     }
-    .footer-distributed i {
+    .footer-distributed i{
         display: none;
     }
-
+    .active {
+        color: var(--main-gold)!important;
+    }
     .footer-center{
         display: flex;
 	    flex-direction: row;
@@ -328,7 +335,6 @@ body {
 	    align-content: space-between;
     }
 
-
     .footer-left{
         display: none;
     }
@@ -337,6 +343,18 @@ body {
         flex-direction: row;
     }
 
+}
+/** 
+ * ASIDE
+ ========================================================================= */
+aside{
+    height: 100%;
+    background-color: pink;
+    width: 25%;
+    overflow:scroll;
+    flex-grow: 1;
+    z-index: 1;
+    
 }
 
 /** 
@@ -353,3 +371,140 @@ body {
     height: 90vh;
 }
 
+/** 
+ * ADMIN 
+ ========================================================================= */
+/* .form-robot{
+    font-family: "Avenir-Book";
+    background: rgba(17, 31, 50, 0.932);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    width: 50%;
+    padding: 40px;
+
+}
+.new-robot{  
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.new-robot label{
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--main-gold);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.new-robot input {
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+.admin{
+    display: flex;
+    flex-direction: column;
+} */
+
+.new-robot-section{
+    font-family: "Avenir-Book";
+    /* background: rgba(17, 31, 50, 0.932);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6); */
+    /* border-radius: 10px; */
+    /* width: 50%; */
+    padding: 40px;
+    color: var(--main-gold);
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; */
+
+}
+
+.miniature{
+    max-width: 5em;
+    max-height: 5em;
+    display: flex;
+    flex-direction: row;
+}
+
+.new-robot-section input{
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+.new-robot-section button{
+    color: var(--main-blue);
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.new-robot-section select{
+    padding-left: 14px;
+    background: transparent;
+    color: var(--main-blue);
+    outline: none;
+    border: none;
+}
+
+.new-robot-section .btn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+   
+    color: var(--main-gold);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+}
+
+.new-robot-section .btn:hover{
+    background: var(--main-blue);
+    color: var(--main-dark-blue);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
+      0 0 100px var(--main-blue);
+}
+
+.display-robot{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+/* .body-robot{
+display: flex;
+flex-direction: row;
+}  */
+
+.main-robot{
+    display: flex;
+    flex-direction: row;
+    padding-top: 3%;
+}
