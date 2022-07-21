@@ -195,7 +195,7 @@ $total = ceil($nbStart / $limit);
 
 
 
-    <ul class="pagination" style="align-items:center;">
+    <!-- <ul class="pagination" style="align-items:center;">
         <li class="disabled"><?php if ($page > 1) { ?><a href="?page=<?= $page - 1  ?>"><i class="material-icons">
                         < </i></a><?php } ?></li>
 
@@ -203,11 +203,12 @@ $total = ceil($nbStart / $limit);
                                     ?><a href="?page=<?= $i; ?>"><?= $i; ?></a> <?php } ?></li>
 
         <li class="disabled"><?php if ($page < $total) { ?><a href="?page=<?= $page + 1; ?>"><i class="material-icons"> > </i></a><?php } ?></li>
-    </ul>
+    </ul> -->
 
 
 
     <!---CATEGORIES-->
+    <div class="cat-robot">
     <form action="" method="post" id="form-new-cat">
         <div class="mb-3">
             <input type="text" class="form-control" name="name-categorie" placeholder="New categorie">
@@ -262,9 +263,9 @@ $total = ceil($nbStart / $limit);
         <!-- </form> -->
         <button type=" submit" id="delete-cat" class="btn btn-danger" name="delete-categorie" value="<?= $singleCategorie[0]['id']; ?>">Delete</button>
 
-
+</div>
         <?php
-    } ?>
+        } ?>
 
         <!---MATERIALS-->
         <form action="" method="post" id="form-new-materials" enctype="multipart/form-data">
