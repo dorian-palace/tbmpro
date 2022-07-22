@@ -1,13 +1,7 @@
 <?php
-<<<<<<< HEAD
 include('inscription.php');
-?>
-
-
-=======
 require_once('setting/data.php');
 require_once('app/User.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -44,4 +38,3 @@ require_once('app/User.php');
     </main>
 </body>
 </html>
->>>>>>> f52947ac5c239320fee1c7eb4750930743aef0a2

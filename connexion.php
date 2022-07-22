@@ -9,16 +9,9 @@ if (isset($_POST['password_connexion'])) {
         $user = new User();
         $user->connect($loginSignIn, $passwordSignIn);
 
-<<<<<<< HEAD
-        echo "<pre>";
-        echo ' <div class="msg"> ' . "Bienvenue" . '</div> <img src="assets/img/iconrobot.png" alt="Petit robot">';
-        echo "</pre>";
-        header("Refresh:2; url=http://localhost/tbm/", true, 303);
-=======
         // echo "<pre>";
         // var_dump($_SESSION);
         // echo "</pre>";
->>>>>>> f52947ac5c239320fee1c7eb4750930743aef0a2
     }
 }
 ?>
@@ -42,18 +35,6 @@ if (isset($_POST['password_connexion'])) {
         <?php require_once("layouts/navbar.php")?>
     </header>
     <main>
-<<<<<<< HEAD
-    <div class="form_singUp">
-
-            <form action="" method="post">
-                <input type="text" placeholder="login" name="login_connexion">
-                <input type="password" placeholder="password" name="password_connexion">
-                <button class="button" type="submit" id = "buttonregister" name = "lol">
-                <img src="assets/img/suivantrobot.png" alt="Bouton suivant technology based magic" id ="nextimg">
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>		
-
-=======
     <div class="modal">
         <div class="form_box">
         <h1>Connexion</h1>
@@ -67,7 +48,6 @@ if (isset($_POST['password_connexion'])) {
                 <label for="password_connexion">Mot de passe</label>
                 </div>
                 <input class= "btn_submit" type="submit" name="submit_connexion">
->>>>>>> f52947ac5c239320fee1c7eb4750930743aef0a2
             </form>
         </div>
     </div>
