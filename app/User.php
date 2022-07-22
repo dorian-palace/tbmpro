@@ -1,10 +1,10 @@
 <?php
 // var_dump(__DIR__);
-// require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
+require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
 // /Applications/MAMP/htdocs/tbmpro/setting/db.php
-// require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
-require_once('./setting/db.php');
-require_once('./setting/data.php');
+require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
+// require_once('../setting/db.php');
+// require_once('../setting/data.php');
 class User extends Database
 {
     private $login;
@@ -26,15 +26,13 @@ class User extends Database
     public function signUp($login, $password, $name, $surname, $mail)
     {
 
-        if (isset($_POST['mail_singUp'])) {
+        if (isset($_POST['submit_signUp'])) {
 
             $login = secuData($_POST['login_singUp']);
             $password = secuData($_POST['password_singUp']);
             $name = secuData($_POST['name_signUp']);
             $surname = secuData($_POST['surname_signUp']);
             $mail = secuData($_POST['mail_singUp']);
-
-            $_POST['lol2'] = "inscrit";
 
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
@@ -93,7 +91,7 @@ class User extends Database
 
         if (isset($msg)) {
 
-            echo ' <div class="msg"> ' . $msg . '</div> <img src="assets/img/iconrobot.png" alt="Petit robot">';
+            echo '<div class="msg">' . $msg . '</div>';
         }
     }
 
@@ -107,8 +105,7 @@ class User extends Database
                 if ($this->userExist()) {
 
                     $this->signUp($login, $password, $name, $surname, $mail);
-                    echo 'Inscription réussie';
-                    header("Refresh:2; url=connexion.php", true, 303);
+                    header('Location: connexion.php');
                 }
             } else {
                 $this->displayMessage('Votre adresse mail n\'est pas valide');
@@ -176,5 +173,35 @@ class User extends Database
                 $msg = "error";
             }
         }
+    }
+
+    public function updateUser(){
+
+        if (isset($_POST['submit_new'],$_POST['name_new'],$_POST['surname_new'],$_POST['email_new'],$_POST['login_new'],$_POST['password_new'],$_POST['confirm_password_new'])){
+
+            $name = secuData($_POST['name_new']);
+            $surname = secuData($_POST['surname_new']);
+            $login = secuData($_POST['login_new']);
+            $mail = secuData($_POST['mail_new']);
+            $newPassword = secuData($_POST['password_new']);
+            $idUser = intval($_SESSION["id"]);
+           
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $password = $newPassword;
+
+
+            $sql = "UPDATE users SET name = :name, surname = :surname, login = :login, mail = :mail, password = :password WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ":name" => $name,
+                ":surname" => $surname,
+                ":login" => $login,
+                ":mail" => $mail,
+                ":password" => $password,
+                "id" => $idUser
+            ]);
+        }
+
+       
     }
 }

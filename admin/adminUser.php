@@ -32,8 +32,9 @@ $total = ceil($nbUsers / $limit);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../js/adminUser.js"></script>
     <title>Admin-user</title>
 </head>
 
@@ -106,15 +107,15 @@ $total = ceil($nbUsers / $limit);
         $singleUser = $userAdmin->getSingleUser($_GET['id']);
         $userAdmin->updateUser($_GET['id']); ?>
 
-        <form action="" method="post">
+        <!-- <form action="" method="post"> -->
             <input type="text" name="nameUser" value="<?= $singleUser['name']; ?>" placeholder="">
             <input type="text" name="surnameUser" value="<?= $singleUser['surname']; ?>">
             <input type="email" name="mailUser" value="<?= $singleUser['mail']; ?>">
             <input type="text" name="loginUser" value="<?= $singleUser['login']; ?>">
             <input type="text" name="id_role" value="<?= $singleUser['id_role']; ?>">
-            <button type="submit" value="<?= $singleUser['id']; ?>" name="submitUser">Update User</button>
+            <button type="submit" id="submit-update-user" value="<?= $singleUser['id']; ?>" name="submitUser">Update User</button>
             <a class="a_admin" href="adminUser.php?delete=<?= $singleUser['id']; ?>">Delete User</a>
-        </form>
+        <!-- </form> -->
     <?php }
     ?>
 

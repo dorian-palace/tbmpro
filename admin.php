@@ -13,16 +13,13 @@
 <body>
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link" href="#">Manage Users</a>
+            <a class="nav-link" href="admin/adminUser.php">Manage Users</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Manage Articles</a>
+            <a href="admin/adminArticle.php" class="nav-link">Manage Articles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link">Manage Product</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Manage Categories</a>
+            <a href="admin/adminProduct.php" class="nav-link">Manage Product</a>
         </li>
     </ul>
 </body>

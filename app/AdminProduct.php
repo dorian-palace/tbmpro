@@ -6,19 +6,77 @@ class AdminRobot extends Database
 {
     public function __construct()
     {
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $this->page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
+        } else {
+            $this->page = 1;
+        }
+        $this->limite = 5;
+        $this->debut = ($this->page - 1) * $this->limite;
         parent::__construct();
     }
 
-    // public function newRobot($name, $idHead, $idBody, $id_categorie)
-    // {
-    //     if (isset($_POST['submit-robot'])) {
+    public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
+    {
 
-    //         $sql = "INSERT INTO robot (name, id_head, id_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
-    //         $request = $this->pdo->prepare($sql);
-    //         $request->execute([$name, $idHead, $idBody, $id_categorie, $_SESSION['id']]);
-    //         return $request;
-    //     }
-    // }
+        $sql = "INSERT INTO robots (name_robot, id_image_head, id_image_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $name, $idHead, $idBody, $idCategorie, $idUser
+        ]);
+        return $request;
+    }
+
+    public function getAllRobots()
+    {
+        $sql = "SELECT * FROM robots INNER JOIN head_robots ON robots.id_image_head = head_robots.head_id  INNER JOIN body_robots ON robots.id_image_body = body_robots.body_id INNER JOIN users ON robots.id_user = users.id ORDER BY robots.id_robot DESC LIMIT $this->limite OFFSET $this->debut";
+        $request = $this->pdo->prepare($sql);
+        $request->execute();
+        $robots = $request->fetchAll();
+        return $robots;
+    }
+
+    /**
+     * count for pagination for robots
+     */
+    public function countRobots()
+    {
+        $sql = "SELECT COUNT(*) FROM robots";
+        $request = $this->pdo->prepare($sql);
+        $request->execute();
+        // $count = $request->fetchColumn();
+        return $request;
+    }
+
+    public function deleteRobot($id)
+    {
+        $sql = "DELETE FROM robots WHERE id_robot = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $id
+        ]);
+        return $request;
+    }
+
+    public function deleteHead($id)
+    {
+        $sql = "DELETE FROM head_robots WHERE head_id = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $id
+        ]);
+        return $request;
+    }
+
+    public function deleteBody($id)
+    {
+        $sql = "DELETE FROM body_robots WHERE body_id = ?";
+        $request = $this->pdo->prepare($sql);
+        $request->execute([
+            $id
+        ]);
+        return $request;
+    }
 
     public function getAllHeadRobots()
     {
@@ -107,9 +165,9 @@ class AdminRobot extends Database
     {
 
         if (isset($_POST['submit-head-robot'])) {
-            echo "ok1";
+            // echo "ok1";
             if (isset($_FILES['image-head-robot'])) {
-                echo "ok2";
+                // echo "ok2";
                 $tmpName = $_FILES['image-head-robot']['tmp_name'];
                 $name = $_FILES['image-head-robot']['name'];
                 $size = $_FILES['image-head-robot']['size'];
@@ -124,23 +182,23 @@ class AdminRobot extends Database
                 $maxSize = 40000;
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-                    echo "ok3";
+                    // echo "ok3";
                     if (isset($name)) {
-                        echo "ok4",
+                        // echo "ok4",
                         $namePicToRegister = $name . '.' . $extension;
 
-                        $sql = "SELECT * FROM head_robots WHERE name = ?";
+                        $sql = "SELECT * FROM head_robots WHERE head_name = ?";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
                         $requestImg = $request->fetchAll();
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
-                            echo "ok5";
+                            // echo "ok5";
                             $color = secuData($_POST['head-color']);
                             $materials = secuData($_POST['head-material']);
 
-                            $sql = "INSERT INTO  `head_robots`(name, id_color, id_material) VALUES (?,?,?)";
+                            $sql = "INSERT INTO  `head_robots`(head_name, id_color, id_material) VALUES (?,?,?)";
                             $request = $this->pdo->prepare($sql);
                             $request->execute([
                                 $namePicToRegister, $color, $materials
@@ -160,9 +218,9 @@ class AdminRobot extends Database
     {
 
         if (isset($_POST['submit-body-robot'])) {
-            echo "ok1";
+            // echo "ok1";
             if (isset($_FILES['image-body-robot'])) {
-                echo "ok2";
+                // echo "ok2";
                 $tmpName = $_FILES['image-body-robot']['tmp_name'];
                 $name = $_FILES['image-body-robot']['name'];
                 $size = $_FILES['image-body-robot']['size'];
@@ -177,23 +235,23 @@ class AdminRobot extends Database
                 $maxSize = 40000;
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-                    echo "ok3";
+                    // echo "ok3";
                     if (isset($name)) {
-                        echo "ok4",
+                        // echo "ok4",
                         $namePicToRegister = $name . '.' . $extension;
 
-                        $sql = "SELECT * FROM body_robots WHERE name = ?";
+                        $sql = "SELECT * FROM body_robots WHERE body_name = ?";
                         $request = $this->pdo->prepare($sql);
                         $request->execute([$namePicToRegister]);
                         $requestImg = $request->fetchAll();
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
-                            echo "ok5";
+                            // echo "ok5";
                             $color = secuData($_POST['body-color']);
                             $materials = secuData($_POST['body-material']);
 
-                            $sql = "INSERT INTO  `body_robots`(name, id_color, id_material) VALUES (?,?,?)";
+                            $sql = "INSERT INTO  `body_robots`(body_name, id_color, id_material) VALUES (?,?,?)";
                             $request = $this->pdo->prepare($sql);
                             $request->execute([
                                 $namePicToRegister, $color, $materials
@@ -271,31 +329,27 @@ class AdminRobot extends Database
         return $results;
     }
 
-    public function updateCategorie($id)
+    public function updateCategorie($name, $id)
     {
-        if (!empty($_POST['update-name-categorie'])) {
-            $name = secuData($_POST['update-name-categorie']);
-            $sql = 'UPDATE categories SET name = ? WHERE id = ?';
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                $name,
-                $id
-            ]);
-        }
+
+        $sql = 'UPDATE categories SET name = ? WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $name,
+            $id
+        ]);
     }
 
     public function deleteCategorie($delete)
     {
-        if (isset($_POST['delete-categorie'])) {
+        $sql = 'DELETE FROM categories WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array(
+            $delete
+        ));
 
-            $sql = 'DELETE FROM categories WHERE id = ?';
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(array(
-                $delete
-            ));
-        }
 
-        // return $stmt;
+        return $stmt;
     }
 
     public function newCategories()

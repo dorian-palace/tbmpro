@@ -1,6 +1,7 @@
 <?php
 require_once('../setting/db.php');
 require_once('../setting/data.php');
+
 class AdminArticle extends Database{
 
     function __construct(){
@@ -144,101 +145,84 @@ class AdminArticle extends Database{
         $idArticle = intval($_GET['id']);
          // inner join les deux requetes 
         $articleSolo = $this->getArticleById($idArticle);
-        echo 'update';
+        // var_dump($_FILES['update-pic']);
         if(isset($_POST["submit-update-article"])){
-            $sql = "SELECT * FROM images WHERE name = ?";
-            $request = $this->pdo->prepare($sql);
-            $request->execute([$newPicName]);
-            $titlePic = $request->rowCount();
-         
+          
             if("" == trim($_POST['update-img-name'])){
                 $newPicName = $articleSolo['name'];
             }elseif(isset($_POST['update-img-name'])){
                 $newPicName = secuData($_POST['update-img-name']);
             }
+
             if("" == trim($_POST['article-title'])){
                 $newTitleArticle  = $articleSolo['title'];
             }elseif(isset($_POST['article-title'])){
                 $newTitleArticle = secuData($_POST['article-title']);
             }
+
             if("" == trim($_POST['article-text'])){
                 $newText = $articleSolo['text'];
+                // var_dump('on est pas dedans', $_POST['article-text']);
             }elseif(isset($_POST['article-text'])){
                 $newText = secuData($_POST['article-text']);
             }
 
-            echo 'updatevfr';
+
+            $sql = "SELECT * FROM images WHERE name = ?";
+            $request = $this->pdo->prepare($sql);
+            $request->execute([$newPicName]);
+            $titlePic = $request->rowCount();
+       
            
-            $tmpName = $_FILES['update-pic']['tmp_name'];
-            $name = $_FILES['update-pic']['name'];
+            if(!empty($_FILES['update-pic']))
+            {
+                $tmpName = $_FILES['update-pic']['tmp_name'];
+                $name = $_FILES['update-pic']['name'];
+                $size = $_FILES['update-pic']['size'];
+                $type = $_FILES['update-pic']['type'];
+                $error = $_FILES['update-pic']['error'];
 
-            $picExtension = explode('.', $name);
-            $extension = strtolower(end($picExtension));
-            $extensionsAllowed = ['jpg','png','jpeg','gif'];
+                $picExtension = explode('.', $name);
+                $extension = strtolower(end($picExtension));
+                $extensionsAllowed = ['jpg','png','jpeg','gif'];
+                
+                $way = "/Applications/MAMP/htdocs/tbmpro/assets/img/".$newPicName.'.'.  $extension;
+                
+            
+                $maxSize = 400000;
 
-            $way = "/Applications/MAMP/htdocs/tbmpro/assets/img/".$newPicName.'.'.  $extension;
-            $maxSize = 400000;
+                    if(in_array($extension, $extensionsAllowed)&& $size <= $maxSize && $error == 0){
+                        // echo 'update  s  a';
+                        move_uploaded_file($tmpName, $way);
+                        }
 
-            //pour reparer mettre la condition si dessus dans une condition si file n'existe pas 
-            if(in_array($extension, $extensionsAllowed)&& $size <= $maxSize && $error == 0){
-                echo 'update  s  a';
-                if($titlePic == 0){
-                    echo 'update fooool';
+            }
+                  
                     $namePicToRegister = $newPicName.'.'.$extension;
 
-                    // $folderPic = "/Applications/MAMP/htdocs/tbmpro/assets/img/";
-                    // $scanned_directory = array_diff(scandir($folderPic), array('..', '.'));
-                    // var_dump($scanned_directory);
-                    // var_dump(file_exists('img.jpg'));
+                    getimagesize($namePicToRegister);
 
-                    // if(file_exists($filename)) 
-                    //faire une alerte si c'est possible d'utiliser la meme img sinon cas l'écrase si elle ne se nomme pas pareil 
-
-
-                    move_uploaded_file($tmpName, $way);
-
-                    $sql = "UPDATE articles INNER JOIN images ON images.id = articles.id_image SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName WHERE articles.id = :id";
-
+                    $sql = "UPDATE articles 
+                    INNER JOIN images 
+                    ON images.id = articles.id_image 
+                    SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName
+                    WHERE articles.id = :id";
+                    // var_dump($newTitleArticle,$newText,$newPicName,$idArticle);
                     $update = $this->pdo->prepare($sql);
                     $update->execute([
                         ":newTitleArticle" => $newTitleArticle,
                         ":newText" => $newText,
-                        ":newPicName" => $newPicName,
+                        ":newPicName" => $namePicToRegister,
                         ":id" => $idArticle,
                     ]);
 
                     header("Refresh:0");
-                }
-                // elseif($titlePic != 0){
-
-                
-                //     $newPicName = $articleSolo['name'];
-                //     $namePicToRegister = $newPicName;
-
-                //     $sql = "UPDATE articles INNER JOIN images ON images.id = articles.id_image SET articles.title = :newTitleArticle, articles.text = :newText, images.name = :newPicName WHERE articles.id = :id";
-
-                //     $update = $this->pdo->prepare($sql);
-                //     $update->execute([
-                //         ":newTitleArticle" => $newTitleArticle,
-                //         ":newText" => $newText,
-                //         ":newPicName" => $newPicName,
-                //         ":id" => $idArticle,
-                //     ]);
-
-                //     header("Refresh:0");
-                // }
-            }
+               
+           //voir les pointsbrajputés
+           //voir ces headers qui pointent est
+           //des points se rajoute à mon update
         }
-       
-        // $picExtension = explode('.', $newPicName);
-        // $extension = strtolower(end(  $picExtension ));
-        // $extensionsAllowed = ['jpg','png','jpeg','gif'];
-
-
-        // echo($newPicName.'.'. $extension);
-
-
+    
     }
 
 }
-
