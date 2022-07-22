@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const buttonColorClass = document.getElementsByClassName("select-color");
+    const buttonHeadColorClass = document.getElementsByClassName("select-color-head");
     const containerHead = document.getElementById("headComponent");
     const containerBody = document.getElementById("bodyComponent");
 
     GetHeadComponentByColor = function () {
 
-        for (let i = 0; i < buttonColorClass.length; i++) {
+        for (let i = 0; i < buttonHeadColorClass.length; i++) {
 
-            buttonColorClass[i].addEventListener("click", function () {
-                //récupère les têtes et les corps en fonction de leurs couleurs
+            buttonHeadColorClass[i].addEventListener("click", function () {
+                //récupère les têtes en fonction de leurs couleurs
 
                 const ClearBodyContainer = document.getElementById("bodyComponent");
 
-                const idButton = buttonColorClass[i].id;
-                // console.log(idButton);
+                const idButton = buttonHeadColorClass[i].id;
+                console.log(idButton);
                 const params = idButton.substring(13);
                 // console.log(params)
                 const data = new FormData();
@@ -58,16 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     GetHeadComponentByColor();
 
+    const buttonBodyColorClass = document.getElementsByClassName("select-color-body");
+
     GetBodyComponentByColor = function () {
 
-        for (let i = 0; i < buttonColorClass.length; i++) {
+        for (let i = 0; i < buttonBodyColorClass.length; i++) {
 
-            buttonColorClass[i].addEventListener("click", function () {
+            buttonBodyColorClass[i].addEventListener("click", function () {
                 //récupère les têtes et les corps en fonction de leurs couleurs
 
-                const ClearBodyContainer = document.getElementById("bodyComponent");
-
-                const idButton = buttonColorClass[i].id;
+                // const ClearBodyContainer = document.getElementById("bodyComponent");
+                // console.log(buttonBodyColorClass)
+                const idButton = buttonBodyColorClass[i].id;
                 // console.log(idButton);
                 const params = idButton.substring(13);
                 // console.log(params)
@@ -87,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             // console.log(resultBodyColor)
                             let imagesForBody = '';
 
-                            for (let x = 0; x < (resultBodyColor.length) - 1; ++x) {
+                            for (let x = 0; x < resultBodyColor.length; ++x) {
                                 // console.log(resultBodyColor[x])
 
                                 imageBody = imagesForBody + '<img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
@@ -110,21 +112,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     GetBodyComponentByColor();
-    // while (toto == true || ClearBodyContainer == false) {
-    //     $(tata).html("");
-    // }
-    //récupère les têtes et les corps en fonctions de leurs materials
-    const buttonMaterialClass = document.getElementsByClassName("select-material")
 
-
+    const buttonHeadMaterialClass = document.getElementsByClassName("select-material-head");
 
     GetHeadComponentByMaterial = function () {
 
-        for (let x = 0; x < buttonMaterialClass.length; x++) {
+        for (let x = 0; x < buttonHeadMaterialClass.length; x++) {
 
-            buttonMaterialClass[x].addEventListener("click", function () {
+            buttonHeadMaterialClass[x].addEventListener("click", function () {
 
-                const idButtonMat = buttonMaterialClass[x].id
+                const idButtonMat = buttonHeadMaterialClass[x].id
                 // console.log(idButtonMat)
                 const paramsMat = idButtonMat.substring(16);
                 // console.log(paramsMat)
@@ -166,13 +163,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     GetHeadComponentByMaterial();
 
+    const buttonBodyMaterialClass = document.getElementsByClassName("select-material-body")
+
     GetBodyComponentByMaterial = function () {
 
-        for (let x = 0; x < buttonMaterialClass.length; x++) {
+        for (let x = 0; x < buttonBodyMaterialClass.length; x++) {
 
-            buttonMaterialClass[x].addEventListener("click", function () {
+            buttonBodyMaterialClass[x].addEventListener("click", function () {
 
-                const idButtonMat = buttonMaterialClass[x].id
+                const idButtonMat = buttonBodyMaterialClass[x].id
                 // console.log(idButtonMat)
                 const paramsMat = idButtonMat.substring(16);
                 // console.log(paramsMat)

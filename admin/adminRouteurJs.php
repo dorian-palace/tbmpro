@@ -5,6 +5,8 @@ $robot = new AdminRobot();
 
 if (isset($_POST['select_color'])) {
 
+    // var_dump($_POST['select_color']);
+
     $idColor = secuData($_POST['select_color']);
     $colorHeadRobots = $robot->getHeadRobotsByColor($idColor);
     $colorBodyRobots = $robot->getBodyRobotsByColor($idColor);

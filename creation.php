@@ -44,7 +44,15 @@ $getMaterial = $robot->getMaterials();
     <header>
         <?php require_once("layouts/navbar.php") ?>
     </header>
+    <!-----
 
+Modification des foreach pour les filtres, un bouton couleur pour les têtes.
+
+Un bouton couleur pour les corps.
+Un bouton matériau pour les corps.
+Un bouton matériau pour les têtes.
+
+---->
     <div class="leftMenu">
 
         <div class="headComponent" id="headComponent">
@@ -55,44 +63,64 @@ $getMaterial = $robot->getMaterials();
 
         </div>
 
-        <div class="filterColor">
-            <b>Colors</b>
+        <div class="filterColorHead">
+
+            <b>Heads Colors</b>
 
             <?php foreach ($getColor as $color) : ?>
 
-                <button name="select-color" class="select-color" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
+                <button name="select-color-head" class="select-color-head" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
 
             <?php endforeach; ?>
         </div>
 
-        <div class="filterMaterial">
-            <b>Materials</b>
+        <div class="filterMaterialHead">
+            <b>Heads Materials</b>
 
             <?php foreach ($getMaterial as $material) : ?>
 
-                <button name="select-material" class="select-material" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
+                <button name="select-material" class="select-material-head" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
 
             <?php endforeach; ?>
         </div>
 
-    </div>
+        <div class="filterColorBody">
+            <b>Body Colors</b>
 
-    <div class="displayRobot">
+            <?php foreach ($getColor as $color) : ?>
 
-        <div class="headContainer" id="headContainer">
+                <button name="select-color-body" class="select-color-body" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
+
+            <?php endforeach; ?>
 
         </div>
 
-        <div class="bodyContainer">
+        <div class="filterMaterialBody">
+            <b>Body Materials</b>
 
+            <?php foreach ($getMaterial as $material) : ?>
+
+                <button name="select-material" class="select-material-body" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
+
+            <?php endforeach; ?>
         </div>
 
-        <button type="submit" class="submit-robot" id="submit-robot-" name="submit-robot">Submit</button>
-    </div>
+        <div class="displayRobot">
 
-    <footer>
-        <!-- <?php require_once("layouts/footer.php") ?> -->
-    </footer>
+            <div class="headContainer" id="headContainer">
+
+            </div>
+
+            <div class="bodyContainer">
+
+            </div>
+
+            <button type="submit" class="submit-robot" id="submit-robot-" name="submit-robot">Submit</button>
+        </div>
+
+        <footer>
+            <!-- <?php require_once("layouts/footer.php") ?> -->
+        </footer>
 </body>
 
 </html>
