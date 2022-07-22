@@ -4,64 +4,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerHead = document.getElementById("headComponent");
     const containerBody = document.getElementById("bodyComponent");
 
-    for (let i = 0; i < buttonColorClass.length; i++) {
+    GetHeadComponentByColor = function () {
 
-        buttonColorClass[i].addEventListener("click", function () {
-            //récupère les têtes et les corps en fonction de leurs couleurs
+        for (let i = 0; i < buttonColorClass.length; i++) {
 
-            const ClearBodyContainer = document.getElementById("bodyComponent");
+            buttonColorClass[i].addEventListener("click", function () {
+                //récupère les têtes et les corps en fonction de leurs couleurs
 
-            // if (ClearBodyContainer != null) {
+                const ClearBodyContainer = document.getElementById("bodyComponent");
 
-            //     $(ClearBodyContainer).empty();
-            // }
+                const idButton = buttonColorClass[i].id;
+                // console.log(idButton);
+                const params = idButton.substring(13);
+                // console.log(params)
+                const data = new FormData();
+                data.append("select_color", params);
 
-            // const ClearHeadContainer = document.getElementById("headComponent");
+                fetch('app/traitementRobot.php', {
+                        method: 'POST',
+                        body: data,
+                    })
+                    .then(response => response.text())
+                    .then(body => {
+                        try {
+                            dataColor = JSON.parse(body);
+                            const resultColor = dataColor.colorHeadRobots
+                            // console.log(resultColor)
 
-            // if (ClearHeadContainer != null) {
+                            // console.log(resultBodyColor)
+                            let images = '';
 
-            //     $(ClearHeadContainer).empty();
-            // }
-
-            const idButton = buttonColorClass[i].id;
-            // console.log(idButton);
-            const params = idButton.substring(13);
-            // console.log(params)
-            const data = new FormData();
-            data.append("select_color", params);
-
-            fetch('app/traitementRobot.php', {
-                    method: 'POST',
-                    body: data,
-                })
-                .then(response => response.text())
-                .then(body => {
-                    try {
-                        dataColor = JSON.parse(body);
-                        const resultColor = dataColor.colorHeadRobots
-                        // console.log(resultColor)
-                        const resultBodyColor = dataColor.colorBodyRobots
-                        // console.log(resultBodyColor)
-                        let images = '';
-                        let imagesForBody = '';
-
-                        for (y = 0; y < resultColor.length; ++y) {
-
-                            for (let x = 0; x < resultBodyColor.length; ++x) {
-                                // console.log(resultBodyColor[x])
-
-                                imageBody = imagesForBody + '<img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
+                            for (y = 0; y < resultColor.length; ++y) {
 
                                 imageHead = images + '<img id="box-color-head" src="assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '">';
-                                // console.table(image)
-
-                                const containerBody = document.getElementById("bodyComponent");
-                                const newLabelBody = document.createElement("label");
-                                newLabelBody.setAttribute("class", "container-body");
-                                newLabelBody.setAttribute("id", "container-label-body");
-                                newLabelBody.innerHTML = imageBody;
-
-                                containerBody.appendChild(newLabelBody);
 
                                 const containerHead = document.getElementById("headComponent");
                                 const newLabelHead = document.createElement("label");
@@ -70,64 +45,107 @@ document.addEventListener("DOMContentLoaded", () => {
                                 newLabelHead.innerHTML = imageHead;
 
                                 containerHead.appendChild(newLabelHead);
+
                             }
+
+                        } catch (error) {
+                            console.log('Error parsing JSON:', error, body);
                         }
-                    } catch (error) {
-                        console.log('Error parsing JSON:', error, body);
-                    }
 
-
-                });
-
-        });
+                    });
+            });
+        }
     }
+    GetHeadComponentByColor();
 
+    GetBodyComponentByColor = function () {
+
+        for (let i = 0; i < buttonColorClass.length; i++) {
+
+            buttonColorClass[i].addEventListener("click", function () {
+                //récupère les têtes et les corps en fonction de leurs couleurs
+
+                const ClearBodyContainer = document.getElementById("bodyComponent");
+
+                const idButton = buttonColorClass[i].id;
+                // console.log(idButton);
+                const params = idButton.substring(13);
+                // console.log(params)
+                const data = new FormData();
+                data.append("select_color", params);
+
+                fetch('app/traitementRobot.php', {
+                        method: 'POST',
+                        body: data,
+                    })
+                    .then(response => response.text())
+                    .then(body => {
+                        try {
+                            dataColor = JSON.parse(body);
+
+                            const resultBodyColor = dataColor.colorBodyRobots
+                            // console.log(resultBodyColor)
+                            let imagesForBody = '';
+
+                            for (let x = 0; x < (resultBodyColor.length) - 1; ++x) {
+                                // console.log(resultBodyColor[x])
+
+                                imageBody = imagesForBody + '<img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
+
+                                const containerBody = document.getElementById("bodyComponent");
+                                const newLabelBody = document.createElement("label");
+                                newLabelBody.setAttribute("class", "container-body");
+                                newLabelBody.setAttribute("id", "container-label-body");
+                                newLabelBody.innerHTML = imageBody;
+
+                                containerBody.appendChild(newLabelBody);
+                            }
+
+                        } catch (error) {
+                            console.log('Error parsing JSON:', error, body);
+                        }
+
+                    });
+            });
+        }
+    }
+    GetBodyComponentByColor();
+    // while (toto == true || ClearBodyContainer == false) {
+    //     $(tata).html("");
+    // }
     //récupère les têtes et les corps en fonctions de leurs materials
     const buttonMaterialClass = document.getElementsByClassName("select-material")
 
-    for (let x = 0; x < buttonMaterialClass.length; x++) {
 
-        buttonMaterialClass[x].addEventListener("click", function () {
 
-            const ClearBodyContainer = document.getElementById("bodyComponent");
+    GetHeadComponentByMaterial = function () {
 
-            if (ClearBodyContainer != null) {
+        for (let x = 0; x < buttonMaterialClass.length; x++) {
 
-                $(ClearBodyContainer).empty();
-            }
+            buttonMaterialClass[x].addEventListener("click", function () {
 
-            const ClearHeadContainer = document.getElementById("headComponent");
+                const idButtonMat = buttonMaterialClass[x].id
+                // console.log(idButtonMat)
+                const paramsMat = idButtonMat.substring(16);
+                // console.log(paramsMat)
+                const dataMat = new FormData();
+                dataMat.append("select_mat", paramsMat);
 
-            if (ClearHeadContainer != null) {
+                fetch('app/traitementRobot.php', {
+                        method: 'POST',
+                        body: dataMat
+                    })
+                    .then(response => response.text())
+                    .then(body => {
 
-                $(ClearHeadContainer).empty();
-            }
-
-            const idButtonMat = buttonMaterialClass[x].id
-            // console.log(idButtonMat)
-            const paramsMat = idButtonMat.substring(16);
-            // console.log(paramsMat)
-            const dataMat = new FormData();
-            dataMat.append("select_mat", paramsMat);
-
-            fetch('app/traitementRobot.php', {
-                    method: 'POST',
-                    body: dataMat
-                })
-                .then(response => response.text())
-                .then(body => {
-                    try {
                         dataMaterial = JSON.parse(body);
                         const resultMaterialHead = dataMaterial.materialHeadRobots;
-                        const resultMaterialBody = dataMaterial.materialBodyRobots;
 
                         let images = '';
 
-                        for (y = 0; y < resultMaterialBody.length; ++y) {
+                        for (y = 0; y < resultMaterialHead.length; ++y) {
 
-                            imageBody = images + '<img id="box-robots-filter" src="assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '">';
-
-                            console.log(imageBody)
+                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '">';
 
                             const container = document.getElementById("headContainer");
                             const newLabel = document.createElement("label");
@@ -135,14 +153,64 @@ document.addEventListener("DOMContentLoaded", () => {
                             newLabel.setAttribute("id", 'thatlabel')
                             newLabel.innerHTML = imageBody;
 
-                            container.appendChild(newLabel);
+                            const newContainer = document.createElement("div");
+                            newContainer.setAttribute("class", "container-test");
+                            newContainer.setAttribute("id", "container-test");
+                            newContainer.appendChild(newLabel);
+                            container.appendChild(newContainer);
+
                         }
-                    } catch (error) {
-                        console.log('Error parsing JSON:', error, body);
-                    }
-                });
-        });
+                    });
+            });
+        }
     }
+    GetHeadComponentByMaterial();
 
+    GetBodyComponentByMaterial = function () {
 
+        for (let x = 0; x < buttonMaterialClass.length; x++) {
+
+            buttonMaterialClass[x].addEventListener("click", function () {
+
+                const idButtonMat = buttonMaterialClass[x].id
+                // console.log(idButtonMat)
+                const paramsMat = idButtonMat.substring(16);
+                // console.log(paramsMat)
+                const dataMat = new FormData();
+                dataMat.append("select_mat", paramsMat);
+
+                fetch('app/traitementRobot.php', {
+                        method: 'POST',
+                        body: dataMat
+                    })
+                    .then(response => response.text())
+                    .then(body => {
+
+                        dataMaterial = JSON.parse(body);
+                        const resultMaterialBody = dataMaterial.materialBodyRobots;
+                        //Ajout des têtes a faore 
+                        let images = '';
+
+                        for (y = 0; y < resultMaterialBody.length; ++y) {
+
+                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '">';
+
+                            const container = document.getElementById("headContainer");
+                            const newLabel = document.createElement("label");
+                            newLabel.setAttribute("for", 'checkbox');
+                            newLabel.setAttribute("id", 'thatlabel')
+                            newLabel.innerHTML = imageBody;
+
+                            const newContainer = document.createElement("div");
+                            newContainer.setAttribute("class", "container-test");
+                            newContainer.setAttribute("id", "container-test");
+                            newContainer.appendChild(newLabel);
+                            container.appendChild(newContainer);
+
+                        }
+                    });
+            });
+        }
+    }
+    GetBodyComponentByMaterial();
 })

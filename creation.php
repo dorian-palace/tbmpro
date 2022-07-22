@@ -27,6 +27,20 @@ $getMaterial = $robot->getMaterials();
 </head>
 
 <body>
+    <style>
+        #box-robots-filter,
+        #box-color-body,
+        #box-color-head {
+            max-width: 100px;
+        }
+
+        #headContainer {
+            display: flex;
+            justify-content: center;
+            background-color: red;
+            border-color: red;
+        }
+    </style>
     <header>
         <?php require_once("layouts/navbar.php") ?>
     </header>
