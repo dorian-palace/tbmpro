@@ -8,7 +8,6 @@ $robot = new Robots();
 $getColor = $robot->getColor();
 $getMaterial = $robot->getMaterials();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +18,37 @@ $getMaterial = $robot->getMaterials();
     <script type="text/javascript" src="layouts/scriptNav.js"></script>
     <link href="layouts/styleNav.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        function toto(id) {
+            console.log(id)
+            const leftContainer = document.getElementsByClassName("bodyComponent");
+            const mainContainer = document.getElementsByClassName("bodyContainer");
+
+            // console.log(leftContainer[0].children[0].children[0].children[0].getAttribute("value"))
+            // incremente all the value of the body component
+            console.log(leftContainer[0].children)
+            for (let i = 0; i < leftContainer[0].children.length; i++) {
+                const o = leftContainer[0].children[i].children[0].children[0].getAttribute("value")
+                if (o == id) {
+                    console.log(leftContainer[0].children[i])
+
+                    if (mainContainer[0].children.length == 0) {
+                        $(mainContainer).append(leftContainer[0].children[i])
+                    } else {
+                        // mainContainer[0].insertBefore(leftContainer[0].children[i], mainContainer[0].children[0])
+                        $(leftContainer).append(mainContainer[0].children[0])
+                        $(mainContainer).append(leftContainer[0].children[i])
+
+                    }
+                }
+            }
+
+            for (let i = 0; i < leftContainer[0].children.length; i++) {
+                const a = leftContainer[i];
+                // console.log(a)
+            }
+        }
+    </script>
     <script src="js/creation.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
@@ -40,6 +70,11 @@ $getMaterial = $robot->getMaterials();
             background-color: red;
             border-color: red;
         }
+
+        .test {
+            display: flex;
+            justify-content: center;
+        }
     </style>
     <header>
         <?php require_once("layouts/navbar.php") ?>
@@ -53,74 +88,77 @@ Un bouton matériau pour les corps.
 Un bouton matériau pour les têtes.
 
 ---->
-    <div class="leftMenu">
+    <aside>
+        <div class="leftMenu">
 
-        <div class="headComponent" id="headComponent">
-
-        </div>
-
-        <div class="bodyComponent" id="bodyComponent">
-
-        </div>
-
-        <div class="filterColorHead">
-
-            <b>Heads Colors</b>
-
-            <?php foreach ($getColor as $color) : ?>
-
-                <button name="select-color-head" class="select-color-head" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
-
-            <?php endforeach; ?>
-        </div>
-
-        <div class="filterMaterialHead">
-            <b>Heads Materials</b>
-
-            <?php foreach ($getMaterial as $material) : ?>
-
-                <button name="select-material" class="select-material-head" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
-
-            <?php endforeach; ?>
-        </div>
-
-        <div class="filterColorBody">
-            <b>Body Colors</b>
-
-            <?php foreach ($getColor as $color) : ?>
-
-                <button name="select-color-body" class="select-color-body" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
-
-            <?php endforeach; ?>
-
-        </div>
-
-        <div class="filterMaterialBody">
-            <b>Body Materials</b>
-
-            <?php foreach ($getMaterial as $material) : ?>
-
-                <button name="select-material" class="select-material-body" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
-
-            <?php endforeach; ?>
-        </div>
-
-        <div class="displayRobot">
-
-            <div class="headContainer" id="headContainer">
+            <div class="headComponent" id="headComponent">
 
             </div>
 
-            <div class="bodyContainer">
+            <div class="bodyComponent" id="bodyComponent">
 
             </div>
 
-            <button type="submit" class="submit-robot" id="submit-robot-" name="submit-robot">Submit</button>
+            <div class="filterColorHead">
+
+                <b>Heads Colors</b>
+
+                <?php foreach ($getColor as $color) : ?>
+
+                    <button name="select-color-head" class="select-color-head" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
+
+                <?php endforeach; ?>
+            </div>
+
+            <div class="filterMaterialHead">
+                <b>Heads Materials</b>
+
+                <?php foreach ($getMaterial as $material) : ?>
+
+                    <button name="select-material" class="select-material-head" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
+
+                <?php endforeach; ?>
+            </div>
+
+            <div class="filterColorBody">
+                <b>Body Colors</b>
+
+                <?php foreach ($getColor as $color) : ?>
+
+                    <button name="select-color-body" class="select-color-body" id="select-color-<?= $color['id']; ?>"><?= $color['name']; ?></button>
+
+                <?php endforeach; ?>
+
+            </div>
+
+            <div class="filterMaterialBody">
+                <b>Body Materials</b>
+
+                <?php foreach ($getMaterial as $material) : ?>
+
+                    <button name="select-material" class="select-material-body" id="select-material-<?= $material['id']; ?>"><?= $material['type']; ?></button>
+
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </aside>
+
+    <div class="displayRobot">
+
+        <div class="headContainer" id="headContainer">
+
         </div>
 
-        <footer>
-            <!-- <?php require_once("layouts/footer.php") ?> -->
-        </footer>
+        <div class="bodyContainer" id="bodyContainer">
+
+        </div>
+
+        <button type="submit" class="submit-robot" id="submit-robot-" name="submit-robot">Submit</button>
+    </div>
+
+    <footer>
+        <!-- <?php require_once("layouts/footer.php") ?> -->
+    </footer>
 </body>
 
 </html>
