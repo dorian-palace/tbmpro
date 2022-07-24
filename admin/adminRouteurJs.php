@@ -46,7 +46,7 @@ if (isset($_POST['delete-body'])) {
 }
 
 if (isset($_POST['name-robot'])) {
-    var_dump($_POST['name-robot']);
+    // var_dump($_POST['name-robot']);
 }
 
 if (isset($_POST['submit-robot'])) {

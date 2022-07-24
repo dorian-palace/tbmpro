@@ -349,13 +349,42 @@ body {
  ========================================================================= */
 aside{
     height: 100vh;
-    background-color: pink;
     max-width: 25%;
     overflow:scroll;
     flex-grow: 1;
     font-family: "Avenir-Book";
     /* z-index: 1; */
     /* position:fixed; */
+}
+.form-new-body .btn-input {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+  
+}
+
+.form-new-head .btn-input{
+    position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--main-blue);
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  border: 1px solid #149ad7;
 }
 
 .cat-robot{
@@ -374,6 +403,8 @@ aside{
     flex-direction: column;
     align-items: center;
 }
+
+
 /** 
  * MODALE
  ========================================================================= */
@@ -451,7 +482,7 @@ aside{
 }
 
 .new-robot-section .btn {
-    position: relative;
+    /* position: relative;
     display: inline-block;
     padding: 10px 20px;
    
@@ -462,16 +493,22 @@ aside{
     overflow: hidden;
     transition: 0.5s;
     margin-top: 40px;
-    letter-spacing: 4px;
+    letter-spacing: 4px; */
+}
+
+.first{
+    border-bottom: 4px dotted #149ad7;
+    margin-bottom: 20px;
+    /* width: 100%!important; */
 }
 
 .new-robot-section .btn:hover{
-    background: var(--main-blue);
+    /* background: var(--main-blue);
     color: var(--main-dark-blue);
     border-radius: 5px;
     border: none;
     box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
-      0 0 100px var(--main-blue);
+      0 0 100px var(--main-blue); */
 }
 
 .display-robot{
