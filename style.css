@@ -348,15 +348,32 @@ body {
  * ASIDE
  ========================================================================= */
 aside{
-    height: 100%;
+    height: 100vh;
     background-color: pink;
-    width: 25%;
+    max-width: 25%;
     overflow:scroll;
     flex-grow: 1;
-    z-index: 1;
-    
+    font-family: "Avenir-Book";
+    /* z-index: 1; */
+    /* position:fixed; */
 }
 
+.cat-robot{
+    padding-top: 60px;
+}
+.first img{
+    height: 160px;
+}
+
+#container-filter-robots img{
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /** 
  * MODALE
  ========================================================================= */
@@ -374,47 +391,10 @@ aside{
 /** 
  * ADMIN 
  ========================================================================= */
-/* .form-robot{
-    font-family: "Avenir-Book";
-    background: rgba(17, 31, 50, 0.932);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    width: 50%;
-    padding: 40px;
 
-}
-.new-robot{  
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.new-robot label{
-    top: 0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: var(--main-gold);
-    pointer-events: none;
-    transition: 0.5s;
-}
-
-.new-robot input {
-    width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: var(--main-gold);
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid var(--main-gold);
-  outline: none;
-  background: transparent;
-}
-
-.admin{
-    display: flex;
-    flex-direction: column;
+/* .body-robot{
+    
+    height: 70vh;
 } */
 
 .new-robot-section{
@@ -433,8 +413,8 @@ aside{
 }
 
 .miniature{
-    max-width: 9em;
-    max-height: 9em;
+    /* max-width: 9em;
+    max-height: 9em; */
     display: flex;
     flex-direction: row;
 	flex-wrap: wrap;
@@ -498,17 +478,71 @@ aside{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
-
+    
+    padding: 10px;
+   
+   margin: 0;
+   padding: 0;
+    max-width: 150px;
+    /* height: 100px; */
+    
 }
+.visu-robot{
 
-/* .body-robot{
-display: flex;
-flex-direction: row;
-}  */
+    height: 100%;
+    /* width: 100%; */
+    background-color: antiquewhite;
+}
+.bottom-robot{
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.block-central {
+    background-color: green;
+    /* max-width: 70%;
+    max-height: 70%; */
+    justify-content: space-around;
+    /* height: 40%; */
+    width: 100%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	/* justify-content: flex-start; */
+	align-items: flex-end;
+	align-content: stretch;
+    /* position: fixed; */
+    /* bottom: 0; */
+}
 
 .main-robot{
     display: flex;
-    flex-direction: row;
+    /* max-height: 80vh; */
+    flex-direction: column;
     padding-top: 3%;
+    max-height: fit-content;
+}
+
+.flex-central {
+    height: auto;
+    width: 100%;
+    background-color: palevioletred;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /* justify-content: space-around; */
+}
+
+.block-aside-robot{
+    display: flex;
+    flex-direction: row;
+}
+
+.display-robot img{
+    height: 50px;
+}
+
+.display-robot-head{
+    height: 30px !important;
 }
