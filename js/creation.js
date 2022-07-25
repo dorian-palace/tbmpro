@@ -36,15 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             for (y = 0; y < resultColor.length; ++y) {
 
-                                imageHead = images + '<img id="box-color-head" src="assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '">';
+                                imageHead = images + '<div onclick="mooveHead(' + resultColor[y].head_id + ')" id="headMaterialContainer" class="headMaterialContainer""><img id="box-color-head" src="assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '"></div>';
 
                                 const containerHead = document.getElementById("headComponent");
-                                const newLabelHead = document.createElement("label");
-                                newLabelHead.setAttribute("id", 'thatlabel')
-                                newLabelHead.setAttribute("for", 'checkbox');
-                                newLabelHead.innerHTML = imageHead;
+                                const newContainer = document.createElement("button");
 
-                                containerHead.appendChild(newLabelHead);
+                                newContainer.innerHTML = imageHead;
+                                // container.appendChild(newContainer);
+
+
+                                containerHead.appendChild(newContainer);
                             }
 
                         } catch (error) {
@@ -91,15 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
                             for (let x = 0; x < resultBodyColor.length; ++x) {
                                 // console.log(resultBodyColor[x])
 
-                                imageBody = imagesForBody + '<img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
+                                imageBody = imagesForBody + '<div onclick="mooveBody(' + resultBodyColor[x].body_id + ')" id="headMaterialContainer" class="headMaterialContainer""><img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '"></div>';
+
+                                // imageBody = images + '<div onclick="mooveHead(' + resultMaterialHead[y].head_id + ')" id="headMaterialContainer" class="headMaterialContainer""> <img class="box-head-filter" id="box-head-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '"></div>';
+
 
                                 const containerBody = document.getElementById("bodyComponent");
-                                const newLabelBody = document.createElement("label");
-                                newLabelBody.setAttribute("class", "container-body");
-                                newLabelBody.setAttribute("id", "container-label-body");
-                                newLabelBody.innerHTML = imageBody;
+                                const newContainer = document.createElement("button");
 
-                                containerBody.appendChild(newLabelBody);
+                                newContainer.innerHTML = imageBody;
+
+                                containerBody.appendChild(newContainer);
                             }
                         } catch (error) {
                             console.log('Error parsing JSON:', error, body);
@@ -140,18 +143,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (y = 0; y < resultMaterialHead.length; ++y) {
 
-                            imageBody = images + '<img class="test" id="box-robots-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '">';
+                            imageBody = images + '<div onclick="mooveHead(' + resultMaterialHead[y].head_id + ')" id="headMaterialContainer" class="headMaterialContainer""> <img class="box-head-filter" id="box-head-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '"></div>';
 
                             const container = document.getElementById("headComponent");
-                            const newLabel = document.createElement("label");
-                            newLabel.setAttribute("for", 'checkbox');
-                            newLabel.setAttribute("id", 'thatlabel')
-                            newLabel.innerHTML = imageBody;
+                            const newContainer = document.createElement("button");
 
-                            const newContainer = document.createElement("div");
-                            newContainer.setAttribute("class", "container-test");
-                            newContainer.setAttribute("id", "container-test");
-                            newContainer.appendChild(newLabel);
+                            newContainer.innerHTML = imageBody;
                             container.appendChild(newContainer);
 
                         }
@@ -165,63 +162,63 @@ document.addEventListener("DOMContentLoaded", () => {
     // toto = function (e) {
 
     //     console.log(e)
-    //     const imageBodyMaterial = document.getElementsByClassName('body-material-component');
+    //     // const imageBodyMaterial = document.getElementsByClassName('body-material-component');
 
-    //     // console.log(imageBodyMaterial)
-    //     const leftContainer = document.getElementsByClassName("bodyComponent");
-    //     // console.log(leftContainer[O].children)
+    //     // // console.log(imageBodyMaterial)
+    //     // const leftContainer = document.getElementsByClassName("bodyComponent");
+    //     // // console.log(leftContainer[O].children)
 
-    //     const bodyContainer = document.getElementsByClassName("newdiv");
-    //     // console.log(leftContainer[0].children[1])
-    //     // console.log(bodyContainer)
+    //     // const bodyContainer = document.getElementsByClassName("newdiv");
+    //     // // console.log(leftContainer[0].children[1])
+    //     // // console.log(bodyContainer)
 
-    //     // var all_img = leftContainer.getElementsByTagName("img");
-    //     // console.log(all_img)
+    //     // // var all_img = leftContainer.getElementsByTagName("img");
+    //     // // console.log(all_img)
 
-    //     for (let i = 0; i < leftContainer[0].children.length; i++) {
-    //         // console.log(leftContainer[0].children[i])
-
-
-
-    //         // const valueImage = imageBodyMaterial[i].getAttribute('value');
-    //         // console.log(valueImage)
-
-    //         const mainContainer = document.getElementsByClassName("bodyContainer");
-    //         // const body_layer = document.querySelector('#bodyContainer');
-    //         // console.log(body_layer)
-
-    //         // console.log(mainContainer[0].children.length)
-
-    //         console.log(leftContainer[0].children)
-
-    //         $(leftContainer[0].children[i]).on('click', function () {
+    //     // for (let i = 0; i < leftContainer[0].children.length; i++) {
+    //     //     // console.log(leftContainer[0].children[i])
 
 
-    //             if (mainContainer[0].children.length == 0) {
-    //                 $(mainContainer).append(leftContainer[0].children[i]);
-    //                 i = 0
-    //                 // console.log('ok')
-    //             } else {
-    //                 $(leftContainer).append(mainContainer[0].children[0]);
-    //                 console.log(mainContainer[0].children.length)
-    //                 i = 0
 
-    //                 $(mainContainer).append(leftContainer[0].children[i]);
-    //             }
+    //     //     // const valueImage = imageBodyMaterial[i].getAttribute('value');
+    //     //     // console.log(valueImage)
 
-    //         });
+    //     //     const mainContainer = document.getElementsByClassName("bodyContainer");
+    //     //     // const body_layer = document.querySelector('#bodyContainer');
+    //     //     // console.log(body_layer)
 
-    //     }
+    //     //     // console.log(mainContainer[0].children.length)
+
+    //     //     console.log(leftContainer[0].children)
+
+    //     //     $(leftContainer[0].children[i]).on('click', function () {
+
+
+    //     //         if (mainContainer[0].children.length == 0) {
+    //     //             $(mainContainer).append(leftContainer[0].children[i]);
+    //     //             i = 0
+    //     //             // console.log('ok')
+    //     //         } else {
+    //     //             $(leftContainer).append(mainContainer[0].children[0]);
+    //     //             console.log(mainContainer[0].children.length)
+    //     //             i = 0
+
+    //     //             $(mainContainer).append(leftContainer[0].children[i]);
+    //     //         }
+
+    //     //     });
+
+    //     // }
 
     // }
-    
-   
+
+
     const buttonBodyMaterialClass = document.getElementsByClassName("select-material-body")
 
     GetBodyComponentByMaterial = function () {
 
-        
-    
+
+
 
         for (let x = 0; x < buttonBodyMaterialClass.length; x++) {
 
@@ -248,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (y = 0; y < resultMaterialBody.length; ++y) {
 
-                            imageBody = images + '<div onclick="toto(' + resultMaterialBody[y].body_id + ')" id="newdiv" class="newdiv""> <img id="box-robots-filter" class="body-material-component" src="assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '"></div>';
+                            imageBody = images + '<div onclick="mooveBody(' + resultMaterialBody[y].body_id + ')" id="bodyMaterialContainer" class="bodyMaterialContainer""> <img id="box-body-filter" class="body-material-component" src="assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '"></div>';
 
                             const container = document.getElementById("bodyComponent");
                             const newContainer = document.createElement("button");
@@ -273,9 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-    // function toto(e){
-    //     console.log(e)
-    // }
     GetBodyComponentByMaterial();
 
 

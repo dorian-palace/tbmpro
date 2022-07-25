@@ -19,10 +19,41 @@ $getMaterial = $robot->getMaterials();
     <link href="layouts/styleNav.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
-        function toto(id) {
+        function mooveBody(id) {
             console.log(id)
             const leftContainer = document.getElementsByClassName("bodyComponent");
             const mainContainer = document.getElementsByClassName("bodyContainer");
+
+            // console.log(leftContainer[0].children[0].children[0].children[0].getAttribute("value"))
+            // incremente all the value of the body component
+            console.log(leftContainer[0].children)
+            for (let i = 0; i < leftContainer[0].children.length; i++) {
+                const o = leftContainer[0].children[i].children[0].children[0].getAttribute("value")
+                if (o == id) {
+                    console.log(leftContainer[0].children[i])
+
+                    if (mainContainer[0].children.length == 0) {
+                        $(mainContainer).append(leftContainer[0].children[i])
+                    } else {
+                        // mainContainer[0].insertBefore(leftContainer[0].children[i], mainContainer[0].children[0])
+                        $(leftContainer).append(mainContainer[0].children[0])
+                        $(mainContainer).append(leftContainer[0].children[i])
+
+                    }
+                }
+            }
+
+            for (let i = 0; i < leftContainer[0].children.length; i++) {
+                const a = leftContainer[i];
+                // console.log(a)
+            }
+        }
+
+        function mooveHead(id) {
+            console.log(id)
+            const leftContainer = document.getElementsByClassName("headComponent");
+            const mainContainer = document.getElementsByClassName("headContainer");
+            console.log(leftContainer)
 
             // console.log(leftContainer[0].children[0].children[0].children[0].getAttribute("value"))
             // incremente all the value of the body component
@@ -58,7 +89,8 @@ $getMaterial = $robot->getMaterials();
 
 <body>
     <style>
-        #box-robots-filter,
+        #box-head-filter,
+        #box-body-filter,
         #box-color-body,
         #box-color-head {
             max-width: 100px;
