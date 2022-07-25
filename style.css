@@ -775,3 +775,103 @@ aside{
    
     margin-top:25px;
 }
+
+/** 
+ * ADMIN USER
+ ========================================================================= */
+
+
+.main-admin-user h2{
+    padding: 20px;
+    color: var(--main-gold);
+}
+
+.table input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent
+ }
+
+ .form-update button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    background: transparent;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+ }
+
+
+
+ .form-update button:hover{
+    background: var(--main-blue);
+    color: var(--main-dark-blue);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
+      0 0 100px var(--main-blue);
+ }
+
+ .form-update a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    background: transparent;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+ }
+
+ .form-update a:hover{
+    background: var(--main-blue);
+    color: var(--main-dark-blue);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
+      0 0 100px var(--main-blue);
+ }
+
+ .main-admin-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+ }
+
+.gestionnaire a{
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    background: transparent;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}

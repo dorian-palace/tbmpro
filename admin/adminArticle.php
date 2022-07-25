@@ -83,17 +83,17 @@ $articleDelete = $artNew->deleteArticle();
                     <form class="form_box" action="" method="post" enctype="multipart/form-data"> 
                         <div class= "user-box">
                             <label class= "text-article" for="text">Titre de l'image:</label><br>
-                            <input type= "text"  name= "title-pic" placeholder= "give the pic a name" autocomplete= "off"><br>
+                            <input type= "text"  name= "title-pic" placeholder= "titre" autocomplete= "off"><br>
                             <label class= "text-article" for="add-pic">Ajout d'une image:</label><br>
                             <input type= "file" name= "add-pic" >
                            
                         </div>
                         <div class="user-box">
                             <label class= "text-article" for="text">Titre de l'article:</label><br>
-                            <input type= "text" name= "title-article" placeholder= "give the pic a name" autocomplete= "off"><br>
+                            <input type= "text" name= "title-article" placeholder= "titre" autocomplete= "off"><br>
                             <label class= "text-article" for="text">Texte:</label><br>
 
-                            <textarea type= "text" name= "text" placeholder= "write your article" autocomplete= "off"> </textarea><br>
+                            <textarea type= "text" name= "text" placeholder= "article" autocomplete= "off"> </textarea><br>
                             <button type="submit" name= "submit-text" class="btn ">Créer</button>
                         </div>
                         <div class="user-box">
@@ -109,9 +109,9 @@ $articleDelete = $artNew->deleteArticle();
                             $articleSolo = $artNew->getArticleById($idArticle);
                             $articleUpdate = $artNew->updateArticle($idArticle);
                             // echo 'kjejhsjkkqjsndkjqs';
-                            echo '<pre>';
+                            // echo '<pre>';
                             // var_dump($articleSolo);
-                            echo '</pre>';
+                            // echo '</pre>';
                             
 
                             ?>
