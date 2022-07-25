@@ -16,6 +16,9 @@ $getMaterial = $robot->getMaterials();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="assets/img/favIcon.ico">
     <script type="text/javascript" src="layouts/scriptNav.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/creation.js"></script>
+    <script src="js/html2canvas.js"></script>
     <link href="layouts/styleNav.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
@@ -80,7 +83,6 @@ $getMaterial = $robot->getMaterials();
             }
         }
     </script>
-    <script src="js/creation.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,18 +177,21 @@ Un bouton matériau pour les têtes.
         </div>
     </aside>
 
-    <div class="displayRobot">
+    <main>
+        <div class="displayRobot" id="displayRobot">
 
-        <div class="headContainer" id="headContainer">
+            <div class="headContainer" id="headContainer">
+
+            </div>
+
+            <div class="bodyContainer" id="bodyContainer">
+
+            </div>
 
         </div>
 
-        <div class="bodyContainer" id="bodyContainer">
-
-        </div>
-
-        <button type="submit" class="submit-robot" id="submit-robot-" name="submit-robot">Submit</button>
-    </div>
+        <button type="submit" class="screenshot" id="screenshot" name="submit-robot">Screen</button>
+    </main>
 
     <footer>
         <!-- <?php require_once("layouts/footer.php") ?> -->
