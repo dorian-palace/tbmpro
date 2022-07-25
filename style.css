@@ -387,11 +387,24 @@ aside{
   border: 1px solid #149ad7;
 }
 
-.cat-robot{
-    padding-top: 60px;
-}
+
 .first img{
     height: 160px;
+}
+
+.first .btn-input{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
 }
 
 #container-filter-robots img{
@@ -417,10 +430,11 @@ aside{
     align-items: center;
     align-content: stretch;
     height: 90vh;
+    justify-content: space-around;
 }
 
 /** 
- * ADMIN 
+ * ADMIN et ADMIN PRODUITS
  ========================================================================= */
 
 /* .body-robot{
@@ -428,12 +442,12 @@ aside{
     height: 70vh;
 } */
 
-.new-robot-section{
-    font-family: "Avenir-Book";
-    /* background: rgba(17, 31, 50, 0.932);
+.new-robot-section, .color-material{
+    /* font-family: "Avenir-Book";
+    background: rgba(17, 31, 50, 0.932); 
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6); */
-    /* border-radius: 10px; */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6); 
+    border-radius: 10px; */
     /* width: 50%; */
     padding: 40px;
     color: var(--main-gold);
@@ -442,19 +456,83 @@ aside{
     justify-content: space-evenly; */
 
 }
+.color-material input{
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+.color-material button{
+    color: var(--main-blue);
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.color-material .btn-input {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}
+
+.color-material select{
+    padding-left: 14px;
+    background: transparent;
+    color: var(--main-blue);
+    outline: none;
+    border: none;
+}
 
 .miniature{
     /* max-width: 9em;
     max-height: 9em; */
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--main-gold);
+    margin-bottom: 30px;
+    border: none;
+    /* border-bottom: 1px solid var(--main-gold); */
+    outline: none;
+    background: transparent;
     display: flex;
     flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: baseline;
-	align-content: flex-start;
+    align-content: flex-start;
 }
 
+.container-delete-body input{
+    /* width: 100%; */
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--main-gold);
+    margin-bottom: 30px;
+    border: none;
+    /* border-bottom: 1px solid var(--main-gold); */
+    outline: none;
+    background: transparent;
+}
+
+
 .new-robot-section input{
+    color: var(--main-gold);
     width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -481,8 +559,8 @@ aside{
     border: none;
 }
 
-.new-robot-section .btn {
-    /* position: relative;
+/* .new-robot-section .btn {
+    position: relative;
     display: inline-block;
     padding: 10px 20px;
    
@@ -493,8 +571,8 @@ aside{
     overflow: hidden;
     transition: 0.5s;
     margin-top: 40px;
-    letter-spacing: 4px; */
-}
+    letter-spacing: 4px;
+} */
 
 .first{
     border-bottom: 4px dotted #149ad7;
@@ -502,14 +580,16 @@ aside{
     /* width: 100%!important; */
 }
 
-.new-robot-section .btn:hover{
+
+
+/* .new-robot-section .btn:hover{ */
     /* background: var(--main-blue);
     color: var(--main-dark-blue);
     border-radius: 5px;
     border: none;
     box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
       0 0 100px var(--main-blue); */
-}
+/* } */
 
 .display-robot{
     display: flex;
@@ -582,4 +662,116 @@ aside{
 
 .display-robot-head{
     height: 30px !important;
+}
+
+
+.main-admin-article input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+/** 
+ * ADMIN ARTICLE
+ ========================================================================= */
+ 
+ .modal-admin{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start !important;
+    align-items: center;
+    align-content: stretch;
+    height: 90vh;
+    justify-content: space-around;
+ }
+
+ .modal-admin input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent
+ }
+
+.modal-admin button{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    /* background: transparent */
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}
+
+.modal-admin .user-box #file-upload-button{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    /* background: transparent */
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}
+
+.main-admin-article{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form_box th{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 40px;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+}
+
+
+.form_box tr:nth-child(even){
+    color: var(--main-blue);
+    
+}
+
+.form_box tr:nth-child(odd){
+    color: var(--main-gold);
+}
+
+.modal-admin .form_box{
+    overflow:scroll;
+    flex-grow: 1;
+    max-height: 100vh;
+}
+.update-article{
+   
+    margin-top:25px;
 }

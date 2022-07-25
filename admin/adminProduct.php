@@ -59,8 +59,8 @@ $total = ceil($nbStart / $limit);
     <header>
         <nav class="topnav robot-nav" id="myTopnav">
             <ul class="link-to myLinks">
-                <a href=" " class="active">Accueil admin</a>
-                <a href="" class="link">Robot</a>
+                <a href=" ../admin.php" class="active">Accueil admin</a>
+                <a href="#main-robot" class="link">Robot</a>
                 <!-- <a href="#form-new-cat" class="link">Categories</a> -->
                 <a href="#form-new-materials" class="link">Matières</a>
                 <a href="#form-new-color" class="link">Couleurs</a>
@@ -107,18 +107,23 @@ $total = ceil($nbStart / $limit);
                     <?php endforeach; ?>
                 </div>
 
-                <div class="mb-3">
-                    <select name="categorieNewRobot" id="categorieNewRobot">
-                        <?php foreach ($getCategories as $cat): ?>
-                            <option value="<?= $cat['id']; ?>">
-                                <?= $cat['name']; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                
+                    <button type="submit" value="submit-robot" class="btn btn-input btn-primary btn-action" name="submit-robot" id="submit-robot">Créer</button>
                 </div>
-                    <button type="submit" value="submit-robot" class="btn btn-primary btn-action" name="submit-robot" id="submit-robot">submit</button>
+
+                <div class="mb-3">
+                        <select name="categorieNewRobot" id="categorieNewRobot">
+                            <?php foreach ($getCategories as $cat) : ?>
+                                <option value="<?= $cat['id']; ?>">
+                                    <?= $cat['name']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </div>
+                    <button type="submit" value="submit-robot" class="btn btn-primary" name="submit-robot" id="submit-robot"> submit</button>
                 </div>
             </article>
+
             <!---LAYER ROBOT--->
             <article>
                  <form action="" class="form-new-head" method="post" enctype="multipart/form-data">
@@ -148,7 +153,7 @@ $total = ceil($nbStart / $limit);
                         <label for="">Ajout corps</label>
                         <input type="file" class = "btn-input" name="image-body-robot">
 
-                        <select name="body-color" id="">
+                        <select name="body-color" class="select-list">
                             <?php foreach ($color as $colors) : ?>
                                 <option value="<?= $colors['id']; ?>">
                                     <?= $colors['name']; ?>
@@ -156,7 +161,7 @@ $total = ceil($nbStart / $limit);
                             <?php endforeach; ?>
                         </select>
 
-                        <select name="body-material" id="">
+                        <select name="body-material" class="select-list">
                             <?php foreach ($material as $mat) : ?>
                                 <option value="<?= $mat['id']; ?>">
                                     <?= $mat['type']; ?>
@@ -207,7 +212,7 @@ $total = ceil($nbStart / $limit);
                 <div class="form-group">
                     <label for="">New Materials</label>
                     <input type="text" name="new-material" placeholder="new material">
-                    <input type="submit" name="submit_material" class="btn btn-primary" value="Add">
+                    <input type="submit" name="submit_material" class="btn-input btn-primary" value="Add">
                 </div>
             </form>
 
@@ -218,28 +223,28 @@ $total = ceil($nbStart / $limit);
                         <option value="<?= $materials['id']; ?>"><?= $materials['type']; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <button type="submit" id="delete-mat" name="mat_delete" class="btn btn-danger">Delete</button>
+                <button type="submit" id="delete-mat" name="mat_delete" class="btn-input btn-danger">Delete</button>
             </div>
 
             <!--COLOR-->
-            <label for="">New Color</label>
+            <label for="">Nouvelle couleur</label>
             <form action="" method="post" id="form-new-color" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" name="new-color" placeholder="new color">
-                    <input type="submit" name="submit_color" class="btn btn-primary" value="Add">
+                    <input type="submit" name="submit_color" class="btn-input btn-primary" value="Add">
                 </div>
             </form>
 
         
             <div class="form-group">
-                <label for="">Delete color</label>
+                <label for="">Supprimer une couleur</label>
                 <select name="select_delete" id="select-delete" class="form-select">
                     <?php foreach ($color as $colors) : ?>
                         <option value="<?= $colors['id']; ?>"><?= $colors['name']; ?></option>
                     <?php endforeach; ?>
                 </select>
 
-                <button type="submit" id="button-delete" class="btn btn-danger" name="button_delete">Delete</button>
+                <button type="submit" id="button-delete" class="btn-input btn-danger" name="button_delete">Delete</button>
             </div>
         </section>  
     </aside>
