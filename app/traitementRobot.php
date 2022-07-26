@@ -20,3 +20,4 @@ if (isset($_POST['select_mat'])) {
     $dataMat = ['materialHeadRobots' => $materialHeadRobots, 'materialBodyRobots' => $materialBodyRobots];
     echo json_encode($dataMat);
 }
+

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // const ClearBodyContainer = document.getElementById("bodyComponent");
 
                 const idButton = buttonHeadColorClass[i].id;
-                console.log(idButton);
+                // console.log(idButton);
                 const params = idButton.substring(13);
                 // console.log(params)
                 const data = new FormData();
@@ -317,5 +317,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // myFunction();
 
-    
+    validateRobot = function () {
+
+        const submitRobot = document.getElementById('screenshot');
+        submitRobot.addEventListener("click", function () {
+
+            // console.log(submitRobot)
+            const headContainer = document.getElementsByClassName('headContainer');
+            const bodyContainer = document.getElementById('bodyContainer');
+            // console.log(headContainer[0].children[0].children[0].children[0])
+            const head_data = headContainer[0].children[0].children[0].children[0];
+            const body_data = bodyContainer.children[0].children[0].children[0];
+            // console.log(body_data)
+            // console.log(head_id.getAttribute('value'))
+            const head_id = head_data.getAttribute('value');
+            const body_id = body_data.getAttribute('value');
+            // console.log(body_id)
+            // const robot_name = document.getElementById('name-robot')
+            const robot_name = document.getElementsByClassName('name-robot')
+            const robot_name_value = robot_name[0].value
+            console.log(robot_name_value)
+
+
+            // console.log(head_id)
+            const data = new FormData;
+            data.append("head_id", head_id);
+            data.append("body_id", body_id);
+            data.append("robot_name_value", robot_name_value)
+            // console.log(data)
+            fetch('app/traitementCreation.php', {
+                    method: 'POST',
+                    body: data
+                })
+                .then(response => response.text())
+                .then(body => {
+                    // console.log(body)
+                    const data = JSON.stringify(body);
+                    // console.log(data)
+                    // const result = data.result;
+                    // console.log(result)
+                    // if (result == 'ok') {
+                    //     console.log('ok c\'est cool')
+                    //     // window.location.href = "index.php";
+                    // } else {
+                    //     alert('Erreur')
+                    // }
+                })
+        })
+    }
+
+    validateRobot();
 })

@@ -16,13 +16,13 @@ class AdminRobot extends Database
         parent::__construct();
     }
 
-    public function newRobots($name, $idHead, $idBody, $idCategorie, $idUser)
+    public function newRobots($name, $idHead, $idBody, $idUser)
     {
 
-        $sql = "INSERT INTO robots (name_robot, id_image_head, id_image_body, id_categorie, id_user) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO robots (name_robot, id_image_head, id_image_body, id_user) VALUES (?,?,?,?)";
         $request = $this->pdo->prepare($sql);
         $request->execute([
-            $name, $idHead, $idBody, $idCategorie, $idUser
+            $name, $idHead, $idBody, $idUser
         ]);
         return $request;
     }

@@ -189,7 +189,7 @@ Un bouton matériau pour les têtes.
             </div>
 
         </div>
-
+        <input type="text" name="name" placeholder="name" id="name-robot" class="name-robot">
         <button type="submit" class="screenshot" id="screenshot" name="submit-robot">Screen</button>
     </main>
 
