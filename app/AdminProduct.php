@@ -22,7 +22,7 @@ class AdminRobot extends Database
         $sql = "INSERT INTO robots (name_robot, id_image_head, id_image_body, id_user) VALUES (?,?,?,?)";
         $request = $this->pdo->prepare($sql);
         $request->execute([
-            $name, $idHead, $idBody,  $idUser
+            $name, $idHead, $idBody, $idUser
         ]);
         return $request;
     }

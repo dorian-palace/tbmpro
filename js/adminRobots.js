@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             image = images + '<img id="box-robots-filter" src="../assets/' + resultBodyColor[y].body_name + '">';
 
-                            
+
                             // console.table(image)
 
                             const container = document.getElementById("container");
@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteData.append("delete-color", valueSelect);
         console.log(deleteData)
 
-        fetch('adminRouteurJs.php', {
+        fetch('adminRouteurJs.php', { 
                 method: 'POST',
                 body: deleteData
             })
