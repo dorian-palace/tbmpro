@@ -4,7 +4,7 @@ require_once('../app/AdminProduct.php');
 if ($_SESSION['id_role'] == 1) {
     header('Location: ../index.php');
 }
-
+// var_dump($_SESSION);
 $robot = new AdminRobot();
 $robot->newColor();
 $robot->getColor();
@@ -13,8 +13,8 @@ $color = $robot->getColor();
 $robot->newMaterials();
 $material = $robot->getMaterials();
 
-$robot->newCategories();
-$getCategories = $robot->getCategories();
+// $robot->newCategories();
+// $getCategories = $robot->getCategories();
 
 $productImage = $robot->getImages();
 
@@ -112,13 +112,13 @@ $total = ceil($nbStart / $limit);
                 </div>
 
                 <div class="mb-3">
-                        <select name="categorieNewRobot" id="categorieNewRobot">
+                        <!-- <select name="categorieNewRobot" id="categorieNewRobot">
                             <?php foreach ($getCategories as $cat) : ?>
                                 <option value="<?= $cat['id']; ?>">
                                     <?= $cat['name']; ?>
                                 </option>
                             <?php endforeach; ?>
-                        </select>
+                        </select> -->
                         </div>
                     <button type="submit" value="submit-robot" class="btn btn-primary" name="submit-robot" id="submit-robot"> submit</button>
                 </div>
@@ -250,10 +250,10 @@ $total = ceil($nbStart / $limit);
     </aside>
     
     <article class="flex-central">
-        <section class="visu-robot">
+        <!-- <section class="visu-robot">
 
-        </section>
-        <section class="bottom-robot">
+        </section> -->
+        <!-- <section class="bottom-robot"> -->
         
                     <div class="block-central">
                         <?php foreach ($allRobots as $nbRobots) : ?>
@@ -280,7 +280,7 @@ $total = ceil($nbStart / $limit);
                     <?php
                 endforeach; ?>
             </div>
-        </section>
+        <!-- </section> -->
     </article>
 
 </article>
