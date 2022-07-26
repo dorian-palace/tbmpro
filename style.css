@@ -871,3 +871,15 @@ aside{
     border: 1px solid #149ad7;
     justify-content: center;
 }
+/** 
+ * GALERIE
+ ========================================================================= */
+.gallery{
+    display : flex;
+    flex-direction: row;
+}
+
+ div.gallery img {
+    /* width: 20%; */
+    /* height: auto; */
+  }

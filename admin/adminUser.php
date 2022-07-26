@@ -11,7 +11,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
     $delete = (int)$_GET['delete'];
     $userAdmin->deleteUser($delete);
-}
+};
 
 // if (isset($_GET['page']) && !empty($_GET['page'])) {
 //     $page = (int) strip_tags($_GET['page']); //strip_tags — Supprime les balises HTML et PHP d'une chaîne
@@ -34,15 +34,15 @@ $nbUsers = $start->fetchColumn();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="../js/adminUser.js"></script>
-    <script type="text/javascript" src="../layouts/scriptNav.js"></script>
+    <!-- <script src="../js/adminUser.js"></script> -->
+    <!-- <script type="text/javascript" src="../layouts/scriptNav.js"></script> -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="../assets/img/favIcon.ico">
     <!-- CSS only -->
     <!-- <script src="../js/adminRobots.js"></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
     <title>Admin-user</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
@@ -89,7 +89,7 @@ $nbUsers = $start->fetchColumn();
             <button type="submit" id="submit-update-user" value="<?= $singleUser['id']; ?>" name="submitUser">Update User</button>
             <a class="a_admin" href="adminUser.php?delete=<?= $singleUser['id']; ?>">Delete User</a>
         <!-- </form> -->
-    <?php }
+    <?php 
     ?>
                 <?php foreach ($users as $user) :
 
