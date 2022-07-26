@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < buttonColorClass.length; i++) {
 
         buttonColorClass[i].addEventListener("click", function () {
+            console.log(buttonColorClass[i])
             //function qui trie les têtes des robots en fonction de la couleur selectionner
 
             const oldContainer = document.getElementById("container");
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const idButton = buttonColorClass[i].id;
             const params = idButton.substring(13);
+            // console.log(params)
             const data = new FormData();
             data.append("select_color", params);
 
@@ -37,9 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     for (y = 0; y < resultColor.length; ++y) {
 
-                        for (let index = 0; index < resultBodyColor.length; ++index) {
+                        for (let index = 0; index < resultColor.length; ++index) {
+                            console.log(resultColor[y].head_name)
 
-                            const element = resultBodyColor[index].head_name;
+                            // const element = resultBodyColor[index].head_name;
 
                             image = images + '<img id="box-robots-filter" src="../assets/' + resultColor[y].head_name + '">';
                             // console.table(image)
@@ -132,120 +135,120 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // const buttonMaterialClass = document.getElementsByClassName("filter-mat")
+    const buttonMaterialClass = document.getElementsByClassName("filter-mat")
 
-    // for (let x = 0; x < buttonMaterialClass.length; x++) {
+    for (let x = 0; x < buttonMaterialClass.length; x++) {
 
-    //     buttonMaterialClass[x].addEventListener("click", function () {
-    //         /**
-    //          * function qui trie les robots en fonction de la matière de leurs corps
-    //          */
+        buttonMaterialClass[x].addEventListener("click", function () {
+            /**
+             * function qui trie les robots en fonction de la matière de leurs corps
+             */
 
-    //         const oldContainer = document.getElementById("container");
+            const oldContainer = document.getElementById("container");
 
-    //         if (oldContainer != null) {
+            if (oldContainer != null) {
 
-    //             $(oldContainer).empty();
-    //         }
+                $(oldContainer).empty();
+            }
 
-    //         const idButtonMat = buttonMaterialClass[x].id
-    //         const paramsMat = idButtonMat.substring(11);
+            const idButtonMat = buttonMaterialClass[x].id
+            const paramsMat = idButtonMat.substring(11);
 
-    //         const dataMat = new FormData();
-    //         dataMat.append("select_mat", paramsMat);
+            const dataMat = new FormData();
+            dataMat.append("select_mat", paramsMat);
 
-    //         fetch('adminRouteurJs.php', {
-    //                 method: 'POST',
-    //                 body: dataMat
-    //             })
-    //             .then(response => response.text())
-    //             .then(data => {
+            fetch('adminRouteurJs.php', {
+                    method: 'POST',
+                    body: dataMat
+                })
+                .then(response => response.text())
+                .then(data => {
 
-    //                 const mydata = JSON.parse(data);
-    //                 // console.log(mydata)
-    //                 const resDAta = mydata.materialHeadRobots;
-    //                 // console.log(resDAta)
-    //                 let images = '';
+                    const mydata = JSON.parse(data);
+                    // console.log(mydata)
+                    const resDAta = mydata.materialHeadRobots;
+                    // console.log(resDAta)
+                    let images = '';
 
-    //                 for (y = 0; y < resDAta.length; ++y) {
+                    for (y = 0; y < resDAta.length; ++y) {
 
-    //                     image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].head_name + '">';
+                        image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].head_name + '">';
 
-    //                     const container = document.getElementById("container");
-    //                     const newLabel = document.createElement("label");
-    //                     newLabel.setAttribute("for", 'checkbox');
-    //                     newLabel.setAttribute("id", 'thatlabel')
-    //                     newLabel.innerHTML = image;
+                        const container = document.getElementById("container");
+                        const newLabel = document.createElement("label");
+                        newLabel.setAttribute("for", 'checkbox');
+                        newLabel.setAttribute("id", 'thatlabel')
+                        newLabel.innerHTML = image;
 
-    //                     const newRadio = document.createElement("input");
-    //                     newRadio.setAttribute("type", 'radio');
-    //                     newRadio.setAttribute("id", 'radio-head');
-    //                     newRadio.setAttribute("name", 'radio-head');
-    //                     newRadio.setAttribute("aria-labelledby", 'thatlabel')
-    //                     newRadio.setAttribute("value", resDAta[y].head_id);
+                        const newRadio = document.createElement("input");
+                        newRadio.setAttribute("type", 'radio');
+                        newRadio.setAttribute("id", 'radio-head');
+                        newRadio.setAttribute("name", 'radio-head');
+                        newRadio.setAttribute("aria-labelledby", 'thatlabel')
+                        newRadio.setAttribute("value", resDAta[y].head_id);
 
-    //                     newLabel.appendChild(newRadio)
-    //                     container.appendChild(newLabel);
-    //                 }
-    //             });
-    //     });
-    // }
+                        newLabel.appendChild(newRadio)
+                        container.appendChild(newLabel);
+                    }
+                });
+        });
+    }
 
-    // for (let x = 0; x < buttonMaterialClass.length; x++) {
+    for (let x = 0; x < buttonMaterialClass.length; x++) {
 
-    //     buttonMaterialClass[x].addEventListener("click", function () {
-    //         /**
-    //          * function qui trie les robots en fonction de la matière de leurs tête
-    //          */
-    //         const oldContainer = document.getElementById("container");
+        buttonMaterialClass[x].addEventListener("click", function () {
+            /**
+             * function qui trie les robots en fonction de la matière de leurs tête
+             */
+            const oldContainer = document.getElementById("container");
 
-    //         if (oldContainer != null) {
+            if (oldContainer != null) {
 
-    //             $(oldContainer).empty();
-    //         }
+                $(oldContainer).empty();
+            }
 
-    //         const idButtonMat = buttonMaterialClass[x].id
-    //         const paramsMat = idButtonMat.substring(11);
+            const idButtonMat = buttonMaterialClass[x].id
+            const paramsMat = idButtonMat.substring(11);
 
-    //         const dataMat = new FormData();
-    //         dataMat.append("select_mat", paramsMat);
+            const dataMat = new FormData();
+            dataMat.append("select_mat", paramsMat);
 
-    //         fetch('adminRouteurJs.php', {
-    //                 method: 'POST',
-    //                 body: dataMat
-    //             })
-    //             .then(response => response.text())
-    //             .then(data => {
+            fetch('adminRouteurJs.php', {
+                    method: 'POST',
+                    body: dataMat
+                })
+                .then(response => response.text())
+                .then(data => {
 
-    //                 const mydata = JSON.parse(data);
-    //                 // console.log(mydata)
-    //                 const resDAta = mydata.materialBodyRobots;
+                    const mydata = JSON.parse(data);
+                    // console.log(mydata)
+                    const resDAta = mydata.materialBodyRobots;
 
-    //                 let images = '';
+                    let images = '';
 
-    //                 for (y = 0; y < resDAta.length; ++y) {
+                    for (y = 0; y < resDAta.length; ++y) {
 
-    //                     image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].body_name + '">';
+                        image = images + '<img id="box-robots-filter" src="../assets/' + resDAta[y].body_name + '">';
 
-    //                     const container = document.getElementById("container");
-    //                     const newLabel = document.createElement("label");
-    //                     newLabel.setAttribute("for", 'radio');
-    //                     newLabel.setAttribute("id", 'thatlabel')
-    //                     newLabel.innerHTML = image;
+                        const container = document.getElementById("container");
+                        const newLabel = document.createElement("label");
+                        newLabel.setAttribute("for", 'radio');
+                        newLabel.setAttribute("id", 'thatlabel')
+                        newLabel.innerHTML = image;
 
-    //                     const newRadio = document.createElement("input");
-    //                     newRadio.setAttribute("type", 'radio');
-    //                     newRadio.setAttribute("id", 'radio-body');
-    //                     newRadio.setAttribute("name", 'radio-body');
-    //                     newRadio.setAttribute("aria-labelledby", 'thatlabel')
-    //                     newRadio.setAttribute("value", resDAta[y].body_id);
+                        const newRadio = document.createElement("input");
+                        newRadio.setAttribute("type", 'radio');
+                        newRadio.setAttribute("id", 'radio-body');
+                        newRadio.setAttribute("name", 'radio-body');
+                        newRadio.setAttribute("aria-labelledby", 'thatlabel')
+                        newRadio.setAttribute("value", resDAta[y].body_id);
 
-    //                     newLabel.appendChild(newRadio)
-    //                     container.appendChild(newLabel);
-    //                 }
-    //             });
-    //     });
-    // }
+                        newLabel.appendChild(newRadio)
+                        container.appendChild(newLabel);
+                    }
+                });
+        });
+    }
 
     const deleteRobot = document.getElementsByName("delete-robot");
 
@@ -295,31 +298,31 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    const submitdDeleteCategory = document.getElementById("delete-category");
+    // const submitdDeleteCategory = document.getElementById("delete-category");
 
-    submitdDeleteCategory.addEventListener("click", function () {
+    // submitdDeleteCategory.addEventListener("click", function () {
 
-        const catToDelete = document.getElementById("select-category-delete")
-        console.log(catToDelete)
+    //     const catToDelete = document.getElementById("select-category-delete")
+    //     console.log(catToDelete)
 
-        const valueSelect = catToDelete.options[catToDelete.selectedIndex].value;
-        console.log(valueSelect)
+    //     const valueSelect = catToDelete.options[catToDelete.selectedIndex].value;
+    //     console.log(valueSelect)
 
-        const deleteData = new FormData();
-        deleteData.append("delete-category", valueSelect);
-        console.log(deleteData)
+    //     const deleteData = new FormData();
+    //     deleteData.append("delete-category", valueSelect);
+    //     console.log(deleteData)
 
-        fetch('adminRouteurJs.php', {
-                method: 'POST',
-                body: deleteData
-            })
-            .then(response => response.text())
+    //     fetch('adminRouteurJs.php', {
+    //             method: 'POST',
+    //             body: deleteData
+    //         })
+    //         .then(response => response.text())
 
-            .then(data => {
-                // console.log(data)
-                window.location.reload();
-            })
-    })
+    //         .then(data => {
+    //             // console.log(data)
+    //             window.location.reload();
+    //         })
+    // })
 
     const submitdDeleteColor = document.getElementById("button-delete");
 
@@ -458,10 +461,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(headId)
         console.log(bodyId)
 
-        const getCategories = document.getElementById("categorieNewRobot");
+        // const getCategories = document.getElementById("categorieNewRobot");
         const nameRobot = document.getElementById("name-robot");
         const dataCategorie = new FormData();
-        dataCategorie.append("categorie-robot", getCategories.value);
+        // dataCategorie.append("categorie-robot", getCategories.value);
         dataCategorie.append("submit-robot", submitRobot.value);
         dataCategorie.append("name-robot", nameRobot.value);
         dataCategorie.append("head-robot", headId);
@@ -474,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.text())
             .then(body => {
                 // console.log(body)
-                console.log(dataCategorie)
+                // console.log(dataCategorie)
                 window.location.reload();
             })
 
