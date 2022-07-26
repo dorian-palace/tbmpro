@@ -1,7 +1,7 @@
 <?php
 // require_once('setting/data.php');
 // require_once('./setting/db.php');
-require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
+require_once('C:\wamp64\www\tbmpro\setting\db.php');
 // var_dump(__DIR__);
 
 class Robots extends Database

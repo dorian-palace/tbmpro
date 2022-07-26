@@ -1,10 +1,12 @@
 <?php
 // var_dump(__DIR__);
-require_once('/Applications/MAMP/htdocs/tbmpro/setting/db.php');
+require_once('C:\wamp64\www\tbmpro\setting\db.php');
 // /Applications/MAMP/htdocs/tbmpro/setting/db.php
-require_once('/Applications/MAMP/htdocs/tbmpro/setting/data.php');
+require_once('C:\wamp64\www\tbmpro\setting\data.php');
 // require_once('../setting/db.php');
 // require_once('../setting/data.php');
+
+
 class User extends Database
 {
     private $login;

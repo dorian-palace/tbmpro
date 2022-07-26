@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             for (y = 0; y < resultColor.length; ++y) {
 
-                                imageHead = images + '<img id="box-color-head" src="assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '">';
+                                imageHead = images + '<img id="box-color-head" src="C:/wamp64/www/tbmpro/assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '">';
 
                                 const containerHead = document.getElementById("headComponent");
                                 const newLabelHead = document.createElement("label");
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             for (let x = 0; x < resultBodyColor.length; ++x) {
                                 // console.log(resultBodyColor[x])
 
-                                imageBody = imagesForBody + '<img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
+                                imageBody = imagesForBody + '<img id="box-color-body" src="C:/wamp64/www/tbmpro/assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
 
                                 const containerBody = document.getElementById("bodyComponent");
                                 const newLabelBody = document.createElement("label");
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (y = 0; y < resultMaterialHead.length; ++y) {
 
-                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '">';
+                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="C:/wamp64/www/tbmpro/assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '">';
 
                             const container = document.getElementById("headContainer");
                             const newLabel = document.createElement("label");
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (y = 0; y < resultMaterialBody.length; ++y) {
 
-                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '">';
+                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="C:/wamp64/www/tbmpro/assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '">';
 
                             const container = document.getElementById("headContainer");
                             const newLabel = document.createElement("label");

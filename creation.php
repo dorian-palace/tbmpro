@@ -1,7 +1,8 @@
 <?php
-require_once('setting/data.php');
-require_once('app/User.php');
-require_once('app/Robots.php');
+require_once('C:\wamp64\www\tbmpro\setting\db.php');
+require_once('C:\wamp64\www\tbmpro\setting\data.php');
+require_once('C:\wamp64\www\tbmpro\app\User.php');
+require_once('C:\wamp64\www\tbmpro\app\Robots.php');
 
 $robot = new Robots();
 

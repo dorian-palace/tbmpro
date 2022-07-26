@@ -16,7 +16,6 @@ if (isset($_POST['mail_singUp']) && !empty ($_POST['mail_singUp'])) {
         $user = new User();
         $user->confirmSignUp($login, $password, $name, $surname, $mail);
 
-
     }
 
 
@@ -48,21 +47,6 @@ if (isset($_POST['lol'])){
         <?php require_once("layouts/navbar.php")?>
     </header>
     <main>
-<<<<<<< HEAD
-        <div class="form_singUp">
-            <form action="" method="post">
-                <input type="text" placeholder="name" name="name_signUp">
-                <input type="text" placeholder="surname" name="surname_signUp">
-                <input type="email" placeholder="mail" name="mail_singUp">
-                <input type="text" placeholder="login" name="login_singUp">
-                <input type="password" placeholder="password" name="password_singUp">
-                <input type="password" placeholder="paswword" name="confirm_password_singUp">
-
-                <button class="button" type="submit" id = "buttonregister" name = "lol">
-                <img src="assets/img/suivantrobot.png" alt="Bouton suivant technology based magic" id ="nextimg">
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>		
-=======
     <div class="modal">
         <div class="form_box">
         <h1>Inscription</h1>
@@ -92,7 +76,6 @@ if (isset($_POST['lol'])){
                 <label>Confirmer</label>
                 </div>
                 <input class= "btn_submit" type="submit" name="submit_signUp">
->>>>>>> f52947ac5c239320fee1c7eb4750930743aef0a2
             </form>
         </div>
     </div>
