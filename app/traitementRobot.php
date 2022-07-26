@@ -3,13 +3,6 @@ require_once('Robots.php');
 $robot = new Robots();
 require_once('../setting/data.php');
 
-
-// if (isset($_POST['select_color'])) {
-
-//     var_dump($_POST['select_color']);
-//     echo "azeazeazea";
-// }
-
 if (isset($_POST['select_color'])) {
 
     $idColor = secuData($_POST['select_color']);
@@ -27,3 +20,4 @@ if (isset($_POST['select_mat'])) {
     $dataMat = ['materialHeadRobots' => $materialHeadRobots, 'materialBodyRobots' => $materialBodyRobots];
     echo json_encode($dataMat);
 }
+

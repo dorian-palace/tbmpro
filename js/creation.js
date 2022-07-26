@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
             buttonHeadColorClass[i].addEventListener("click", function () {
                 //récupère les têtes en fonction de leurs couleurs
 
-                const ClearBodyContainer = document.getElementById("bodyComponent");
+                // const ClearBodyContainer = document.getElementById("bodyComponent");
 
                 const idButton = buttonHeadColorClass[i].id;
-                console.log(idButton);
+                // console.log(idButton);
                 const params = idButton.substring(13);
                 // console.log(params)
                 const data = new FormData();
@@ -36,16 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             for (y = 0; y < resultColor.length; ++y) {
 
-                                imageHead = images + '<img id="box-color-head" src="C:/wamp64/www/tbmpro/assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '">';
+                                imageHead = images + '<div onclick="mooveHead(' + resultColor[y].head_id + ')" id="headMaterialContainer" class="headMaterialContainer""><img id="box-color-head" src="assets/' + resultColor[y].head_name + '" value="' + resultColor[y].head_id + '"></div>';
 
                                 const containerHead = document.getElementById("headComponent");
-                                const newLabelHead = document.createElement("label");
-                                newLabelHead.setAttribute("id", 'thatlabel')
-                                newLabelHead.setAttribute("for", 'checkbox');
-                                newLabelHead.innerHTML = imageHead;
+                                const newContainer = document.createElement("button");
 
-                                containerHead.appendChild(newLabelHead);
+                                newContainer.innerHTML = imageHead;
+                                // container.appendChild(newContainer);
 
+
+                                containerHead.appendChild(newContainer);
                             }
 
                         } catch (error) {
@@ -92,17 +92,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             for (let x = 0; x < resultBodyColor.length; ++x) {
                                 // console.log(resultBodyColor[x])
 
-                                imageBody = imagesForBody + '<img id="box-color-body" src="C:/wamp64/www/tbmpro/assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '">';
+                                imageBody = imagesForBody + '<div onclick="mooveBody(' + resultBodyColor[x].body_id + ')" id="headMaterialContainer" class="headMaterialContainer""><img id="box-color-body" src="assets/' + resultBodyColor[x].body_name + '"value="' + resultBodyColor[x].body_id + '"></div>';
+
+                                // imageBody = images + '<div onclick="mooveHead(' + resultMaterialHead[y].head_id + ')" id="headMaterialContainer" class="headMaterialContainer""> <img class="box-head-filter" id="box-head-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '"></div>';
+
 
                                 const containerBody = document.getElementById("bodyComponent");
-                                const newLabelBody = document.createElement("label");
-                                newLabelBody.setAttribute("class", "container-body");
-                                newLabelBody.setAttribute("id", "container-label-body");
-                                newLabelBody.innerHTML = imageBody;
+                                const newContainer = document.createElement("button");
 
-                                containerBody.appendChild(newLabelBody);
+                                newContainer.innerHTML = imageBody;
+
+                                containerBody.appendChild(newContainer);
                             }
-
                         } catch (error) {
                             console.log('Error parsing JSON:', error, body);
                         }
@@ -142,18 +143,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (y = 0; y < resultMaterialHead.length; ++y) {
 
-                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="C:/wamp64/www/tbmpro/assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '">';
+                            imageBody = images + '<div onclick="mooveHead(' + resultMaterialHead[y].head_id + ')" id="headMaterialContainer" class="headMaterialContainer""> <img class="box-head-filter" id="box-head-filter" class="body-material-component" src="assets/' + resultMaterialHead[y].head_name + '" value="' + resultMaterialHead[y].head_id + '"></div>';
 
-                            const container = document.getElementById("headContainer");
-                            const newLabel = document.createElement("label");
-                            newLabel.setAttribute("for", 'checkbox');
-                            newLabel.setAttribute("id", 'thatlabel')
-                            newLabel.innerHTML = imageBody;
+                            const container = document.getElementById("headComponent");
+                            const newContainer = document.createElement("button");
 
-                            const newContainer = document.createElement("div");
-                            newContainer.setAttribute("class", "container-test");
-                            newContainer.setAttribute("id", "container-test");
-                            newContainer.appendChild(newLabel);
+                            newContainer.innerHTML = imageBody;
                             container.appendChild(newContainer);
 
                         }
@@ -163,9 +158,67 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     GetHeadComponentByMaterial();
 
+
+    // toto = function (e) {
+
+    //     console.log(e)
+    //     // const imageBodyMaterial = document.getElementsByClassName('body-material-component');
+
+    //     // // console.log(imageBodyMaterial)
+    //     // const leftContainer = document.getElementsByClassName("bodyComponent");
+    //     // // console.log(leftContainer[O].children)
+
+    //     // const bodyContainer = document.getElementsByClassName("newdiv");
+    //     // // console.log(leftContainer[0].children[1])
+    //     // // console.log(bodyContainer)
+
+    //     // // var all_img = leftContainer.getElementsByTagName("img");
+    //     // // console.log(all_img)
+
+    //     // for (let i = 0; i < leftContainer[0].children.length; i++) {
+    //     //     // console.log(leftContainer[0].children[i])
+
+
+
+    //     //     // const valueImage = imageBodyMaterial[i].getAttribute('value');
+    //     //     // console.log(valueImage)
+
+    //     //     const mainContainer = document.getElementsByClassName("bodyContainer");
+    //     //     // const body_layer = document.querySelector('#bodyContainer');
+    //     //     // console.log(body_layer)
+
+    //     //     // console.log(mainContainer[0].children.length)
+
+    //     //     console.log(leftContainer[0].children)
+
+    //     //     $(leftContainer[0].children[i]).on('click', function () {
+
+
+    //     //         if (mainContainer[0].children.length == 0) {
+    //     //             $(mainContainer).append(leftContainer[0].children[i]);
+    //     //             i = 0
+    //     //             // console.log('ok')
+    //     //         } else {
+    //     //             $(leftContainer).append(mainContainer[0].children[0]);
+    //     //             console.log(mainContainer[0].children.length)
+    //     //             i = 0
+
+    //     //             $(mainContainer).append(leftContainer[0].children[i]);
+    //     //         }
+
+    //     //     });
+
+    //     // }
+
+    // }
+
+
     const buttonBodyMaterialClass = document.getElementsByClassName("select-material-body")
 
     GetBodyComponentByMaterial = function () {
+
+
+
 
         for (let x = 0; x < buttonBodyMaterialClass.length; x++) {
 
@@ -192,24 +245,126 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         for (y = 0; y < resultMaterialBody.length; ++y) {
 
-                            imageBody = images + '<img id="box-robots-filter" class="body-material-component" src="C:/wamp64/www/tbmpro/assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '">';
+                            imageBody = images + '<div onclick="mooveBody(' + resultMaterialBody[y].body_id + ')" id="bodyMaterialContainer" class="bodyMaterialContainer""> <img id="box-body-filter" class="body-material-component" src="assets/' + resultMaterialBody[y].body_name + '" value="' + resultMaterialBody[y].body_id + '"></div>';
 
-                            const container = document.getElementById("headContainer");
-                            const newLabel = document.createElement("label");
-                            newLabel.setAttribute("for", 'checkbox');
-                            newLabel.setAttribute("id", 'thatlabel')
-                            newLabel.innerHTML = imageBody;
+                            const container = document.getElementById("bodyComponent");
+                            const newContainer = document.createElement("button");
+                            // newLabel.setAttribute("for", 'checkbox');
+                            // newContainer.setAttribute("id", 'newdiv')
+                            // newContainer.setAttribute("class", "newdiv");
+                            newContainer.innerHTML = imageBody;
 
-                            const newContainer = document.createElement("div");
-                            newContainer.setAttribute("class", "container-test");
-                            newContainer.setAttribute("id", "container-test");
-                            newContainer.appendChild(newLabel);
+                            // const newContainer = document.createElement("div");
+                            // newContainer.setAttribute("class", "container-test");
+                            // newContainer.setAttribute("id", "container-test");
+                            // newContainer.innerHTML = imageBody
+                            // newContainer.appendChild(newLabel);
+
+                            // container.innerHTML = imageBody;
                             container.appendChild(newContainer);
 
                         }
+                        // toto();
+
                     });
             });
         }
     }
     GetBodyComponentByMaterial();
+
+
+
+    // for (let index = 0; index < buttonBodyMaterialClass.length; index++) {
+    //     // const element = array[index];
+
+
+    //     buttonBodyMaterialClass[index].addEventListener("click", function () {
+
+
+
+    //     })
+    // }
+
+    // function myFunction() {
+
+
+
+
+    //     for (let index = 0; index < buttonBodyMaterialClass.length; index++) {
+    //         // const element = array[index];
+
+
+    //         buttonBodyMaterialClass[index].addEventListener("click", function () {
+
+    //             const collection = document.getElementById("container-test");
+    //             console.log(collection)
+
+    //             // for (let i = 0; i < collection.length; i++) {
+    //             //     const element = collection[i];
+    //             //     console.log(element.value)
+
+    //             // }
+
+    //             for (let i = 0; i < collection; i++) {
+
+    //                 console.log(collection[i])
+    //                 // collection.item(i).style.fontSize = "24px";
+    //             }
+    //         })
+    //     }
+    // }
+
+
+    // myFunction();
+
+    validateRobot = function () {
+
+        const submitRobot = document.getElementById('screenshot');
+        submitRobot.addEventListener("click", function () {
+
+            // console.log(submitRobot)
+            const headContainer = document.getElementsByClassName('headContainer');
+            const bodyContainer = document.getElementById('bodyContainer');
+            // console.log(headContainer[0].children[0].children[0].children[0])
+            const head_data = headContainer[0].children[0].children[0].children[0];
+            const body_data = bodyContainer.children[0].children[0].children[0];
+            // console.log(body_data)
+            // console.log(head_id.getAttribute('value'))
+            const head_id = head_data.getAttribute('value');
+            const body_id = body_data.getAttribute('value');
+            // console.log(body_id)
+            // const robot_name = document.getElementById('name-robot')
+            const robot_name = document.getElementsByClassName('name-robot')
+            const robot_name_value = robot_name[0].value
+            console.log(robot_name_value)
+
+
+            // console.log(head_id)
+            const data = new FormData;
+            data.append("head_id", head_id);
+            data.append("body_id", body_id);
+            data.append("robot_name_value", robot_name_value)
+            // console.log(data)
+            fetch('app/traitementCreation.php', {
+                    method: 'POST',
+                    body: data
+                })
+                .then(response => response.text())
+                .then(body => {
+                    // console.log(body)
+                    const data = JSON.stringify(body);
+                    // console.log(data)
+                    // const result = data.result;
+                    // console.log(result)
+                    // if (result == 'ok') {
+                    //     console.log('ok c\'est cool')
+                    //     // window.location.href = "index.php";
+                    // } else {
+                    //     alert('Erreur')
+                    // }
+                })
+        })
+    }
+
+    validateRobot();
 })

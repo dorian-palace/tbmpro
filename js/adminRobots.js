@@ -295,31 +295,31 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    const submitdDeleteCategory = document.getElementById("delete-category");
+    // const submitdDeleteCategory = document.getElementById("delete-category");
 
-    submitdDeleteCategory.addEventListener("click", function () {
+    // submitdDeleteCategory.addEventListener("click", function () {
 
-        const catToDelete = document.getElementById("select-category-delete")
-        console.log(catToDelete)
+    //     const catToDelete = document.getElementById("select-category-delete")
+    //     console.log(catToDelete)
 
-        const valueSelect = catToDelete.options[catToDelete.selectedIndex].value;
-        console.log(valueSelect)
+    //     const valueSelect = catToDelete.options[catToDelete.selectedIndex].value;
+    //     console.log(valueSelect)
 
-        const deleteData = new FormData();
-        deleteData.append("delete-category", valueSelect);
-        console.log(deleteData)
+    //     const deleteData = new FormData();
+    //     deleteData.append("delete-category", valueSelect);
+    //     console.log(deleteData)
 
-        fetch('adminRouteurJs.php', {
-                method: 'POST',
-                body: deleteData
-            })
-            .then(response => response.text())
+    //     fetch('adminRouteurJs.php', {
+    //             method: 'POST',
+    //             body: deleteData
+    //         })
+    //         .then(response => response.text())
 
-            .then(data => {
-                // console.log(data)
-                window.location.reload();
-            })
-    })
+    //         .then(data => {
+    //             // console.log(data)
+    //             window.location.reload();
+    //         })
+    // })
 
     const submitdDeleteColor = document.getElementById("button-delete");
 
@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteData.append("delete-color", valueSelect);
         console.log(deleteData)
 
-        fetch('adminRouteurJs.php', {
+        fetch('adminRouteurJs.php', { 
                 method: 'POST',
                 body: deleteData
             })
