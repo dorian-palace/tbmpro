@@ -102,4 +102,21 @@ class Robots extends Database
         $results = $result->fetchAll();
         return $results;
     }
+
+    // méthodes de conversion data #LDB
+
+    public static function LoadHEADS() {
+        $connexion = mysqli_connect("localhost", "root", "", "tbm");
+        $sql = mysqli_query($connexion, "SELECT * FROM head_robots");
+        $heads = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+        file_put_contents('heads.json', json_encode($heads));
+    }
+
+    public static function LoadBODIES() {
+        $connexion = mysqli_connect("localhost", "root", "", "tbm");
+        $sql = mysqli_query($connexion, "SELECT * FROM body_robots");
+        $bodies = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+        file_put_contents('bodies.json', json_encode($bodies));
+    }
+
 }

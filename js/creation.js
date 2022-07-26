@@ -155,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             newContainer.setAttribute("id", "container-test");
                             newContainer.appendChild(newLabel);
                             container.appendChild(newContainer);
-
                         }
                     });
             });

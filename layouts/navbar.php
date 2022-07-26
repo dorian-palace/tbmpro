@@ -30,7 +30,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./index.php" class="active">Accueil</a>
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
-                        <a href="./creation.php" class="link">Module</a>
+                        <a href="./modulerobot.php" class="link">Module</a>
                         <a href="./profil.php" class="link">Profil</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
                     </ul> 
@@ -41,7 +41,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./index.php" class="active">Accueil</a>
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
-                        <a href="./creation.php" class="link">Module</a>
+                        <a href="./modulerobot.php" class="link">Module</a>
                         <a href="./admin.php" class="link">Admin</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
                     </ul>            
@@ -52,7 +52,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./index.php" class="active">Accueil</a>
                         <a href="./galerie.php" class="link">Galerie</a>
                         <a href="./products.php" class="link">Produits</a>
-                        <a href="./creation.php" class="link">Module</a>
+                        <a href="./modulerobot.php" class="link">Module</a>
                         <a href="./admin.php" class="link">Admin</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
                     </ul>            
