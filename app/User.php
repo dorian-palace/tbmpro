@@ -175,9 +175,10 @@ class User extends Database
         }
     }
 
-    public function updateUser(){
+    public function updateUser()
+    {
 
-        if (isset($_POST['submit_new'],$_POST['name_new'],$_POST['surname_new'],$_POST['email_new'],$_POST['login_new'],$_POST['password_new'],$_POST['confirm_password_new'])){
+        if (isset($_POST['submit_new'], $_POST['name_new'], $_POST['surname_new'], $_POST['email_new'], $_POST['login_new'], $_POST['password_new'], $_POST['confirm_password_new'])) {
 
             $name = secuData($_POST['name_new']);
             $surname = secuData($_POST['surname_new']);
@@ -185,7 +186,7 @@ class User extends Database
             $mail = secuData($_POST['mail_new']);
             $newPassword = secuData($_POST['password_new']);
             $idUser = intval($_SESSION["id"]);
-           
+
             $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
             $password = $newPassword;
 
@@ -201,7 +202,5 @@ class User extends Database
                 "id" => $idUser
             ]);
         }
-
-       
     }
 }
