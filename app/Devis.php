@@ -27,4 +27,12 @@ class Devis extends Database
         $user = $query->fetch();
         return $user;
     }
+
+    public function newQuote($id_user, $id_robot)
+    {
+        $sql = "INSERT INTO `quotes` (`id_user`, `id_robot`) VALUES (?, ?)";
+        $query = $this->pdo->prepare($sql);
+        $query->execute([$id_user, $id_robot]);
+        $quote = $query->fetch();
+    }
 }
