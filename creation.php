@@ -178,6 +178,9 @@ Un bouton matériau pour les têtes.
     </aside>
 
     <main>
+        <?php
+        $_SESSION;
+        ?>
         <div class="displayRobot" id="displayRobot">
 
             <div class="headContainer" id="headContainer">
