@@ -143,6 +143,15 @@ color: var(--main-blue);
     0 0 100px var(--main-blue); */
 }
 
+.active{
+    color: var(--main-blue) !important;
+}
+
+.active:hover{
+    color: var(--main-gold) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
 .topnav a.active {
 padding: 14px 14px;
 background-color: var(--main-dark-blue);
@@ -196,13 +205,9 @@ body {
 
 .form_box {
   font-family: "Avenir-Book";
-  
-  /* position: absolute; 
-  top: 50%;
-  left: 50%;  */
+ 
   width: 400px;
   padding: 40px;
-  /* transform: translate(-50%, -50%); */
   background: rgba(17, 31, 50, 0.932);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
@@ -315,10 +320,12 @@ body {
         justify-content: center;
         
     }
-    .footer-distributed i {
+    .footer-distributed i{
         display: none;
     }
-
+    .active {
+        color: var(--main-gold)!important;
+    }
     .footer-center{
         display: flex;
 	    flex-direction: row;
@@ -327,7 +334,6 @@ body {
 	    align-items: center;
 	    align-content: space-between;
     }
-
 
     .footer-left{
         display: none;
@@ -338,6 +344,79 @@ body {
     }
 
 }
+/** 
+ * ASIDE
+ ========================================================================= */
+aside{
+    height: 100vh;
+    max-width: 25%;
+    overflow:scroll;
+    flex-grow: 1;
+    font-family: "Avenir-Book";
+    /* z-index: 1; */
+    /* position:fixed; */
+}
+.form-new-body .btn-input {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+  
+}
+
+.form-new-head .btn-input{
+    position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--main-blue);
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  border: 1px solid #149ad7;
+}
+
+
+.first img{
+    height: 160px;
+}
+
+.first .btn-input{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+}
+
+#container-filter-robots img{
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /** 
  * MODALE
@@ -351,5 +430,444 @@ body {
     align-items: center;
     align-content: stretch;
     height: 90vh;
+    justify-content: space-around;
 }
 
+/** 
+ * ADMIN et ADMIN PRODUITS
+ ========================================================================= */
+
+/* .body-robot{
+    
+    height: 70vh;
+} */
+
+.new-robot-section, .color-material{
+    /* font-family: "Avenir-Book";
+    background: rgba(17, 31, 50, 0.932); 
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6); 
+    border-radius: 10px; */
+    /* width: 50%; */
+    padding: 40px;
+    color: var(--main-gold);
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; */
+
+}
+.color-material input{
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+.color-material button{
+    color: var(--main-blue);
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.color-material .btn-input {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}
+
+.color-material select{
+    padding-left: 14px;
+    background: transparent;
+    color: var(--main-blue);
+    outline: none;
+    border: none;
+}
+
+.miniature{
+    /* max-width: 9em;
+    max-height: 9em; */
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--main-gold);
+    margin-bottom: 30px;
+    border: none;
+    /* border-bottom: 1px solid var(--main-gold); */
+    outline: none;
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: baseline;
+    align-content: flex-start;
+}
+
+.container-delete-body input{
+    /* width: 100%; */
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--main-gold);
+    margin-bottom: 30px;
+    border: none;
+    /* border-bottom: 1px solid var(--main-gold); */
+    outline: none;
+    background: transparent;
+}
+
+
+.new-robot-section input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+.new-robot-section button{
+    color: var(--main-blue);
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.new-robot-section select{
+    padding-left: 14px;
+    background: transparent;
+    color: var(--main-blue);
+    outline: none;
+    border: none;
+}
+
+/* .new-robot-section .btn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+   
+    color: var(--main-gold);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+} */
+
+.first{
+    border-bottom: 4px dotted #149ad7;
+    margin-bottom: 20px;
+    /* width: 100%!important; */
+}
+
+
+
+/* .new-robot-section .btn:hover{ */
+    /* background: var(--main-blue);
+    color: var(--main-dark-blue);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
+      0 0 100px var(--main-blue); */
+/* } */
+
+.display-robot{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 10px;
+   
+   margin: 0;
+   padding: 0;
+    max-width: 150px;
+    /* height: 100px; */
+    
+}
+.visu-robot{
+
+    height: 100%;
+    /* width: 100%; */
+    background-color: antiquewhite;
+}
+.bottom-robot{
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.block-central {
+    background-color: green;
+    width: 100%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: space-around;
+}
+
+.main-robot{
+    display: flex;
+    /* max-height: 80vh; */
+    flex-direction: column;
+    padding-top: 3%;
+    max-height: fit-content;
+}
+
+.flex-central {
+    height: auto;
+    width: 100%;
+    background-color: palevioletred;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    align-content: space-between;
+}
+
+.block-aside-robot{
+    display: flex;
+    flex-direction: row;
+}
+
+.display-robot img{
+    height: 50px;
+}
+
+.display-robot-head{
+    height: 30px !important;
+}
+
+
+.main-admin-article input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+/** 
+ * ADMIN ARTICLE
+ ========================================================================= */
+ 
+ .modal-admin{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start !important;
+    align-items: center;
+    align-content: stretch;
+    height: 90vh;
+    justify-content: space-around;
+ }
+
+ .modal-admin input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent
+ }
+
+.modal-admin button{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    /* background: transparent */
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}
+
+.modal-admin .user-box #file-upload-button{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    /* background: transparent */
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}
+
+.main-admin-article{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form_box th{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 40px;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+}
+
+
+.form_box tr:nth-child(even){
+    color: var(--main-blue);
+    
+}
+
+.form_box tr:nth-child(odd){
+    color: var(--main-gold);
+}
+
+.modal-admin .form_box{
+    overflow:scroll;
+    flex-grow: 1;
+    max-height: 100vh;
+}
+.update-article{
+   
+    margin-top:25px;
+}
+
+/** 
+ * ADMIN USER
+ ========================================================================= */
+
+
+.main-admin-user h2{
+    padding: 20px;
+    color: var(--main-gold);
+}
+
+.table input{
+    color: var(--main-gold);
+    width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-gold);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent
+ }
+
+ .form-update button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    background: transparent;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+ }
+
+
+
+ .form-update button:hover{
+    background: var(--main-blue);
+    color: var(--main-dark-blue);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
+      0 0 100px var(--main-blue);
+ }
+
+ .form-update a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    background: transparent;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+ }
+
+ .form-update a:hover{
+    background: var(--main-blue);
+    color: var(--main-dark-blue);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
+      0 0 100px var(--main-blue);
+ }
+
+ .main-admin-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+ }
+
+.gestionnaire a{
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--main-blue);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    background: transparent;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+}

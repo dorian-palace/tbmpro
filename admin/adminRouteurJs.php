@@ -48,21 +48,20 @@ if (isset($_POST['delete-body'])) {
 }
 
 if (isset($_POST['name-robot'])) {
-    var_dump($_POST['name-robot']);
+    // var_dump($_POST['name-robot']);
 }
 
 if (isset($_POST['submit-robot'])) {
     // var_dump($_POST);
-    if (isset($_POST['name-robot']) && isset($_POST['head-robot']) && isset($_POST['body-robot']) && isset($_POST['categorie-robot'])) {
+    if (isset($_POST['name-robot']) && isset($_POST['head-robot']) && isset($_POST['body-robot'])) {
 
         $name = secuData($_POST['name-robot']);
         $head = secuData($_POST['head-robot']);
         $body = secuData($_POST['body-robot']);
-        $categorie = secuData($_POST['categorie-robot']);
         $idUser = $_SESSION['id'];
 
-        $robot->newRobots($name, $head, $body, $categorie, $idUser);
-        echo json_encode($robot);
+        $insertRobot = $robot->newRobots($name, $head, $body, $idUser);
+        echo json_encode($insertRobot);
     }
 }
 

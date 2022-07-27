@@ -353,12 +353,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(body => {
                     // console.log(body)
                     const data = JSON.stringify(body);
-                    // console.log(data)
-                    // const result = data.result;
-                    // console.log(result)
-                    // if (result == 'ok') {
+                    const result = data.length;
+
+                    console.log(result)
+                    // else {
+                    //     alert('Erreur')
+                    // }
+                    // if (data. == 'ok') {
                     //     console.log('ok c\'est cool')
-                    //     // window.location.href = "index.php";
+                    //     //     // window.location.href = "index.php";
                     // } else {
                     //     alert('Erreur')
                     // }
