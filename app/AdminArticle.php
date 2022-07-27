@@ -26,7 +26,6 @@ class AdminArticle extends Database{
     function getArticleById(int $id){
 
         $sql = "SELECT images.name,articles.text,articles.title,articles.id_image, articles.id AS `article_id` FROM articles INNER JOIN images ON articles.id_image = images.id WHERE articles.id = ?";
-        // $sql = "SELECT CONCAT_WS(' ', id) AS `Article info` FROM articles INNER JOIN images WHERE articles.id_image = images.id ";
 
         $request = $this->pdo->prepare($sql);
         $request->execute([$id]);
@@ -61,7 +60,7 @@ class AdminArticle extends Database{
                 
                 $way = "/Applications/MAMP/htdocs/tbmpro/assets/img/".$namePic.'.'.$extension;
                 //Taille max en bytes acceptée, correspond à 4 mo  
-                $maxSize = 400000;
+                $maxSize = 40000000;
                 
                 if(in_array($extension, $extensionsAllowed)&& $size <= $maxSize && $error == 0){
                     

@@ -32,17 +32,16 @@ $nbUsers = $start->fetchColumn();
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- <script src="../js/adminUser.js"></script> -->
-    <!-- <script type="text/javascript" src="../layouts/scriptNav.js"></script> -->
+    <script type="text/javascript" src="../layouts/scriptNav.js"></script>
+    <script type="text/javascript" src="../js/adminUser.js"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="../assets/img/favIcon.ico">
     <!-- CSS only -->
-    <!-- <script src="../js/adminRobots.js"></script> -->
+    <script src="../js/adminRobots.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <title>Admin-user</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
@@ -77,20 +76,6 @@ $nbUsers = $start->fetchColumn();
                     <th>id_quotes</th>
                 </tr>
 
-        $singleUser = $userAdmin->getSingleUser($_GET['id']);
-        $userAdmin->updateUser($_GET['id']); ?>
-
-        <!-- <form action="" method="post"> -->
-            <input type="text" name="nameUser" value="<?= $singleUser['name']; ?>" placeholder="">
-            <input type="text" name="surnameUser" value="<?= $singleUser['surname']; ?>">
-            <input type="email" name="mailUser" value="<?= $singleUser['mail']; ?>">
-            <input type="text" name="loginUser" value="<?= $singleUser['login']; ?>">
-            <input type="text" name="id_role" value="<?= $singleUser['id_role']; ?>">
-            <button type="submit" id="submit-update-user" value="<?= $singleUser['id']; ?>" name="submitUser">Update User</button>
-            <a class="a_admin" href="adminUser.php?delete=<?= $singleUser['id']; ?>">Delete User</a>
-        <!-- </form> -->
-    <?php 
-    ?>
                 <?php foreach ($users as $user) :
 
                 ?>
@@ -170,8 +155,8 @@ $nbUsers = $start->fetchColumn();
                     <label class="user-box" for="article-title">Role:</label>
                 </div>
                 <div class="user-box">
-                    <button type="submit" value="<?= $singleUser['id']; ?>" name="submitUser">Mettre à jour</button>
-                    <a class="a_admin" href="adminUser.php?delete=<?= $singleUser['id']; ?>">Supprimer le profil</a>
+                    <button type="submit" id ="submit-update-user" value="<?= $singleUser['id']; ?>" name="submitUser">Mettre à jour</button>
+                    <a class="a_admin"  href="adminUser.php?delete=<?= $singleUser['id']; ?>">Supprimer le profil</a>
                 </form>
             <?php }
             ?>
@@ -179,16 +164,6 @@ $nbUsers = $start->fetchColumn();
         </article>
 </main>
 
-
-    <!-- <ul class="pagination" style="align-items:center;">
-        <li class="disabled"><?php if ($page > 1) { ?><a href="?page=<?= $page - 1  ?>"><i class="material-icons">
-                        < </i></a><?php } ?></li>
-
-        <li class="waves-effect"> <?php for ($i = 1; $i <= $total; $i++) {
-                                    ?><a href="?page=<?= $i; ?>"><?= $i; ?></a> <?php } ?></li>
-
-        <li class="disabled"><?php if ($page < $total) { ?><a href="?page=<?= $page + 1; ?>"><i class="material-icons"> > </i></a><?php } ?></li>
-    </ul> -->
 </body>
 
 </html>

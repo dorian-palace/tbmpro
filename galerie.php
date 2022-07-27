@@ -7,9 +7,9 @@ require_once('/Applications/MAMP/htdocs/tbmpro/app/AdminArticle.php');
 
 $allArticle = new AdminArticle();
 $articles = $allArticle->getAllArticles();
-echo '<pre>';
-var_dump($articles);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($articles);
+// echo '</pre>';
 
 ?>
 
@@ -29,21 +29,21 @@ echo '</pre>';
     <header>
         <?php require_once("layouts/navbar.php")?>
     </header>
-    <main class="galerie">
-        <div class="responsive">
-                <?php foreach ($articles as $article) :?>
-                <div class="gallery">
-                    <div class="image-article">
-                        <?php 
-                            echo ('<a target="_blank" href="assets/img/'.$article['name'].'">');
-                            echo ('<img src="assets/img/'.$article['name'].'" height="400" width="200"/>');
-                        ?>
-                    </div>
-                    <div class="desc"><h2><?=$article['title']?></h2></div>
-                </div>
-                <?php
-                endforeach; ?>
-            </div>
+    <main class="main-galerie">
+        <!-- <section class="central-galerie"> -->
+            <!-- <div class="row-article" > -->
+                    <?php foreach ($articles as $article) :?>
+                                <?php 
+                                    // echo ('<a target="_blank" href="assets/img/'.$article['name'].'">');
+                                    echo ('<div class = "img-galerie"><img  class= "img-display" src="assets/img/'.$article['name'].'" /><p class="desc">'.$article['title'].'</p></div>');
+                                //     echo('
+                                // </div>')
+                                ?>
+                        <!-- </div> -->
+                    <?php
+                    endforeach; ?>
+                <!-- </div> -->
+        <!-- </section> -->
     </main>
     <footer>
         <?php require_once("layouts/footer.php")?>

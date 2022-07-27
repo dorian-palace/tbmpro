@@ -67,8 +67,8 @@ $articleDelete = $artNew->deleteArticle();
                     <td><?= $article['name']; ?></td>
                     <td><?= $article['id']; ?></td>
                     <td><?= $article['title']; ?></td>
-                    <td><?= $article['text']; ?></td>
-                    <td><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
+                    <td class="text-scroll"><div class="scroll"><?= $article['text']; ?></div></td>
+                    <td ><a href="adminArticle.php?id=<?= $article['id'] ?>">Modify</a></td>
                     
                     
                 </tr>
@@ -108,10 +108,7 @@ $articleDelete = $artNew->deleteArticle();
                             $idArticle = intval($_GET['id']);
                             $articleSolo = $artNew->getArticleById($idArticle);
                             $articleUpdate = $artNew->updateArticle($idArticle);
-                            // echo 'kjejhsjkkqjsndkjqs';
-                            // echo '<pre>';
-                            // var_dump($articleSolo);
-                            // echo '</pre>';
+                           
                             
 
                             ?>
