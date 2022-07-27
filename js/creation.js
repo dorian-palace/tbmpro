@@ -356,10 +356,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const result = data.length;
 
                     console.log(result)
-
-                    if (result > 0) {
-                        confirm('Confirmation')
-                    }
                     // else {
                     //     alert('Erreur')
                     // }
