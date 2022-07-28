@@ -177,8 +177,25 @@ class User extends Database
 
     public function updateUser()
     {
+        /**
+         * array(7) {
+  ["name_new"]=>
+  string(5) "adzzz"
+  ["surname_new"]=>
+  string(2) "ad"
+  ["mail_new"]=>
+  string(8) "ad@ad.fr"
+  ["login_new"]=>
+  string(2) "ad"
+  ["password_new"]=>
+  string(2) "ad"
+  ["confirm_password_new"]=>
+  string(2) "ad"
+  ["submit_new"]=>
+  string(7) "Envoyer"
+         */
 
-        if (isset($_POST['submit_new'], $_POST['name_new'], $_POST['surname_new'], $_POST['email_new'], $_POST['login_new'], $_POST['password_new'], $_POST['confirm_password_new'])) {
+        if (isset($_POST['submit_new'], $_POST['name_new'], $_POST['surname_new'], $_POST['mail_new'], $_POST['login_new'], $_POST['password_new'], $_POST['confirm_password_new'])) {
 
             $name = secuData($_POST['name_new']);
             $surname = secuData($_POST['surname_new']);
@@ -190,14 +207,18 @@ class User extends Database
             $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
             $password = $newPassword;
 
+            /**
+             * UPDATE `users` SET `id`='[value-1]',`name`='[value-2]',`surname`='[value-3]',`mail`='[value-4]',`login`='[value-5]',`password`='[value-6]',`id_role`='[value-7]' WHERE 1
+             */
 
-            $sql = "UPDATE users SET name = :name, surname = :surname, login = :login, mail = :mail, password = :password WHERE id = :id";
+
+            $sql = "UPDATE users SET name = :name, surname = :surname, mail = :mail, login = :login,  password = :password WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 ":name" => $name,
                 ":surname" => $surname,
-                ":login" => $login,
                 ":mail" => $mail,
+                ":login" => $login,
                 ":password" => $password,
                 "id" => $idUser
             ]);
