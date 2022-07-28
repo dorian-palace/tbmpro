@@ -137,6 +137,7 @@ $articleDelete = $artNew->deleteArticle();
                 </div>
         </article>
     </main>
+    
 </body>
 </html>
 
