@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const submitUpdate = document.getElementById("submit-update-user");
 
+    console.log(submitUpdate);
+
     submitUpdate.addEventListener("click", function () {
 
         const name = document.getElementsByName("name");

@@ -78,7 +78,9 @@ class AdminUser extends Database
             $stmt->execute([
                 $name, $surname, $mail, $login, $id_role, $idUser
             ]);
+            
         }
+       
     }
 
     public function deleteUser($id)
