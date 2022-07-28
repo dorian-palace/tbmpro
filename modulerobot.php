@@ -41,7 +41,17 @@ Robots::LoadBODIES();
     
 
 
-
+    <h1 id="heading">Modulateur robot powered by kabylian brain</h1>
+    <div id="box">
+      <div id="backdrop">
+        <div id="head"></div>
+        <div id="body"></div>
+      </div>
+      <div class="buttonBox">
+        <button id="nexthead" onclick="nexthead()">Tête du robot➡</button>
+        <button id="nextbody" onclick="nextbody()">Corps du robot➡</button>
+      </div>
+    </div>
 
 
 
