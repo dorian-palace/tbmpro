@@ -33,8 +33,7 @@
 					<a href="#">Inscription</a>
 					·
 					<a href="#">Galerie</a>
-					·
-					<a href="#">Produits</a>
+					
 				</p>
 
 				<p class="footer-company-name">technologybasedmagic &copy; 2022</p>

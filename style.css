@@ -562,20 +562,7 @@ aside{
     border: none;
 }
 
-/* .new-robot-section .btn {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-   
-    color: var(--main-gold);
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: 0.5s;
-    margin-top: 40px;
-    letter-spacing: 4px;
-} */
+
 
 .first{
     border-bottom: 4px dotted #149ad7;
@@ -584,15 +571,6 @@ aside{
 }
 
 
-
-/* .new-robot-section .btn:hover{ */
-    /* background: var(--main-blue);
-    color: var(--main-dark-blue);
-    border-radius: 5px;
-    border: none;
-    box-shadow: 0 0 5px var(--main-blue), 0 0 25px var(--main-blue), 0 0 50px var(--main-blue),
-      0 0 100px var(--main-blue); */
-/* } */
 
 .display-robot{
     display: flex;
@@ -691,7 +669,7 @@ aside{
     height: 90vh;
     justify-content: space-around;
  }
-modal-
+
  .modal-admin input{
     color: var(--main-gold);
     width: 100%;
@@ -1095,3 +1073,8 @@ table.form_box.table{
     font-size: 1rem;
     
 }
+
+
+
+
+
