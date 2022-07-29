@@ -174,7 +174,7 @@ Un bouton matériau pour les têtes.
 
                     <div class="filterColorHead">
 
-                    <h3>Heads Colors</h3><br>
+                    <h3>Couleurs têtes</h3><br>
 
                     <?php foreach ($getColor as $color) : ?>
 
@@ -184,7 +184,7 @@ Un bouton matériau pour les têtes.
                     </div>
 
                     <div class="filterMaterialHead">
-                        <h3>Heads Materials</h3><br>
+                        <h3>Matières têtes</h3><br>
 
                         <?php foreach ($getMaterial as $material) : ?>
 
@@ -194,7 +194,7 @@ Un bouton matériau pour les têtes.
                     </div>
 
                     <div class="filterColorBody">
-                        <h3>Body Colors</h3><br>
+                        <h3>Couleurs corps</h3><br>
 
                         <?php foreach ($getColor as $color) : ?>
 
@@ -205,7 +205,7 @@ Un bouton matériau pour les têtes.
                     </div>
 
                     <div class="filterMaterialBody">
-                        <h3>Body Materials</h3><br>
+                        <h3>Matières corps</h3><br>
 
                         <?php foreach ($getMaterial as $material) : ?>
 

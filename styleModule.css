@@ -1,84 +1,13 @@
-
-
 /** 
  * RESET 
  * ========================================================================= */
 
-/** 
- * Evite les box plus grandes que le parents lorsque l'enfant à du 
- * padding, border etc..
- */
-
- /* *,
- *::before,
- *::after {
-   box-sizing: border-box;
- } */
- 
- /** 
-  * Enlève les marges par default les décorations et styles imposés
-  */
-/*  
-  * {
-    margin: 0;
-   text-decoration: none;
-   list-style: none;
-   scroll-behavior: smooth; 
- }  */
  body{
      margin: 0;
      background: var(--main-dark-blue);
+     scroll-behavior: smooth; 
  }
- /** 
-  * Evite le pb de size, 
-  * Il est possible d'utiliser les vh mais elles ne sont pas encore au points 
-  * pour les ecrans mobiles 
-  */
 
- /* html,
- body {
-   height: 100%;
- }  */
- 
- /**
- *Qu'est-ce que les WCAG ? 
- *Les directives d'accessibilité du contenu Web 
- *(WCAG ou Web Content Accessibility Guidelines en anglais) 
- *sont un ensemble de normes pour rendre le contenu web
- *Ici on a augmenté l'interlignage verticale pour les dislexiques
- *avec une fonctiin calque
- */
-/*  
- * {
-   line-height: calc(1em + 0.5rem);
- } */
- 
- /** 
-  * Empeche les image d'être plus grandes que leur boxs
-  */
- 
- /* img,
- picture,
- video,
- canvas,
- svg {
-   display: block;
-   max-width: 100%;
- }
-  */
- /** 
-  * Met le style du parents sur les éléments des formulaires
-  */
- /* input,
- button,
- textarea,
- select {
-   font: inherit;
- } */
- 
- /** 
-  * Empêche le texte de depasser de sa box et rajoute automatiquement les traits d'union
-  */
  p {
    overflow-wrap: break-word;
    hyphens: auto;
@@ -309,7 +238,7 @@
 
 /** 
 * ASIDE
-* ========================================================================= */
+* =========================================================================*/
 
 main{
     display: flex;
@@ -317,6 +246,10 @@ main{
     height: 90vh;
 }
 
+
+img{
+    background-color: transparent;
+}
 .scene{
     
     max-width: 30%;
@@ -324,16 +257,19 @@ main{
     
 }
 
+.filterMaterialHead:hover{
+    color: var(--main-blue);
+}
+
 .leftMenu h3{ 
     top: 0;
     left: 0;
     padding: 10px 0;
-    font-size: 30px;
+    font-size: 20px;
     color: var(--main-gold);
     font-weight: 100;
+    transition: 0.5s;
 }
-
-
 
 .leftMenu{
   font-family: "Avenir-Book";

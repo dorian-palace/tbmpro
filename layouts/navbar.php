@@ -63,7 +63,6 @@ $userId = intval($_SESSION['id_role']);
                     <a href="./inscription.php"class="link">Inscription</a>
                     <a href="./connexion.php" class="link">Connexion</a>
                     <a href="./galerie.php" class="link">Galerie</a>
-                    <a href="./products.php" class="link">Produits</a>
                     </ul>            
                 <?php  } ?> 
                 <a 
