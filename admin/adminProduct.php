@@ -170,9 +170,9 @@ $total = ceil($nbStart / $limit);
                     <fieldset>
                         <label for="">Delete Head</label>
                         <?php foreach ($headRobot as $head) :  ?>
-                            <div class="container-delete-head">
+                            <div class="container-delete-head head-robo">
                                 <img src="../assets/<?= $head['head_name']; ?>" class="display-robot-head" alt="">
-                                <button name="delete-head" value="<?= $head['head_id']; ?>">Delete head</button>
+                                <button name="delete-head" value="<?= $head['head_id']; ?>"><i class="fa-regular fa-trash-can" style="color: #bc9b67;"></i></button> 
                             </div>
                         <?php endforeach; ?>
                     </fieldset>
@@ -184,7 +184,7 @@ $total = ceil($nbStart / $limit);
                         <?php foreach ($bodyRobot as $body) : ?>
 
                             <img src="../assets/<?= $body['body_name']; ?>" class="display-robot-head" alt="">
-                            <button name="delete-body" value="<?= $body['body_id']; ?>">Delete body</button>
+                            <button name="delete-body" value="<?= $body['body_id']; ?>"><i class="fa-regular fa-trash-can" style="color: #bc9b67;"></i></button>
                         <?php endforeach; ?>
                     </fieldset>
                 </div>
@@ -264,7 +264,7 @@ $total = ceil($nbStart / $limit);
                         <img src="../assets/<?= $nbRobots['body_name']; ?>" alt="" class="display-robot-body">
                         <!-- </div> -->
                         <div class="display-robot-delete">
-                            <button type="submit" name="delete-robot" class="delete-robot" id="delete-robot" value="<?= $nbRobots['id_robot']; ?>">DELETE</button>
+                            <button type="submit" name="delete-robot" class="delete-robot" id="delete-robot" value="<?= $nbRobots['id_robot']; ?>"><i class="fa-regular fa-trash-can" style="color: #bc9b67;"></i></button>
                         </div>
                     </div>
                     <?php

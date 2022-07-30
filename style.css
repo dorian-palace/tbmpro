@@ -519,26 +519,38 @@ aside{
 }
 
 .miniature{
-    /* max-width: 9em;
-    max-height: 9em; */
-    padding: 10px 0;
     font-size: 16px;
     color: var(--main-gold);
     margin-bottom: 30px;
-    border: none;
-    /* border-bottom: 1px solid var(--main-gold); */
+    border: 1px solid var(--main-blue);
     outline: none;
     background: transparent;
     display: flex;
-    flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: baseline;
-    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    overflow: scroll;
+    flex-grow: 1;
+    max-width: 300px;
+    max-height: 400px;
+    align-items: flex-start;
+    justify-content: center;
 }
 
-.minature fieldset{
-    border: 1px solid var(--main-blue) !important;
+fieldset button {
+    background-color: transparent;
+    border: none;
+    
+}
+
+.container-delete-body fieldset, .container-delete-head fieldset{
+    border-style: none;
+}
+
+
+
+.container-delete-head img{
+    justify-content: center;
 }
 
 .filter-color:hover{
@@ -612,7 +624,6 @@ aside{
     font-weight: lighter;
     padding: 10px;
   
-    
 }
 .visu-robot{
 
@@ -647,6 +658,7 @@ aside{
 
 .flex-central {
     height: 90vh;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
