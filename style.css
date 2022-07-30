@@ -494,6 +494,22 @@ aside{
     justify-content: center;
 }
 
+/* .btn-input:hover{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--main-gold);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 1px solid #149ad7;
+    justify-content: center;
+} */
+
 .color-material select{
     padding-left: 14px;
     background: transparent;
@@ -516,9 +532,26 @@ aside{
     display: flex;
     flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: baseline;
-    align-content: flex-start;
+    align-content: center;
+}
+
+.minature fieldset{
+    border: 1px solid var(--main-blue) !important;
+}
+
+.filter-color:hover{
+    cursor: pointer;
+    color: var(--main-gold);
+    transition: 0.5s;
+
+}
+
+.filter-mat:hover{
+    cursor: pointer;
+    color: var(--main-gold);
+    transition: 0.5s;
 }
 
 .container-delete-body input{
@@ -565,7 +598,6 @@ aside{
 
 
 .first{
-    border-bottom: 4px dotted #149ad7;
     margin-bottom: 20px;
     /* width: 100%!important; */
 }
@@ -598,7 +630,7 @@ aside{
     justify-content: space-evenly;
 }
 .block-central {
-    background-color: green;
+    /* background-color: green; */
     width: 100%;
     display: flex;
 	flex-direction: row;
@@ -619,7 +651,7 @@ aside{
 .flex-central {
     height: auto;
     width: 100%;
-    background-color: palevioletred;
+    /* background-color: palevioletred; */
     display: flex;
     flex-direction: column-reverse;
     flex-wrap: nowrap;
@@ -653,6 +685,11 @@ aside{
   border-bottom: 1px solid var(--main-gold);
   outline: none;
   background: transparent;
+}
+
+#button-delete, #delete-mat{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /** 
