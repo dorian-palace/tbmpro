@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(canvas => {
                 const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
                 const a = document.createElement('a')
-                a.setAttribute('download', 'my-image.png')
+                a.setAttribute('download', 'mon-devis.png')
                 a.setAttribute('href', image)
                 a.click()
                 canvas.remove()

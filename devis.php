@@ -1,22 +1,10 @@
 `<?php
-
     require_once('app/Devis.php');
 
     $devis = new Devis();
     $userData = $devis->getAllInfosFromUser();
     $robotData = $devis->getLastRobotFromUser();
-
-    // foreach ($userData as $user) {
-    //     // $user[$key] = $value;
-    //     echo "<pre>";
-    //     var_dump($user);
-    //     echo "</pre>";
-    // }
-
-
-    // echo "<pre>";
-    // var_dump($_SESSION);
-    // echo "</pre>";
+    $quote = $devis->getLastQuotes();
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,24 +19,45 @@
     <title>devis</title>
 </head>
 
+
 <body>
-    <div class="container" id="container">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, quidem. Earum, praesentium quam autem dolore odit itaque omnis aspernatur provident tenetur doloribus non cupiditate laborum commodi voluptate, similique consectetur sequi.
-        <?php
+    <header>
+        <?php require_once("layouts/navbar.php") ?>
+    </header>
 
-        foreach ($robotData as $robot) {
-            // $robot[$key] = $value;
-            echo "<pre>";
-            var_dump($robotData);
-            echo "</pre>";
-        }
+    <main>
+        <?php foreach ($quote as $quotes) :  ?>
 
-        echo "<pre>";
-        var_dump($_SESSION);
-        echo "</pre>";
-        ?>
-    </div>
-    <button class="screen-shot-devis" id="screen-shot-devis">DEVIS</button>
+            <div class="container-quotes" id="container">
+                <label for="">Devis</label></br>
+                <tr>Nom: </tr>
+                <td><?= $quotes['name']; ?></td></br>
+                <tr>Prenom: </tr>
+                <td><?= $quotes['surname']; ?></td></br>
+                <tr>Mail :</tr>
+                <td><?= $quotes['mail']; ?></td></br>
+                <tr>Nom du Robot :</tr>
+                <td><?= $quotes['name_robot']; ?></td></br>
+
+                <div class="robot">
+
+                    <div class="head">
+                        <img src="assets/<?= $quotes['head_name']; ?>" alt="">
+                    </div>
+
+                    <div class="body">
+                        <img src="assets/<?= $quotes['body_name']; ?>" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+            <button class="screen-shot-devis" id="screen-shot-devis">DEVIS</button>
+        <?php endforeach ?>
+    </main>
+    <footer>
+        <?php require_once("layouts/footer.php") ?>
+    </footer>
 </body>
 
 </html>
