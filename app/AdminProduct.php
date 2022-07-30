@@ -206,7 +206,6 @@ class AdminRobot extends Database
 
                             move_uploaded_file($tmpName, $way);
 
-                            echo ("Layer successfully uploaded");
                         }
                     }
                 }
