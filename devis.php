@@ -5,11 +5,6 @@
     $userData = $devis->getAllInfosFromUser();
     $robotData = $devis->getLastRobotFromUser();
     $quote = $devis->getLastQuotes();
-
-
-    // echo "<pre>";
-    // var_dump($_SESSION);
-    // echo "</pre>";
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +21,10 @@
 
 
 <body>
+    <header>
+        <?php require_once("layouts/navbar.php") ?>
+    </header>
+
     <main>
         <?php foreach ($quote as $quotes) :  ?>
 
@@ -56,6 +55,9 @@
             <button class="screen-shot-devis" id="screen-shot-devis">DEVIS</button>
         <?php endforeach ?>
     </main>
+    <footer>
+        <?php require_once("layouts/footer.php") ?>
+    </footer>
 </body>
 
 </html>

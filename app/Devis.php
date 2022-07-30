@@ -38,7 +38,7 @@ class Devis extends Database
     
     public function getLastQuotes()
     {
-        $sql = "SELECT * FROM quotes JOIN users on users.id = quotes.id_user JOIN robots ON robots.id_robot = quotes.id_robot JOIN body_robots ON body_robots.body_id = robots.id_image_body JOIN head_robots ON head_robots.head_id = robots.id_image_head WHERE quotes.id_user = ? ORDER BY quotes.id DESC LIMIT 1";
+        $sql = "SELECT * FROM quotes JOIN users on users.id = quotes.id_user JOIN robots ON robots.id_robot = quotes.id_robot JOIN body_robots ON body_robots.body_id = robots.id_image_body JOIN head_robots ON head_robots.head_id = robots.id_image_head WHERE quotes.id_user = ? ORDER BY quotes.id DESC";
         $query = $this->pdo->prepare($sql);
         $query->execute([$_SESSION['id']]);
         $quote = $query->fetchAll();
