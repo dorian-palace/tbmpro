@@ -32,6 +32,7 @@ $userId = intval($_SESSION['id_role']);
                         <a href="./products.php" class="link">Produits</a>
                         <a href="./creation.php" class="link">Module</a>
                         <a href="./profil.php" class="link">Profil</a>
+                        <a href="./devis.php" class="link">Devis</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
                     </ul> 
                     <?php  } ?> 
