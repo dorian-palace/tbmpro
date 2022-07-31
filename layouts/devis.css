@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: rgb(20, 154, 215);
 }
 
 .robot {
@@ -13,19 +14,23 @@
   max-width: 200px;
   max-height: 200px;
   object-fit: fill;
-  background-color: red;
+  background-color: transparent;
 }
 
 .body img {
   max-height: 200px;
   max-width: 200px;
   object-fit: cover;
-  background-color: red;
+  background-color: transparent;
 }
 
-.container-quotes{
-    display: flex;
-    align-items: center;
+.container-quotes {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #111f32;
 }
 
 /* .screen-shot-devis{
@@ -38,3 +43,8 @@
     display: flex;
     justify-content: center;
 } */
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}

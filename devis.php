@@ -53,6 +53,8 @@
 
                 </div>
 
+            </div>
+            <div class="button-container">
                 <button class="screen-shot-devis" id="screen-shot-devis">DEVIS</button>
             </div>
         <?php endforeach ?>
