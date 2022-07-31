@@ -209,12 +209,8 @@ class User extends Database
         // $mail = secuData($_POST['mail_new']);
         // $newPassword = secuData($_POST['password_new']);
         // $idUser = intval($_SESSION["id"]);
-        // if ($this->regexPassword()) {
+        if ($this->regexPassword()) {
             $password = password_hash($newPassword, PASSWORD_DEFAULT);
-            // $password = $newPassword;
-
-
-
 
             $sql = "UPDATE users SET name = :name, surname = :surname, mail = :mail, login = :login, password = :password WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
@@ -226,11 +222,9 @@ class User extends Database
                 ":password" => $password,
                 "id" => $id
             ]);
-            
-            header('Location: index.php');
-            return $stmt;
-
-        // }
-        // }
+            // return $stmt;
+        } else {
+            $this->displayMessage('Votre mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule');
+        }
     }
 }

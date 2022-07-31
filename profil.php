@@ -5,13 +5,13 @@ require_once('app/User.php');
 
 $userUpdate = new User();
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 if (isset($_POST['submit_new'])) {
 
     if (isset($_POST['login_new']) && isset($_POST['password_singUp']) && isset($_POST['name_new']) && isset($_POST['surname_new']) && isset($_POST['mail_new'])) {
 
-        var_dump($_POST);
+        // var_dump($_POST);
         $login = secuData($_POST['login_new']);
         $password = secuData($_POST['password_singUp']);
         $confPassword = secuData($_POST['confirm_password_new']);
@@ -38,7 +38,8 @@ if (isset($_POST['submit_new'])) {
     <link rel="icon" type="image/x-icon" href="assets/img/favIcon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="layouts/error.css">
+    <title>Profil</title>
 </head>
 
 <body>
@@ -50,6 +51,7 @@ if (isset($_POST['submit_new'])) {
             <div class="form_box">
                 <h1>Bienvenue <span><?= $_SESSION['name']; ?></span> </h1>
                 <form class="modal-content animate" action="" method="POST">
+                    <?php  ?>
                     <div class="user-box">
                         <input type="text" placeholder="name" name="name_new" value="<?= $_SESSION['name']; ?>">
                         <label>Prénom</label>
