@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/devis.js"></script>
     <script src="js/html2canvas.js"></script>
+    <link rel="stylesheet" href="layouts/devis.css">
 
     <title>devis</title>
 </head>
@@ -29,16 +30,17 @@
         <?php foreach ($quote as $quotes) :  ?>
 
             <div class="container-quotes" id="container">
-                <label for="">Devis</label></br>
-                <tr>Nom: </tr>
-                <td><?= $quotes['name']; ?></td></br>
-                <tr>Prenom: </tr>
-                <td><?= $quotes['surname']; ?></td></br>
-                <tr>Mail :</tr>
-                <td><?= $quotes['mail']; ?></td></br>
-                <tr>Nom du Robot :</tr>
-                <td><?= $quotes['name_robot']; ?></td></br>
-
+                <div class="client">
+                    <label for="">Devis</label></br>
+                    <tr>Nom: </tr>
+                    <td><?= $quotes['name']; ?></td></br>
+                    <tr>Prenom: </tr>
+                    <td><?= $quotes['surname']; ?></td></br>
+                    <tr>Mail :</tr>
+                    <td><?= $quotes['mail']; ?></td></br>
+                    <tr>Nom du Robot :</tr>
+                    <td><?= $quotes['name_robot']; ?></td></br>
+                </div>
                 <div class="robot">
 
                     <div class="head">
@@ -52,7 +54,9 @@
                 </div>
 
             </div>
-            <button class="screen-shot-devis" id="screen-shot-devis">DEVIS</button>
+            <div class="button-container">
+                <button class="screen-shot-devis" id="screen-shot-devis">DEVIS</button>
+            </div>
         <?php endforeach ?>
     </main>
     <footer>
