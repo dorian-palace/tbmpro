@@ -29,7 +29,7 @@ $userId = intval($_SESSION['id_role']);
                     <ul id="myLinks">
                         <a href="./index.php" class="active">Accueil</a>
                         <a href="./galerie.php" class="link">Galerie</a>
-                        <a href="./products.php" class="link">Produits</a>
+                        <!-- <a href="./products.php" class="link">Produits</a> -->
                         <a href="./creation.php" class="link">Module</a>
                         <a href="./profil.php" class="link">Profil</a>
                         <a href="./devis.php" class="link">Devis</a>
@@ -41,7 +41,7 @@ $userId = intval($_SESSION['id_role']);
                     <ul id="myLinks">     
                         <a href="./index.php" class="active">Accueil</a>
                         <a href="./galerie.php" class="link">Galerie</a>
-                        <a href="./products.php" class="link">Produits</a>
+                        <!-- <a href="./products.php" class="link">Produits</a> -->
                         <a href="./creation.php" class="link">Module</a>
                         <a href="./admin.php" class="link">Admin</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
@@ -52,7 +52,7 @@ $userId = intval($_SESSION['id_role']);
                     <ul id="myLinks">     
                         <a href="./index.php" class="active">Accueil</a>
                         <a href="./galerie.php" class="link">Galerie</a>
-                        <a href="./products.php" class="link">Produits</a>
+                        <!-- <a href="./products.php" class="link">Produits</a> -->
                         <a href="./creation.php" class="link">Module</a>
                         <a href="./admin.php" class="link">Admin</a>
                         <a href="./setting/deconnexion.php"class="link">Deconnexion</a>
@@ -64,7 +64,6 @@ $userId = intval($_SESSION['id_role']);
                     <a href="./inscription.php"class="link">Inscription</a>
                     <a href="./connexion.php" class="link">Connexion</a>
                     <a href="./galerie.php" class="link">Galerie</a>
-                    <a href="./products.php" class="link">Produits</a>
                     </ul>            
                 <?php  } ?> 
                 <a 

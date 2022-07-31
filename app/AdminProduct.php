@@ -220,7 +220,6 @@ class AdminRobot extends Database
                             move_uploaded_file($tmpName, $way);
                             //On déplace le fichier uploadé dans le dossier assets
 
-                            echo ("Layer successfully uploaded");
                         }
                     }
                 }
