@@ -3,24 +3,27 @@ require_once('setting/data.php');
 // require_once('app/AdminUser.php');
 require_once('app/User.php');
 
-if (isset($_SESSION)) {
+$userUpdate = new User();
 
-    if (isset($_POST['submit_new'], $_POST['name_new'], $_POST['surname_new'], $_POST['email_new'], $_POST['login_new'], $_POST['password_new'], $_POST['confirm_password_new'])) {
+// var_dump($_SESSION);
 
+if (isset($_POST['submit_new'])) {
+
+    if (isset($_POST['login_new']) && isset($_POST['password_singUp']) && isset($_POST['name_new']) && isset($_POST['surname_new']) && isset($_POST['mail_new'])) {
+
+        // var_dump($_POST);
         $login = secuData($_POST['login_new']);
-        $password = secuData($_POST['password_new']);
+        $password = secuData($_POST['password_singUp']);
         $confPassword = secuData($_POST['confirm_password_new']);
         $name = secuData($_POST['name_new']);
         $surname = secuData($_POST['surname_new']);
-        $mail = secuData($_POST['email_new']);
-        $userUpdate = new User();
-        $userUpdate->updateUser($name, $surname, $login, $mail, $password);
+        $mail = secuData($_POST['mail_new']);
+        $id = $_SESSION['id'];
+        $userUpdate->updateUser($name, $surname, $mail, $login, $password, $id);
     }
 }
 
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
+// var_dump($_SESSION);
 
 ?>
 
@@ -35,7 +38,8 @@ echo "</pre>";
     <link rel="icon" type="image/x-icon" href="assets/img/favIcon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="layouts/error.css">
+    <title>Profil</title>
 </head>
 
 <body>
@@ -46,7 +50,8 @@ echo "</pre>";
         <div class="modal">
             <div class="form_box">
                 <h1>Bienvenue <span><?= $_SESSION['name']; ?></span> </h1>
-                <form class="modal-content animate" action="" method="post">
+                <form class="modal-content animate" action="" method="POST">
+                    <?php  ?>
                     <div class="user-box">
                         <input type="text" placeholder="name" name="name_new" value="<?= $_SESSION['name']; ?>">
                         <label>Prénom</label>
@@ -64,7 +69,7 @@ echo "</pre>";
                         <label>Login</label>
                     </div>
                     <div class="user-box">
-                        <input type="password" placeholder="" name="password_new">
+                        <input type="password" placeholder="" name="password_singUp">
                         <label>Mot de passe</label>
                     </div>
                     <div class="user-box">
@@ -72,9 +77,9 @@ echo "</pre>";
                         <label>Confirmer</label>
                     </div>
                     <input class="btn_submit" type="submit" name="submit_new">
+                </form>
             </div>
 
-            </form>
         </div>
         </div>
     </main>

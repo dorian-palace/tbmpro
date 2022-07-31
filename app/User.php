@@ -21,6 +21,7 @@ class User extends Database
     public function __construct()
     {
         parent::__construct();
+        @$this->password = $_POST['password_singUp'];
     }
 
     public function signUp($login, $password, $name, $surname, $mail)
@@ -86,6 +87,26 @@ class User extends Database
         }
     }
 
+    public function regexPassword()
+    {
+
+        $password = secuData($_POST['password_singUp']);
+        // if (preg_match('(?=.*[a-z])(?=.*[A-Z]){8,}', $password)) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+
+        if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+            // tell the user something went wrong
+            return false;
+        }
+        return true;
+    }
+
     public function displayMessage($msg)
     {
 
@@ -98,23 +119,27 @@ class User extends Database
 
     public function confirmSignUp($login, $password, $name, $surname, $mail)
     {
-        if ($this->confPassword()) {
+        if ($this->regexPassword()) {
 
-            if ($this->valideEmail()) {
+            if ($this->confPassword()) {
 
-                if ($this->userExist()) {
+                if ($this->valideEmail()) {
 
-                    $this->signUp($login, $password, $name, $surname, $mail);
-                    header('Location: connexion.php');
+                    if ($this->userExist()) {
+
+                        $this->signUp($login, $password, $name, $surname, $mail);
+                        header('Location: connexion.php');
+                    }
+                } else {
+                    $this->displayMessage('Votre adresse mail n\'est pas valide');
                 }
             } else {
-                $this->displayMessage('Votre adresse mail n\'est pas valide');
+                $this->displayMessage('Vos mots de passe ne correspondent pas');
             }
         } else {
-            $this->displayMessage('Vos mots de passe ne correspondent pas');
+            $this->displayMessage('Votre mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule');
         }
     }
-
     public function getUserInfo()
     {
         $sql = "SELECT * FROM users WHERE id = :id";
@@ -175,44 +200,19 @@ class User extends Database
         }
     }
 
-    public function updateUser()
+    public function updateUser($name, $surname, $mail, $login, $newPassword, $id)
     {
-        /**
-         * array(7) {
-  ["name_new"]=>
-  string(5) "adzzz"
-  ["surname_new"]=>
-  string(2) "ad"
-  ["mail_new"]=>
-  string(8) "ad@ad.fr"
-  ["login_new"]=>
-  string(2) "ad"
-  ["password_new"]=>
-  string(2) "ad"
-  ["confirm_password_new"]=>
-  string(2) "ad"
-  ["submit_new"]=>
-  string(7) "Envoyer"
-         */
+        // var_dump($_POST);
+        // $name = secuData($_POST['name_new']);
+        // $surname = secuData($_POST['surname_new']);
+        // $login = secuData($_POST['login_new']);
+        // $mail = secuData($_POST['mail_new']);
+        // $newPassword = secuData($_POST['password_new']);
+        // $idUser = intval($_SESSION["id"]);
+        if ($this->regexPassword()) {
+            $password = password_hash($newPassword, PASSWORD_DEFAULT);
 
-        if (isset($_POST['submit_new'], $_POST['name_new'], $_POST['surname_new'], $_POST['mail_new'], $_POST['login_new'], $_POST['password_new'], $_POST['confirm_password_new'])) {
-
-            $name = secuData($_POST['name_new']);
-            $surname = secuData($_POST['surname_new']);
-            $login = secuData($_POST['login_new']);
-            $mail = secuData($_POST['mail_new']);
-            $newPassword = secuData($_POST['password_new']);
-            $idUser = intval($_SESSION["id"]);
-
-            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $password = $newPassword;
-
-            /**
-             * UPDATE `users` SET `id`='[value-1]',`name`='[value-2]',`surname`='[value-3]',`mail`='[value-4]',`login`='[value-5]',`password`='[value-6]',`id_role`='[value-7]' WHERE 1
-             */
-
-
-            $sql = "UPDATE users SET name = :name, surname = :surname, mail = :mail, login = :login,  password = :password WHERE id = :id";
+            $sql = "UPDATE users SET name = :name, surname = :surname, mail = :mail, login = :login, password = :password WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 ":name" => $name,
@@ -220,8 +220,11 @@ class User extends Database
                 ":mail" => $mail,
                 ":login" => $login,
                 ":password" => $password,
-                "id" => $idUser
+                "id" => $id
             ]);
+            // return $stmt;
+        } else {
+            $this->displayMessage('Votre mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule');
         }
     }
 }
