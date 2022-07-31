@@ -56,12 +56,12 @@
     max-width: 100px ;
 }
 
-#headContainer {
+/* #headContainer {
     display: flex;
     justify-content: center;
     background-color: red;
     border-color: red;
-}
+} */
 
 .test {
     display: flex;
@@ -243,7 +243,7 @@
 main{
     display: flex;
     flex-direction: row;
-    height: 90vh;
+    height: 106vh;
 }
 
 
@@ -294,7 +294,7 @@ img{
     text-transform: uppercase;
     overflow: hidden;
     transition: 0.5s;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
     background: transparent;
     letter-spacing: 4px;
     border: 1px solid #149ad7;
@@ -312,11 +312,114 @@ img{
     text-transform: uppercase;
     overflow: hidden;
     transition: 0.5s;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 8px;
+    margin-bottom: 4px;
     background: transparent;
     letter-spacing: 4px;
     border: 1px solid #149ad7;
     justify-content: center;
     background: transparent;
+}
+
+/** 
+* SCREEN ROBOT
+* =========================================================================*/
+
+.displayRobot{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+.displayRobot div{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.displayRobot button{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.displayRobot  img{
+    max-width : 750px !important;
+    max-height : 750px !important;
+    
+}
+
+.screen-div {
+    height: 100px;
+    align-items: baseline;
+    justify-content: space-evenly;
+    display: flex;
+    background: rgba(17, 31, 50, 0.932);
+
+}
+
+.screen-div button{
+    background-color: transparent;
+    border: 1px solid #149ad7;
+    color: var(--main-blue);
+
+}
+
+.screen-div input{
+    width: 30%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--main-blue);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--main-gold);
+  outline: none;
+  background: transparent;
+}
+
+.creation{
+    width: 80%;
+    
+    
+    
+}
+
+
+@media screen and (max-width: 800px){
+    main{
+
+        display: flex;
+        flex-direction: column;
+        height: 185vh;
+    }
+    .screen-div {
+        height: 100px;
+        align-items: baseline;
+        justify-content: space-evenly;
+        display: flex;
+        /* background: rgba(17, 31, 50, 0.932); */
+    }
+    .creation {
+        width: 100%;
+    }
+
+    .displayRobot {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 636px;
+        /* background-repeat: no-repeat; */
+        /* background-size: contain; */
+    }
 }

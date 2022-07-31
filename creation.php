@@ -220,21 +220,23 @@ Un bouton matériau pour les têtes.
                 <?php
                 $_SESSION;
                 ?>
-                <div class="displayRobot" id="displayRobot">
+                <section class="creation">
+                    <div class="screen-div">
+                        <input type="text" name="name" placeholder="nom du robot" id="name-robot" class="name-robot">
+                        <button type="submit" class="screenshot btn_submit" id="screenshot" name="submit-robot">Sauvegarder</button>
+                    </div>
+                    <div class="displayRobot" id="displayRobot">
 
-                    <div class="headContainer" id="headContainer">
+                        <div class="headContainer" id="headContainer">
+
+                        </div>
+
+                        <div class="bodyContainer" id="bodyContainer">
+
+                        </div>
 
                     </div>
-
-                    <div class="bodyContainer" id="bodyContainer">
-
-                    </div>
-
-                </div>
-            <div class="screen-div">
-                <input type="text" name="name" placeholder="name" id="name-robot" class="name-robot">
-                <button type="submit" class="screenshot btn_submit" id="screenshot" name="submit-robot">Sauvegarder</button>
-            </div>
+                </section>
     </main>
 
     <footer class="footer-distributed">

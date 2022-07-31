@@ -206,7 +206,7 @@ body {
 
 
 
-.form_box {
+.form_box{
   font-family: "Avenir-Book";
  
   width: 400px;
@@ -215,6 +215,21 @@ body {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 8px;
+}
+
+@media screen and (max-width: 800px) {
+
+    .form_box{
+        font-family: "Avenir-Book";
+        width: 300px;
+        padding: 40px;
+        margin-bottom: 10px;
+        background: rgba(17, 31, 50, 0.932);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+        border-radius: 8px;
+      }
+
 }
 
 .form_box h1 {
@@ -436,27 +451,29 @@ aside{
     justify-content: space-around;
 }
 
+@media screen and (max-width: 800px) {
+
+    .modal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+}
+
 /** 
  * ADMIN et ADMIN PRODUITS
  ========================================================================= */
 
-/* .body-robot{
-    
-    height: 70vh;
-} */
+
 
 .new-robot-section, .color-material{
-    /* font-family: "Avenir-Book";
-    background: rgba(17, 31, 50, 0.932); 
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6); 
-    border-radius: 10px; */
-    /* width: 50%; */
+   
     padding: 40px;
     color: var(--main-gold);
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-evenly; */
+   
 
 }
 .color-material input{
@@ -528,11 +545,12 @@ aside{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content: space-between;
+    align-content: space-evenly;
     overflow: scroll;
     flex-grow: 1;
-    max-width: 300px;
+    max-width: 407px;
     max-height: 400px;
+    margin: 10px;
     align-items: flex-start;
     justify-content: center;
 }
@@ -567,13 +585,11 @@ fieldset button {
 }
 
 .container-delete-body input{
-    /* width: 100%; */
     padding: 10px 0;
     font-size: 16px;
     color: var(--main-gold);
     margin-bottom: 30px;
     border: none;
-    /* border-bottom: 1px solid var(--main-gold); */
     outline: none;
     background: transparent;
 }
@@ -704,10 +720,78 @@ fieldset button {
     margin-bottom: 10px;
 }
 
+@media screen and (max-width: 800px) {
+    .flex-central {
+        height: 60vh;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: baseline;
+        align-content: space-between;
+        overflow: scroll;
+        flex-grow: 1;
+    }
+
+    .block-aside-robot {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    aside {
+        height: 100vh;
+        max-width: 100%;
+        overflow: scroll;
+        flex-grow: 1;
+        font-family: "Avenir-Book";
+        /* z-index: 1; */
+        /* position: fixed; */
+    }
+
+    .miniature{
+        max-width: 407px;
+        max-height: 400px;
+        margin: 10px;
+        align-content: space-evenly;
+    }
+
+    .new-robot-section{
+        border-top: 3px dotted #149ad7;
+    }
+}
 /** 
  * ADMIN ARTICLE
  ========================================================================= */
- 
+ @media screen and (max-width: 800px) {
+
+    .main-admin-article {
+        display: flex;
+        flex-direction: column!important;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        justify-content: flex-end;
+    }
+
+    .modal-admin{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start ;
+        align-items: center;
+        align-content: stretch;
+        height: 90vh;
+        justify-content: space-around;
+    }
+    
+    .main-admin-article article {
+        overflow:scroll;
+        flex-grow: 1;
+        /* margin-bottom: 20px; */
+    }
+
+   
+}
  .modal-admin{
     display: flex;
     flex-direction: row;
@@ -808,6 +892,25 @@ fieldset button {
  * ADMIN USER
  ========================================================================= */
 
+ @media screen and (max-width: 800px) {
+
+    .main-admin-user {
+        display: flex;
+        flex-direction: column !important;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .table{
+       
+        overflow: scroll;
+        flex-grow: 1;
+        display: flex;
+        /* width: auto; */
+        height: 30vh!important;
+    
+    }
+}
 
 .main-admin-user h2{
     padding: 20px;
@@ -840,13 +943,9 @@ fieldset button {
     max-height: 100px;
 }
 
-/* table tr{
-height: 10px;
-} */
 
 table.form_box.table{
-    /* overflow:scroll;
-    flex-grow: 1; */
+  
     height: 50px;
     overflow-x:auto;
 }
@@ -947,7 +1046,24 @@ table.form_box.table{
     justify-content: space-evenly;
     align-content: space-between;
  }
+ @media screen and (max-width: 800px) {
 
+    .main-galerie {
+        height: 80vh;
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .img-galerie {
+        width: 150px !important;
+        height: 150px !important;
+        object-fit: cover;
+    }
+}
 
 .desc {
     padding: 15px;
@@ -969,13 +1085,6 @@ table.form_box.table{
     
 }
 
-/* 
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-} */
 
 .modal-content, #caption {  
     -webkit-animation-name: zoom;
@@ -1030,20 +1139,6 @@ table.form_box.table{
     }
 }
 
-/* .modal-test{
-    display: none;
-    position: fixed;
-    z-index: 1; 
-    padding-top: 100px; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.9); 
-
-} */
 
 .img-display{
   object-fit: contain;  
@@ -1115,6 +1210,30 @@ table.form_box.table{
 
 
   }
+
+
+@media screen and (max-width: 800px) {
+
+    .main-article {
+        width: 90%;
+        margin: 5rem auto;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner {
+    
+        position: relative;
+        height: 300px;
+        width: 100%;
+        padding: 0 5%;
+        overflow: hidden;
+        backface-visibility: hidden;
+    }
+    
+}
   
 .article-solo p { 
     /* margin: 0 0 3rem 3rem;  */
