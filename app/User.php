@@ -24,9 +24,15 @@ class User extends Database
         @$this->password = $_POST['password_singUp'];
     }
 
+    /**
+     * $_POST sécurisé avec la fonction générique secuData()
+     */
+
     public function signUp($login, $password, $name, $surname, $mail)
     {
-
+        /**
+         * Si l'utilisateur valide le formulaire, je récupère les données du formulaire en les sécurisant à l'aide de la fonction générique secuData() et Hash le password à l'aide de PASSWORD_BCRYPT.
+         */
         if (isset($_POST['submit_signUp'])) {
 
             $login = secuData($_POST['login_singUp']);
@@ -49,7 +55,12 @@ class User extends Database
         }
     }
 
-
+    /**
+     * Je sécurise le login en utilisant la fonction secuData()
+     * rowCount permet de vérifier si le login est déjà utilisé.
+     * Si il n'est pas déjà utilisé, je peux l'inscrire. (rowCount == 0) return true 
+     * Si il est déjà utilisé, je ne peux pas l'inscrire.  false
+     */
     public function userExist()
     {
         $login = secuData($_POST['login_singUp']);
@@ -66,6 +77,11 @@ class User extends Database
         }
     }
 
+    /**
+     * Fonction qui permet de vérifier si le password est indendique avec la confirmation du password. 
+     * Si les password son identiques.  true
+     * Si les password sont différents.  false
+     */
     public function confPassword()
     {
         $password = secuData($_POST['password_singUp']);
@@ -77,6 +93,12 @@ class User extends Database
             return false;
         }
     }
+
+    /**
+     * Fonction qui permet de vérifier si le mail renseigné est au format mail. 
+     * Si le mail est valide.  true
+     * Si le mail est invalide.  false
+     */
     public function valideEmail()
     {
         $mail = secuData($_POST['mail_singUp']);
@@ -107,6 +129,9 @@ class User extends Database
         return true;
     }
 
+    /**
+     * Fonction qui permet d'afficher les message d'érreur en placant en paramètres le message d'erreur.
+     */
     public function displayMessage($msg)
     {
 
@@ -117,17 +142,22 @@ class User extends Database
     }
 
 
+    /**
+     * Fonction qui permet de valider l'inscritpion d'un utilisateur.
+     */
     public function confirmSignUp($login, $password, $name, $surname, $mail)
     {
+        //Si le mot de passe renseigné respecte les conditions de la function regexPassword() 
         if ($this->regexPassword()) {
-
+            //Si les mots de passes sont identiques
             if ($this->confPassword()) {
-
+                //Si le mail est valide
                 if ($this->valideEmail()) {
-
+                    //Si le login n'est pas déjà utilisé
                     if ($this->userExist()) {
-
+                        //Si toutes les conditions sont remplies, je peux inscrire l'utilisateur
                         $this->signUp($login, $password, $name, $surname, $mail);
+                        //il est donc redirigé vers la page de connexion
                         header('Location: connexion.php');
                     }
                 } else {
@@ -140,6 +170,10 @@ class User extends Database
             $this->displayMessage('Votre mot de passe doit contenir au moins 8 caractères, une majuscule et une minuscule');
         }
     }
+
+    /**
+     * Fonction qui permet de récupèrer les informations de l'utilisateur connecté.
+     */
     public function getUserInfo()
     {
         $sql = "SELECT * FROM users WHERE id = :id";
@@ -151,6 +185,10 @@ class User extends Database
         return $user;
     }
 
+    /**
+     * Fonction qui permet de connecter un utilisateur.
+     * Si le login et le password sont corrects, il est connecté.
+     */
     public function signIn($login, $password)
     {
         $sql = "SELECT * FROM users WHERE login = ? AND password = ?";
@@ -200,15 +238,12 @@ class User extends Database
         }
     }
 
+    /**
+     * Fonction qui permet à un utilisateur de modifier ses informations.
+     */
     public function updateUser($name, $surname, $mail, $login, $newPassword, $id)
     {
-        // var_dump($_POST);
-        // $name = secuData($_POST['name_new']);
-        // $surname = secuData($_POST['surname_new']);
-        // $login = secuData($_POST['login_new']);
-        // $mail = secuData($_POST['mail_new']);
-        // $newPassword = secuData($_POST['password_new']);
-        // $idUser = intval($_SESSION["id"]);
+
         if ($this->regexPassword()) {
             $password = password_hash($newPassword, PASSWORD_DEFAULT);
 

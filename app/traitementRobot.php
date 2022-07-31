@@ -3,6 +3,10 @@ require_once('Robots.php');
 $robot = new Robots();
 require_once('../setting/data.php');
 
+/**
+ * Si ma page de traitement reçois un POST, à l'aide de fetch (Javascript), je récupère en base de données les composants des robots par couleurs et matériaux.
+ **/
+
 if (isset($_POST['select_color'])) {
 
     $idColor = secuData($_POST['select_color']);
@@ -20,4 +24,3 @@ if (isset($_POST['select_mat'])) {
     $dataMat = ['materialHeadRobots' => $materialHeadRobots, 'materialBodyRobots' => $materialBodyRobots];
     echo json_encode($dataMat);
 }
-

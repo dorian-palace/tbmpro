@@ -161,31 +161,42 @@ class AdminRobot extends Database
         return $robot;
     }
 
+    /**
+     * Fonction qui permet de créer une nouvelle image de tête pour les robots
+     */
     public function newRobotHead()
     {
-
+        //Si le formulaire est validé
         if (isset($_POST['submit-head-robot'])) {
-            // echo "ok1";
+
+            //Si le fichier est uploadé
             if (isset($_FILES['image-head-robot'])) {
-                // echo "ok2";
+                //Si le fichier n'est pas vide
                 $tmpName = $_FILES['image-head-robot']['tmp_name'];
                 $name = $_FILES['image-head-robot']['name'];
                 $size = $_FILES['image-head-robot']['size'];
                 $type = $_FILES['image-head-robot']['type'];
                 $error = $_FILES['image-head-robot']['error'];
-
+                //Si le fichier n'est pas vide
                 $picExtension = explode('.', @$name);
+                //On récupère l'extension du fichier
                 $extension = strtolower(end($picExtension));
+                //On met l'extension en minuscule
                 $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
+                //On définit les extensions autorisées
 
                 $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
+                //On définit le chemin de l'image
                 $maxSize = 40000;
+                //On définit la taille maximum du fichier
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-                    // echo "ok3";
+                    //Si l'extension est autorisée et que le fichier n'est pas trop volumineux
+
                     if (isset($name)) {
-                        // echo "ok4",
+                        //Si le nom du fichier est défini
                         $namePicToRegister = $name . '.' . $extension;
+                        //On définit le nom de l'image à enregistrer
 
                         $sql = "SELECT * FROM head_robots WHERE head_name = ?";
                         $request = $this->pdo->prepare($sql);
@@ -194,7 +205,8 @@ class AdminRobot extends Database
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
-                            // echo "ok5";
+                            //Si le nom de l'image n'est pas déjà utilisé
+
                             $color = secuData($_POST['head-color']);
                             $materials = secuData($_POST['head-material']);
 
@@ -203,8 +215,10 @@ class AdminRobot extends Database
                             $request->execute([
                                 $namePicToRegister, $color, $materials
                             ]);
+                            //On enregistre l'image dans la base de données
 
                             move_uploaded_file($tmpName, $way);
+                            //On déplace le fichier uploadé dans le dossier assets
 
                             echo ("Layer successfully uploaded");
                         }
@@ -216,29 +230,37 @@ class AdminRobot extends Database
 
     public function newRobotBody()
     {
-
+        //Si le formulaire est validé
         if (isset($_POST['submit-body-robot'])) {
-            // echo "ok1";
+            //Si le fichier est uploadé
             if (isset($_FILES['image-body-robot'])) {
-                // echo "ok2";
+                //Si le fichier n'est pas vide
                 $tmpName = $_FILES['image-body-robot']['tmp_name'];
                 $name = $_FILES['image-body-robot']['name'];
                 $size = $_FILES['image-body-robot']['size'];
                 $type = $_FILES['image-body-robot']['type'];
                 $error = $_FILES['image-body-robot']['error'];
-
+                //Si le fichier n'est pas vide
                 $picExtension = explode('.', @$name);
+                //On récupère l'extension du fichier
                 $extension = strtolower(end($picExtension));
+                //On met l'extension en minuscule
                 $extensionsAllowed = ['jpg', 'png', 'jpeg', 'gif'];
+                //On définit les extensions autorisées
 
                 $way = "/Applications/MAMP/htdocs/tbmpro/assets/" . $name . '.' . $extension;
+                //On définit le chemin de l'image
                 $maxSize = 40000;
+                //On définit la taille maximum du fichier
 
                 if (in_array($extension, $extensionsAllowed) <= $maxSize && $error == 0) {
-                    // echo "ok3";
+                    //Si l'extension est autorisée et que le fichier n'est pas trop volumineux
+
                     if (isset($name)) {
-                        // echo "ok4",
+                        //Si le nom du fichier est défini
+
                         $namePicToRegister = $name . '.' . $extension;
+                        //On définit le nom de l'image à enregistrer
 
                         $sql = "SELECT * FROM body_robots WHERE body_name = ?";
                         $request = $this->pdo->prepare($sql);
@@ -247,7 +269,8 @@ class AdminRobot extends Database
                         $titlePic = $request->rowCount();
 
                         if ($titlePic == 0) {
-                            // echo "ok5";
+                            //Si le nom de l'image n'est pas déjà utilisé
+
                             $color = secuData($_POST['body-color']);
                             $materials = secuData($_POST['body-material']);
 
@@ -256,8 +279,10 @@ class AdminRobot extends Database
                             $request->execute([
                                 $namePicToRegister, $color, $materials
                             ]);
+                            //On enregistre l'image dans la base de données
 
                             move_uploaded_file($tmpName, $way);
+                            //On déplace le fichier uploadé dans le dossier assets
 
                             echo ("Layer successfully uploaded");
                         }
@@ -267,6 +292,9 @@ class AdminRobot extends Database
         }
     }
 
+    /**
+     * récupère toutes les images
+     */
     public function getImages()
     {
         $sql = "SELECT * FROM images";
@@ -275,15 +303,9 @@ class AdminRobot extends Database
         return $results;
     }
 
-    // public function getProductById()
-    // {
-
-    //     $sql = 'SELECT * FROM products INNER JOIN categories ON id_categorie = categories.id';
-    //     $result = $this->pdo->query($sql);
-    //     $results = $result->fetchAll();
-    //     return $results;
-    // }
-
+    /**
+     * Récupère toutes les couleurs
+     */
     public function getColor()
     {
         $sql = 'SELECT * FROM colors';
@@ -292,6 +314,9 @@ class AdminRobot extends Database
         return $results;
     }
 
+    /**
+     * Supprime une couleur
+     */
     public function deleteColor($delete)
     {
 
@@ -304,6 +329,9 @@ class AdminRobot extends Database
         return $stmt;
     }
 
+    /**
+     * Récupère tout les matériaux
+     */
     public function getMaterials()
     {
         $sql = 'SELECT * FROM materials';
@@ -312,73 +340,12 @@ class AdminRobot extends Database
         return $results;
     }
 
-    // public function getCategories()
-    // {
-    //     $sql = 'SELECT * FROM categories';
-    //     $result = $this->pdo->query($sql);
-    //     $results = $result->fetchAll();
-    //     return $results;
-    // }
-
-    // public function getCategorieById($id)
-    // {
-    //     $sql = 'SELECT * FROM categories WHERE id = ?';
-    //     $result = $this->pdo->prepare($sql);
-    //     $result->execute([$id]);
-    //     $results = $result->fetchAll();
-    //     return $results;
-    // }
-
-    // public function updateCategorie($name, $id)
-    // {
-
-    //     $sql = 'UPDATE categories SET name = ? WHERE id = ?';
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->execute([
-    //         $name,
-    //         $id
-    //     ]);
-    // }
-
-    // public function deleteCategorie($delete)
-    // {
-    //     $sql = 'DELETE FROM categories WHERE id = ?';
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->execute(array(
-    //         $delete
-    //     ));
-
-
-    //     return $stmt;
-    // }
-
-    // public function newCategories()
-    // {
-
-    //     if (isset($_POST['submit-categorie'])) {
-
-    //         if (!empty($_POST['name-categorie'])) {
-
-
-    //             $nameCategories = secuData($_POST['name-categorie']);
-    //             $sql = "SELECT * FROM categories WHERE name = ?";
-    //             $request = $this->pdo->prepare($sql);
-    //             $request->execute([$nameCategories]);
-    //             $row = $request->rowCount();
-
-    //             if ($row == 0) {
-    //                 $sql = "INSERT INTO categories (name) VALUES (?)";
-    //                 $request = $this->pdo->prepare($sql);
-    //                 $request->execute([$nameCategories]);
-    //                 $request->fetchAll();
-    //                 // header('Location: adminProduct.php');
-    //             } // else la categorie existe déjà
-    //         } // else message d'érreur ici rempli le champ
-    //     }
-    // }
-
+    /**
+     * Crée une nouvelle matière
+     */
     public function newMaterials()
     {
+        //Si le formulaire est validé
         if (isset($_POST['submit_material'])) {
 
             if (!empty($_POST['new-material'])) {
@@ -392,7 +359,7 @@ class AdminRobot extends Database
                 $row = $request->rowCount();
 
                 if ($row == 0) {
-
+                    //Si le nom n'est pas déjà utilisé
                     $sql = "INSERT INTO materials (type) VALUES (?)";
                     $request = $this->pdo->prepare($sql);
                     $request->execute([$materials]);
@@ -402,6 +369,9 @@ class AdminRobot extends Database
         }
     }
 
+    /**
+     * Supprime une matière
+     */
     public function deleteMaterials($delete)
     {
         $sql = 'DELETE FROM materials WHERE id = ?';
@@ -422,6 +392,9 @@ class AdminRobot extends Database
         return $stmt;
     }
 
+    /**
+     * Crée une nouvelle couleur
+     */
     public function newColor()
     {
         if (isset($_POST['submit_color'])) {
@@ -434,7 +407,7 @@ class AdminRobot extends Database
             $row = $request->rowCount();
 
             if ($row == 0) {
-
+                //Si le nom n'est pas déjà utilisé
                 $sql = "INSERT INTO colors (name) VALUES (?)";
                 $request = $this->pdo->prepare($sql);
                 $request->execute([$color]);

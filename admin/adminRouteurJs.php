@@ -5,7 +5,9 @@ $robot = new AdminRobot();
 
 if (isset($_POST['select_color'])) {
 
-    // var_dump($_POST['select_color']);
+    /**
+     * Si ma page de traitement reçois un POST, à l'aide de fetch (Javascript), je récupère en base de données les composants des robots par couleurs et matériaux.
+     */
 
     $idColor = secuData($_POST['select_color']);
     $colorHeadRobots = $robot->getHeadRobotsByColor($idColor);
@@ -15,6 +17,9 @@ if (isset($_POST['select_color'])) {
 }
 
 if (isset($_POST['select_mat'])) {
+    /**
+     * Si ma page de traitement reçois un POST, à l'aide de fetch (Javascript), je récupère en base de données les composants des robots par matériaux.
+     */
 
     $idMaterial = secuData($_POST["select_mat"]);
     $materialHeadRobots = $robot->getHeadRobotsByMaterial($idMaterial);
@@ -24,6 +29,9 @@ if (isset($_POST['select_mat'])) {
 }
 
 if (isset($_POST['delete-robot'])) {
+    /**
+     * Permet de supprimer un robot
+     */
 
     $button = intval(secuData($_POST['delete-robot']));
     $deleteRobot = $robot->deleteRobot($button);
@@ -32,7 +40,9 @@ if (isset($_POST['delete-robot'])) {
 }
 
 if (isset($_POST['delete-head'])) {
-
+    /**
+     * Permet de supprimer une tête
+     */
     $id = intval(secuData($_POST['delete-head']));
     var_dump($id);
     $robot->deleteHead($id);
@@ -65,13 +75,6 @@ if (isset($_POST['submit-robot'])) {
     }
 }
 
-if (isset($_POST['delete-category'])) {
-
-    $id = secuData($_POST['delete-category']);
-    $delete = $robot->deleteCategorie($id);
-    // var_dump($_POST);
-    echo json_encode($delete);
-}
 
 if (isset($_POST['delete-color'])) {
 
@@ -85,14 +88,4 @@ if (isset($_POST['delete-material'])) {
     $id = secuData($_POST['delete-material']);
     $delete = $robot->deleteMaterials($id);
     echo json_encode($delete);
-}
-
-if (isset($_POST['update-category'])) {
-
-    // var_dump($_POST);
-    $name = secuData($_POST['update-category']);
-    $id = secuData($_POST['update-category-id']);
-    $update = $robot->updateCategorie($name, $id);
-    echo json_encode($update);
-    // var_dump($_POST);
 }

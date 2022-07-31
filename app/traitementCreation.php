@@ -5,18 +5,9 @@ require_once('devis.php');
 $devis = new Devis();
 $robot = new AdminRobot();
 
-// if (isset($_POST['head_id'])) {
-//     var_dump($_POST['head_id']);
-// }
-
-// if (isset($_POST['body_id'])); {
-//     var_dump($_POST['body_id']);
-// }
-
-// if (isset($_POST['robot_name_value'])) {
-//     var_dump($_POST['robot_name_value']);
-// }
-
+/**
+ * Si ma page de traitement reçois un POST, à l'aide de fetch (Javascript), je crée un nouveau robot et un devis.
+ */
 
 if (isset($_POST['head_id']) || $_POST['body_id'] || $_POST['robot_name_value']) {
 
@@ -27,6 +18,7 @@ if (isset($_POST['head_id']) || $_POST['body_id'] || $_POST['robot_name_value'])
     var_dump($head);
     // var_dump($_POST);
     $newRobot = $robot->newRobots($name, $head, $body, $userId);
+    // return les values au format JSON
     echo json_encode($newRobot);
 }
 
@@ -34,13 +26,8 @@ if (isset($_POST['head_id']) || $_POST['body_id'] || $_POST['robot_name_value'])
 
     $lastRobot = $devis->getLastRobotFromUser();
     $id_robot = $lastRobot['id_robot'];
-    // echo "<pre>";
-    // var_dump($id_robot);
-    // echo "</pre>";
     $userId = $_SESSION['id'];
-    // var_dump($head);
     $robotDevis = $devis->newQuote($userId, $id_robot);
+    // return les values au format JSON
     echo json_encode($robotDevis);
-    // var_dump($_POST);
-
 }

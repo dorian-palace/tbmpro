@@ -10,6 +10,7 @@ class Devis extends Database
         parent::__construct();
     }
 
+    //récupère le dernier robot créé par l'utilisateur
     public function getLastRobotFromUser()
     {
         $sql = "SELECT * FROM `robots` WHERE `id_user` = ? ORDER BY `id_robot` DESC LIMIT 1";
@@ -19,6 +20,7 @@ class Devis extends Database
         return $robot;
     }
 
+    // Récupère les informations de l'utilisateur connecté.
     public function getAllInfosFromUser()
     {
         $sql = "SELECT * FROM `users` WHERE `id` = ?";
@@ -28,6 +30,7 @@ class Devis extends Database
         return $user;
     }
 
+    // Crée un devis avec l'id du robot et l'id de l'utilisateur.
     public function newQuote($id_user, $id_robot)
     {
         $sql = "INSERT INTO `quotes` (`id_user`, `id_robot`) VALUES (?, ?)";
@@ -35,7 +38,8 @@ class Devis extends Database
         $query->execute([$id_user, $id_robot]);
         $quote = $query->fetch();
     }
-    
+
+    // Récupère le devis de l'utilisateur connecté et toutes les données du robot associé.
     public function getLastQuotes()
     {
         $sql = "SELECT * FROM quotes JOIN users on users.id = quotes.id_user JOIN robots ON robots.id_robot = quotes.id_robot JOIN body_robots ON body_robots.body_id = robots.id_image_body JOIN head_robots ON head_robots.head_id = robots.id_image_head WHERE quotes.id_user = ? ORDER BY quotes.id DESC";

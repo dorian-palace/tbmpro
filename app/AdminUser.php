@@ -18,11 +18,13 @@ class AdminUser extends Database
         $this->debut = ($this->page - 1) * $this->limite;
         parent::__construct();
 
+        // Si l'utilisateur connecté n'est pas un admin il est redirigé vers la page d'accueil
         if ($_SESSION['id_role'] == 1) {
             header('Location: index.php');
         }
     }
 
+    // Récupère tout les utilisateurs.
     public function getAllUsers()
     {
         $sql = "SELECT * FROM users WHERE id_role = 1 LIMIT $this->limite OFFSET $this->debut";
@@ -32,6 +34,9 @@ class AdminUser extends Database
         return $users;
     }
 
+    /**
+     * Récupère le nombre total d'utilisateurs pour pagination.
+     */
     public function countUser()
     {
         $sql = "SELECT COUNT(*) FROM users";
@@ -41,6 +46,9 @@ class AdminUser extends Database
         return $stmt;
     }
 
+    /**
+     * Récupère les informations d'un utilisateur.
+     */
     public function getSingleUser($id)
     {
         $sql = "SELECT * FROM users WHERE id = :id";
@@ -52,6 +60,10 @@ class AdminUser extends Database
         return $user;
     }
 
+    /**
+     * Récupère tout les administrateurs.
+     * id_role 10 = administrateur
+     */
     public function getAdmin()
     {
         $sql = "SELECT * FROM users WHERE id_role = 10";
@@ -61,6 +73,9 @@ class AdminUser extends Database
         return $users;
     }
 
+    /**
+     * Permet de modifier les informations d'un utilisateur.
+     */
     public function updateUser()
     {
 
@@ -78,11 +93,12 @@ class AdminUser extends Database
             $stmt->execute([
                 $name, $surname, $mail, $login, $id_role, $idUser
             ]);
-            
         }
-       
     }
 
+    /**
+     * permet de supprimer un utilisateur.
+     */
     public function deleteUser($id)
     {
         $sql = "DELETE FROM users WHERE id = ?";
