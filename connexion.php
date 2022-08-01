@@ -19,7 +19,7 @@ if (isset($_POST['submit_connexion'])) {
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="assets/img/favIcon.ico">
     <script type="text/javascript" src="layouts/scriptNav.js"></script>
@@ -31,28 +31,28 @@ if (isset($_POST['submit_connexion'])) {
 
 <body>
     <header>
-        <?php require_once("layouts/navbar.php")?>
+        <?php require_once("layouts/navbar.php") ?>
     </header>
     <main>
-    <div class="modal">
-        <div class="form_box">
-        <h1>Connexion</h1>
-            <form action="" method="post">
-                <div class="user-box">
-                <input type="text"  name="login_connexion" autocomplete="off">
-                <label for="login_connexion">Login</label>
-                </div>
-                <div class="user-box">
-                <input type="password" name="password_connexion" autocomplete="off">
-                <label for="password_connexion">Mot de passe</label>
-                </div>
-                <input class= "btn_submit" type="submit" name="submit_connexion">
-            </form>
+        <div class="modal">
+            <div class="form_box">
+                <h1>Connexion</h1>
+                <form action="" method="post">
+                    <div class="user-box">
+                        <input type="text" name="login_connexion" autocomplete="off">
+                        <label for="login_connexion">Login</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="password" name="password_connexion" autocomplete="off">
+                        <label for="password_connexion">Mot de passe</label>
+                    </div>
+                    <input class="btn_submit" type="submit" name="submit_connexion">
+                </form>
+            </div>
         </div>
-    </div>
-    <footer>
-        <?php require_once("layouts/footer.php")?>
-    </footer>
+        <footer>
+            <?php require_once("layouts/footer.php") ?>
+        </footer>
 </body>
 
 </html>

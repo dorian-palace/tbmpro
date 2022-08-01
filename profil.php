@@ -5,26 +5,6 @@ require_once('app/User.php');
 
 $userUpdate = new User();
 
-// var_dump($_SESSION);
-
-if (isset($_POST['submit_new'])) {
-
-    if (isset($_POST['login_new']) && isset($_POST['password_singUp']) && isset($_POST['name_new']) && isset($_POST['surname_new']) && isset($_POST['mail_new'])) {
-
-        // var_dump($_POST);
-        $login = secuData($_POST['login_new']);
-        $password = secuData($_POST['password_singUp']);
-        $confPassword = secuData($_POST['confirm_password_new']);
-        $name = secuData($_POST['name_new']);
-        $surname = secuData($_POST['surname_new']);
-        $mail = secuData($_POST['mail_new']);
-        $id = $_SESSION['id'];
-        $userUpdate->updateUser($name, $surname, $mail, $login, $password, $id);
-    }
-}
-
-// var_dump($_SESSION);
-
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +27,23 @@ if (isset($_POST['submit_new'])) {
         <?php require_once("layouts/navbar.php") ?>
     </header>
     <main>
+        <?php
+        if (isset($_POST['submit_new'])) {
+
+            if (isset($_POST['login_new']) && isset($_POST['password_singUp']) && isset($_POST['name_new']) && isset($_POST['surname_new']) && isset($_POST['mail_new'])) {
+
+                // var_dump($_POST);
+                $login = secuData($_POST['login_new']);
+                $password = secuData($_POST['password_singUp']);
+                $confPassword = secuData($_POST['confirm_password_new']);
+                $name = secuData($_POST['name_new']);
+                $surname = secuData($_POST['surname_new']);
+                $mail = secuData($_POST['mail_new']);
+                $id = $_SESSION['id'];
+                $userUpdate->updateUser($name, $surname, $mail, $login, $password, $id);
+            }
+        }
+        ?>
         <div class="modal">
             <div class="form_box">
                 <h1>Bienvenue <span><?= $_SESSION['name']; ?></span> </h1>

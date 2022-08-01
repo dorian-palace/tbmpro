@@ -64,7 +64,6 @@ $nbUsers = $start->fetchColumn();
                     <th>mail</th>
                     <th>login</th>
                     <th>role</th>
-                    <th>id_quotes</th>
                 </tr>
 
                 <?php foreach ($users as $user) :
@@ -91,7 +90,6 @@ $nbUsers = $start->fetchColumn();
                     <th>mail</th>
                     <th>login</th>
                     <th>role</th>
-                    <th>id_quotes</th>
                 </tr>
 
                 <?php
